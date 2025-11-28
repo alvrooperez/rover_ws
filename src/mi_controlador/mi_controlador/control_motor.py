@@ -24,8 +24,8 @@ class Control_motor(Node):
         v_der=int(velocidad_der * self.ticks)
         
         self.rc.SpeedM1(self.address,v_izq)
-        self.rc.ForwardM2(self.address,v_der)
-       
+        self.rc.SpeedM2(self.address,v_der)
+
 
 def main(args=None):
     rclpy.init(args=args)
