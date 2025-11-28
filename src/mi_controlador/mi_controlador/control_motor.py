@@ -11,7 +11,7 @@ class Control_motor(Node):
         
         
     
-        self.rc = Roboclaw("/dev/ttyS0",baudrate) 
+        self.rc = Roboclaw("/dev/ttyAMA0",baudrate) 
         self.rc.Open()
         self.address=address  
         self.get_logger().info(f"Conectando a ({baudrate}) Dirección: {self.address}")
