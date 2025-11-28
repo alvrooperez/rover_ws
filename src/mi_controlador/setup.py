@@ -31,7 +31,7 @@ setup(
     entry_points={
         'console_scripts': [
             #'test_saludo = mi_controlador.mi_primer_nodo:main',
-            'habla = mi_controlador.emisor:main',
+            'motor = mi_controlador.control_motor:main',
             'escucha = mi_controlador.receptor:main',
         ],
     },
