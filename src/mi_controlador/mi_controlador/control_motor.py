@@ -95,27 +95,29 @@ def main(args=None):
     controladora3= Control_motor(0x82,38400)
     servo=ControladorServos()
     try:
+        print("Avanzando motores a velocidad bruta 100")
         controladora1.motores_bruto(100,100)
         controladora2.motores_bruto(100,100)
         controladora3.motores_bruto(100,100)
         time.sleep(2)
+        print("Deteniendo motores")
         controladora1.mover_motores(0.0,0.0)
         controladora2.mover_motores(0.0,0.0)
         controladora3.mover_motores(0.0,0.0)
         time.sleep(0.1)
+        print("Moviendo servos a 45 grados")
         servo.mover(0,45)
         servo.mover(1,45)
         servo.mover(2,45)
         servo.mover(3,45)
         time.sleep(2)
         servo.apagar_todos()
+
     except KeyboardInterrupt:
         pass
 
     finally:
-        controladora1.destroy_node()
-        controladora2.destroy_node()
-        controladora3.destroy_node()
+        print("Cerrando nodos...")
         rclpy.shutdown()
 
 if __name__ == '__main__':
