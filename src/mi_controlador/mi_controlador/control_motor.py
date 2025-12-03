@@ -101,9 +101,9 @@ def main(args=None):
     servo=ControladorServos()
     try:
         print("Avanzando motores a velocidad bruta 100",flush=True)
-        controladora1.motores_bruto(100,100)
-        controladora2.motores_bruto(100,100)
-        controladora3.motores_bruto(100,100)
+        controladora1.motores_bruto(100,0)
+        controladora2.motores_bruto(100,0)
+        controladora3.motores_bruto(100,0)
         time.sleep(2)
         print("Deteniendo motores",flush=True)
         controladora1.motores_bruto(0.0,0.0)
