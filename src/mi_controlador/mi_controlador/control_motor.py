@@ -101,10 +101,10 @@ def main(args=None):
     servo=ControladorServos()
     try:
         print("Avanzando motores a velocidad bruta 100",flush=True)
-        controladora1.motores_bruto(100,0)
-        controladora2.motores_bruto(100,0)
-        controladora3.motores_bruto(100,0)
-        time.sleep(2)
+        controladora1.motores_bruto(50,0)
+        controladora2.motores_bruto(50,0)
+        controladora3.motores_bruto(50,0)
+        time.sleep(0.5)
         print("Deteniendo motores",flush=True)
         controladora1.motores_bruto(0.0,0.0)
         controladora2.motores_bruto(0.0,0.0)
@@ -115,7 +115,7 @@ def main(args=None):
         servo.mover(1,45)
         servo.mover(2,45)
         servo.mover(3,45)
-        time.sleep(2)
+        time.sleep(1)
         servo.apagar_todos()
 
     except KeyboardInterrupt:
