@@ -13,7 +13,7 @@ class Control_motor:
         self.address=address  
         if conectado:
             print(f"✅ [OK] Roboclaw conectada correctamente. Dirección: {self.address},",flush=True)
-            self.rc._port.timeout = 0.01
+            self.rc._port.timeout = 0.1
             self.rc._trys = 1
         else:
             print(f"❌ [ERROR] No se pudo abrir el puerto con la Roboclaw en {self.address}",flush=True)
