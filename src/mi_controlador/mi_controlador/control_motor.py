@@ -63,10 +63,10 @@ class ControladorServos:
         """
         # 1. Protección de seguridad para el ángulo (Clamp)
         # Si pides más de 180, lo baja a 180. Si pides menos de 0, lo sube a 0.
-        if angulo > 90:
+        if angulo > 180:
             angulo = 90
-        elif angulo < -90:
-            angulo = -90
+        elif angulo < 0:
+            angulo = 0
             
         # 2. Protección de canal válido
         if 0 <= canal <= 15:
@@ -130,6 +130,9 @@ def main(args=None):
         controladora3.motores_bruto(0.0,0.0)
         time.sleep(1)
         print("Moviendo servos a 45 grados",flush=True)
+        for i in [0,30,60,90,120,150,180]:
+            servo.mover(3,i)
+
         servo.mover(0,0)
         servo.mover(1,0)
         servo.mover(2,0)
