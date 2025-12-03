@@ -53,7 +53,12 @@ class ControladorServos:
         # Inicializamos la placa de 16 canales
         try:
             self.kit = ServoKit(channels=16)
+
             print("✅ Controlador de Servos iniciado correctamente.",flush=True)
+            self.kit.servo[3].actuation_range = 360
+            self.kit.servo[3].set_pulse_width_range(500, 2500)
+
+
         except Exception as e:
             print(f"❌ Error al iniciar ServoKit: {e}",flush=True)
 
@@ -63,8 +68,8 @@ class ControladorServos:
         """
         # 1. Protección de seguridad para el ángulo (Clamp)
         # Si pides más de 180, lo baja a 180. Si pides menos de 0, lo sube a 0.
-        if angulo > 180:
-            angulo = 90
+        if angulo > 360:
+            angulo = 360
         elif angulo < 0:
             angulo = 0
             
@@ -130,15 +135,15 @@ def main(args=None):
         controladora3.motores_bruto(0.0,0.0)
         time.sleep(1)
         print("Moviendo servos a 45 grados",flush=True)
-        for i in [0,30,60,90,120,150,180]:
-            servo.mover(3,i)
-            time.sleep(2)
-            print(f"Servo 3 en {i} grados",flush=True)
+        #for i in [0,30,60,90,120,150,180]:
+        #    servo.mover(3,i)
+        #    time.sleep(2)
+        #    print(f"Servo 3 en {i} grados",flush=True)
 
         servo.mover(0,0)
         servo.mover(1,0)
         servo.mover(2,0)
-        servo.mover(3,0)
+        servo.mover(3,200)
         time.sleep(1)
         #servo.mover(3,0)
         time.sleep(1)
