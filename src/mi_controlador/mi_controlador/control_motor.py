@@ -6,18 +6,11 @@ from adafruit_servokit import ServoKit
 
 
 class Control_motor:
-    def __init__(self,address,baudrate):
+    def __init__(self,roboclaw_instance,address):
 
-        self.rc = Roboclaw("/dev/ttyAMA0",baudrate) 
-        conectado=self.rc.Open()
+        self.rc = roboclaw_instance
         self.address=address  
-        if conectado:
-            print(f"✅ [OK] Roboclaw conectada correctamente. Dirección: {self.address},",flush=True)
-            self.rc._port.timeout = 0.1
-            self.rc._trys = 1
-        else:
-            print(f"❌ [ERROR] No se pudo abrir el puerto con la Roboclaw en {self.address}",flush=True)
-
+        
         self.ticks=1712 #28 pulsos por vuelta 2*pi*7= cm
 
     def mover_motores(self,velocidad_izq,velocidad_der):
@@ -97,9 +90,24 @@ class ControladorServos:
 def main(args=None):
     print("Iniciando nodo de control de motores y servos...",flush=True)
     rclpy.init(args=args)
-    controladora1= Control_motor(0x80,38400)
-    controladora2= Control_motor(0x81,38400)
-    controladora3= Control_motor(0x82,38400)
+    # --- 1. CREAMOS LA CONEXIÓN MAESTRA (UNA SOLA VEZ) ---
+    print("🔌 Abriendo puerto Roboclaw COMPARTIDO...", flush=True)
+    roboclaw_maestra = Roboclaw("/dev/ttyAMA0", 38400)
+    
+    if roboclaw_maestra.Open():
+        print("✅ Puerto abierto correctamente.", flush=True)
+        # Aquí aplicamos el truco de velocidad UNA VEZ para todos
+        roboclaw_maestra._port.timeout = 0.1 
+        roboclaw_maestra._trys = 1
+    else:
+        print("❌ Error fatal: No se pudo abrir el puerto.", flush=True)
+        return # Salimos si no hay conexión
+        
+    # --- 2. PASAMOS LA CONEXIÓN A LAS CONTROLADORAS ---
+    # Fíjate que le pasamos 'roboclaw_maestra' como primer argumento
+    controladora1 = Control_motor(roboclaw_maestra, 0x80)
+    controladora2 = Control_motor(roboclaw_maestra, 0x81)
+    controladora3 = Control_motor(roboclaw_maestra, 0x82)
     servo=ControladorServos()
     try:
         print("Avanzando motores a velocidad bruta 100",flush=True)
@@ -109,7 +117,9 @@ def main(args=None):
         
         
         controladora1.motores_bruto(50,0)
+        time.sleep(0.2)
         controladora2.motores_bruto(50,0)
+        time.sleep(0.2)
         controladora3.motores_bruto(50,0)
         time.sleep(2)
         t_fin_comando = time.time()
