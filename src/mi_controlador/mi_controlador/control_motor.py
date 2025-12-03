@@ -106,14 +106,14 @@ def main(args=None):
         print("1. Enviando orden motor...", flush=True)
         t_inicio_comando = time.time()
         
-        controladora1.motores_bruto(50, 0) # <--- ¿Cuánto tarda esto?
         
-        t_fin_comando = time.time()
-        print(f"   -> Tiempo enviando comando: {t_fin_comando - t_inicio_comando:.4f} seg", flush=True)
+        
         controladora1.motores_bruto(50,0)
         controladora2.motores_bruto(50,0)
         controladora3.motores_bruto(50,0)
-        time.sleep(0.5)
+        time.sleep(2)
+        t_fin_comando = time.time()
+        print(f"   -> Tiempo enviando comando: {t_fin_comando - t_inicio_comando:.4f} seg", flush=True)
         print("Deteniendo motores",flush=True)
         controladora1.motores_bruto(0.0,0.0)
         controladora2.motores_bruto(0.0,0.0)
