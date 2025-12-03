@@ -133,6 +133,7 @@ def main(args=None):
         for i in [0,30,60,90,120,150,180]:
             servo.mover(3,i)
             time.sleep(0.5)
+            print(f"Servo 3 en {i} grados",flush=True)
 
         servo.mover(0,0)
         servo.mover(1,0)
