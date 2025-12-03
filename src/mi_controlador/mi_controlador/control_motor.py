@@ -118,7 +118,7 @@ def main(args=None):
         
         #controladora1.motores_bruto(35,35)
         #time.sleep(0.2)
-        controladora2.motores_bruto(35,35)
+        #controladora2.motores_bruto(35,35)
         #time.sleep(0.2)
         #controladora3.motores_bruto(35,35)
         time.sleep(2)
@@ -135,7 +135,7 @@ def main(args=None):
         servo.mover(2,45)
         servo.mover(3,45)
         time.sleep(1)
-        servo.mover(0,0)
+        servo.mover(3,0)
         time.sleep(1)
         servo.apagar_todos()
 
