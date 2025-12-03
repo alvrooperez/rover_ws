@@ -63,10 +63,10 @@ class ControladorServos:
         """
         # 1. Protección de seguridad para el ángulo (Clamp)
         # Si pides más de 180, lo baja a 180. Si pides menos de 0, lo sube a 0.
-        if angulo > 180:
-            angulo = 180
-        elif angulo < 0:
-            angulo = 0
+        if angulo > 90:
+            angulo = 90
+        elif angulo < -90:
+            angulo = -90
             
         # 2. Protección de canal válido
         if 0 <= canal <= 15:
@@ -133,7 +133,7 @@ def main(args=None):
         servo.mover(0,45)
         servo.mover(1,45)
         servo.mover(2,45)
-        servo.mover(3,45)
+        servo.mover(3,-90)
         time.sleep(1)
         servo.mover(3,0)
         time.sleep(1)
