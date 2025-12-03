@@ -132,7 +132,7 @@ def main(args=None):
         print("Moviendo servos a 45 grados",flush=True)
         for i in [0,30,60,90,120,150,180]:
             servo.mover(3,i)
-            time.sleep(0.5)
+            time.sleep(2)
             print(f"Servo 3 en {i} grados",flush=True)
 
         servo.mover(0,0)
