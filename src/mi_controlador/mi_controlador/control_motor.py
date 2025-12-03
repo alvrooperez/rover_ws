@@ -116,11 +116,11 @@ def main(args=None):
         
         
         
-        controladora1.motores_bruto(50,0)
+        controladora1.motores_bruto(35,50)
         time.sleep(0.2)
-        controladora2.motores_bruto(50,0)
+        controladora2.motores_bruto(35,35)
         time.sleep(0.2)
-        controladora3.motores_bruto(50,0)
+        controladora3.motores_bruto(35,35)
         time.sleep(2)
         t_fin_comando = time.time()
         print(f"   -> Tiempo enviando comando: {t_fin_comando - t_inicio_comando:.4f} seg", flush=True)
@@ -128,7 +128,7 @@ def main(args=None):
         controladora1.motores_bruto(0.0,0.0)
         controladora2.motores_bruto(0.0,0.0)
         controladora3.motores_bruto(0.0,0.0)
-        time.sleep(0.1)
+        time.sleep(1)
         print("Moviendo servos a 45 grados",flush=True)
         servo.mover(0,45)
         servo.mover(1,45)
