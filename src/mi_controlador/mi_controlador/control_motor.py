@@ -135,15 +135,15 @@ def main(args=None):
         controladora3.motores_bruto(0.0,0.0)
         time.sleep(1)
         print("Moviendo servos a 45 grados",flush=True)
-        #for i in [0,30,60,90,120,150,180]:
-        #    servo.mover(3,i)
-        #    time.sleep(2)
-        #    print(f"Servo 3 en {i} grados",flush=True)
+        for i in [0,90,180,270,360]:
+            servo.mover(3,i)
+            time.sleep(2)
+            print(f"Servo 3 en {i} grados",flush=True)
 
         servo.mover(0,0)
         servo.mover(1,0)
         servo.mover(2,0)
-        servo.mover(3,200)
+        #servo.mover(3,)
         time.sleep(1)
         #servo.mover(3,0)
         time.sleep(1)
