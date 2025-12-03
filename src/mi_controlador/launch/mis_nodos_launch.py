@@ -7,7 +7,9 @@ def generate_launch_description():
         Node(
             package='mi_controlador',  # Nombre del paquete
             executable='motor',        # Nombre del comando (en setup.py)
-            name='nodo_motores'      # (Opcional) Renombrar el nodo al lanzarlo
+            name='nodo_motores',     # (Opcional) Renombrar el nodo al lanzarlo
+            output='screen',      
+            emulate_tty=True
         ),
         
     

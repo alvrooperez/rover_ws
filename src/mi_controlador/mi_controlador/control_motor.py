@@ -9,8 +9,12 @@ class Control_motor:
     def __init__(self,address,baudrate):
 
         self.rc = Roboclaw("/dev/ttyAMA0",baudrate) 
-        self.rc.Open()
+        conectado=self.rc.Open()
         self.address=address  
+        if conectado:
+            print(f"✅ [OK] Roboclaw conectada correctamente. Dirección: {self.address},",flush=True)
+        else:
+            print(f"❌ [ERROR] No se pudo abrir el puerto con la Roboclaw en {self.address}",flush=True)
 
         self.ticks=1712 #28 pulsos por vuelta 2*pi*7= cm
 
@@ -54,9 +58,9 @@ class ControladorServos:
         # Inicializamos la placa de 16 canales
         try:
             self.kit = ServoKit(channels=16)
-            print("✅ Controlador de Servos iniciado correctamente.")
+            print("✅ Controlador de Servos iniciado correctamente.",flush=True)
         except Exception as e:
-            print(f"❌ Error al iniciar ServoKit: {e}")
+            print(f"❌ Error al iniciar ServoKit: {e}",flush=True)
 
     def mover(self, canal, angulo):
         """
@@ -75,9 +79,9 @@ class ControladorServos:
                 self.kit.servo[canal].angle = angulo
                 # print(f"Servo {canal} movido a {angulo}°") # Descomenta para ver logs
             except Exception as e:
-                print(f"⚠️ Error moviendo servo {canal}: {e}")
+                print(f"⚠️ Error moviendo servo {canal}: {e}",flush=True)
         else:
-            print(f"⚠️ Error: El canal {canal} no existe (Usa 0-15).")
+            print(f"⚠️ Error: El canal {canal} no existe (Usa 0-15).",flush=True)
 
     def apagar_todos(self):
         """Libera la fuerza de todos los servos (para que no consuman)"""
@@ -89,23 +93,24 @@ class ControladorServos:
 
 
 def main(args=None):
+    print("Iniciando nodo de control de motores y servos...",flush=True)
     rclpy.init(args=args)
     controladora1= Control_motor(0x80,38400)
     controladora2= Control_motor(0x81,38400)
     controladora3= Control_motor(0x82,38400)
     servo=ControladorServos()
     try:
-        print("Avanzando motores a velocidad bruta 100")
+        print("Avanzando motores a velocidad bruta 100",flush=True)
         controladora1.motores_bruto(100,100)
         controladora2.motores_bruto(100,100)
         controladora3.motores_bruto(100,100)
         time.sleep(2)
-        print("Deteniendo motores")
-        controladora1.mover_motores(0.0,0.0)
-        controladora2.mover_motores(0.0,0.0)
-        controladora3.mover_motores(0.0,0.0)
+        print("Deteniendo motores",flush=True)
+        controladora1.motores_bruto(0.0,0.0)
+        controladora2.motores_bruto(0.0,0.0)
+        controladora3.motores_bruto(0.0,0.0)
         time.sleep(0.1)
-        print("Moviendo servos a 45 grados")
+        print("Moviendo servos a 45 grados",flush=True)
         servo.mover(0,45)
         servo.mover(1,45)
         servo.mover(2,45)
@@ -117,7 +122,7 @@ def main(args=None):
         pass
 
     finally:
-        print("Cerrando nodos...")
+        print("Cerrando nodos...",flush=True)
         rclpy.shutdown()
 
 if __name__ == '__main__':
