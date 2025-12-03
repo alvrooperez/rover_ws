@@ -101,6 +101,13 @@ def main(args=None):
     servo=ControladorServos()
     try:
         print("Avanzando motores a velocidad bruta 100",flush=True)
+        print("1. Enviando orden motor...", flush=True)
+        t_inicio_comando = time.time()
+        
+        controladora1.motores_bruto(50, 0) # <--- ¿Cuánto tarda esto?
+        
+        t_fin_comando = time.time()
+        print(f"   -> Tiempo enviando comando: {t_fin_comando - t_inicio_comando:.4f} seg", flush=True)
         controladora1.motores_bruto(50,0)
         controladora2.motores_bruto(50,0)
         controladora3.motores_bruto(50,0)
