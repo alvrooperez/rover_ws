@@ -121,11 +121,11 @@ def main(args=None):
         
         
         
-        controladora1.motores_bruto(35,35)
+        controladora1.motores_bruto(50,50)
         time.sleep(0.2)
-        controladora2.motores_bruto(35,35)
+        #controladora2.motores_bruto(35,35)
         time.sleep(0.2)
-        controladora3.motores_bruto(35,35)
+        #controladora3.motores_bruto(35,35)
         time.sleep(2)
         t_fin_comando = time.time()
         print(f"   -> Tiempo enviando comando: {t_fin_comando - t_inicio_comando:.4f} seg", flush=True)
