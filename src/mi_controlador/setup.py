@@ -33,6 +33,7 @@ setup(
             #'test_saludo = mi_controlador.mi_primer_nodo:main',
             'motor = mi_controlador.control_motor:main',
             'escucha = mi_controlador.receptor:main',
+            'teleop = mi_controlador.teleop:main',
         ],
     },
 )
