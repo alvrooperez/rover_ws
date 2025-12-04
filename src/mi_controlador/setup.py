@@ -34,6 +34,7 @@ setup(
             'motor = mi_controlador.control_motor:main',
             'escucha = mi_controlador.receptor:main',
             'teleop = mi_controlador.teleop:main',
+            '1motor = mi_controlador.1motor:main',
         ],
     },
 )
