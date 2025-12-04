@@ -16,7 +16,7 @@ def main(args=None):
         version=rc.ReadVersion(address)
         if version[0]==False:
             print("No se pudo leer la versión del RoboClaw")
-            return
+            #return
         else:
             print("Versión del RoboClaw:",version[1].decode('utf-8'))
 
