@@ -121,7 +121,7 @@ def main(args=None):
         
         
         
-        controladora1.motores_bruto(50,50)
+        controladora1.motores_bruto(35,0)
         time.sleep(0.2)
         #controladora2.motores_bruto(35,35)
         time.sleep(0.2)
