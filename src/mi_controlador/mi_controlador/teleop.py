@@ -74,6 +74,8 @@ def main(args=None):
     try:
         rc = Roboclaw("/dev/ttyAMA0", 38400)
         rc.Open()
+        rc._port.timeout = 0.1 
+        rc._trys = 1
     except:
         print("❌ Error abriendo puerto RoboClaw")
         return
@@ -103,6 +105,7 @@ def main(args=None):
                 print("🚀 ADELANTE")
                 for r in rovers: 
                     r.mover(VELOCIDAD_AVANCE, VELOCIDAD_AVANCE)
+                    print("Moviendo rover rueda ",r)
 
             elif key == '\x1b[B': # FLECHA ABAJO
                 print("🔙 ATRÁS")
