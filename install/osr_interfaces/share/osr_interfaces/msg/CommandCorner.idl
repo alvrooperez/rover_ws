@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from osr_interfaces/msg/CommandCorner.msg
+// generated code does not contain a copyright notice
+
+
+module osr_interfaces {
+  module msg {
+    @verbatim (language="comment", text=
+      "corner motors, position in rad around the vertical z-axis, with zero indicating the position where the wheels are straight")
+    struct CommandCorner {
+      double left_front_pos;
+
+      double left_back_pos;
+
+      double right_front_pos;
+
+      double right_back_pos;
+    };
+  };
+};

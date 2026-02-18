@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "osr_interfaces__py",
+		"source" : "/home/muarcianos/rover_ws/build/osr_interfaces/osr_interfaces__py"
+	}
+}

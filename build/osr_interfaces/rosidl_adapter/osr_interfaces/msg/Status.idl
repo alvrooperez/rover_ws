@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from osr_interfaces/msg/Status.msg
+// generated code does not contain a copyright notice
+
+
+module osr_interfaces {
+  module msg {
+    typedef string string__3[3];
+    typedef float float__3[3];
+    typedef float float__6[6];
+    @verbatim (language="comment", text=
+      "voltage level being read into the RoboClaws, in Volts")
+    struct Status {
+      float battery;
+
+      @verbatim (language="comment", text=
+        "status of an error being present on each RoboClaw. Stringified hex")
+      string__3 error_status;
+
+      @verbatim (language="comment", text=
+        "Temperature of the motor controllers expressed in Celsius")
+      float__3 temp;
+
+      @verbatim (language="comment", text=
+        "Sensed current from the motor controllers in Ampere")
+      float__6 current;
+    };
+  };
+};

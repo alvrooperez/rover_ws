@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from osr_interfaces/msg/CommandDrive.msg
+// generated code does not contain a copyright notice
+
+
+module osr_interfaces {
+  module msg {
+    @verbatim (language="comment", text=
+      "drive motors, velocity in rad/s")
+    struct CommandDrive {
+      double left_front_vel;
+
+      double left_middle_vel;
+
+      double left_back_vel;
+
+      double right_front_vel;
+
+      double right_middle_vel;
+
+      double right_back_vel;
+    };
+  };
+};

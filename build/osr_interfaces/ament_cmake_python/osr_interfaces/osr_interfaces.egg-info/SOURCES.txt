@@ -1,0 +1,6 @@
+setup.py
+osr_interfaces/__init__.py
+osr_interfaces.egg-info/PKG-INFO
+osr_interfaces.egg-info/SOURCES.txt
+osr_interfaces.egg-info/dependency_links.txt
+osr_interfaces.egg-info/top_level.txt

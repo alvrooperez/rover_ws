@@ -1,0 +1,609 @@
+[0.000000] (-) TimerEvent: {}
+[0.000275] (osr_bringup) JobQueued: {'identifier': 'osr_bringup', 'dependencies': OrderedDict()}
+[0.000452] (osr_interfaces) JobQueued: {'identifier': 'osr_interfaces', 'dependencies': OrderedDict()}
+[0.000477] (osr_control) JobQueued: {'identifier': 'osr_control', 'dependencies': OrderedDict({'osr_interfaces': '/home/muarcianos/rover_ws/install/osr_interfaces'})}
+[0.000874] (osr_interfaces) JobStarted: {'identifier': 'osr_interfaces'}
+[0.008024] (osr_bringup) JobStarted: {'identifier': 'osr_bringup'}
+[0.014199] (osr_interfaces) JobProgress: {'identifier': 'osr_interfaces', 'progress': 'cmake'}
+[0.014829] (osr_interfaces) Command: {'cmd': ['/usr/bin/cmake', '/home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_interfaces', '-DCMAKE_INSTALL_PREFIX=/home/muarcianos/rover_ws/install/osr_interfaces'], 'cwd': '/home/muarcianos/rover_ws/build/osr_interfaces', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'muarcianos', 'SSH_CLIENT': '192.168.2.224 41088 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/muarcianos', 'OLDPWD': '/home/muarcianos/rover_ws/src', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'PS1': '(venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/muarcianos/osr_ws/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'muarcianos', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '9', 'PATH': '/home/muarcianos/.local/bin:/opt/ros/jazzy/bin:/home/muarcianos/osr_ws/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'C.UTF-8', 'VIRTUAL_ENV_PROMPT': '(venv)', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_control:/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/muarcianos/osr_ws/venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/muarcianos/rover_ws/build/osr_interfaces', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '192.168.2.224 41088 192.168.2.136 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/muarcianos/osr_ws/build/osr_control:/home/muarcianos/osr_ws/install/osr_control/lib/python3.12/site-packages:/home/muarcianos/osr_ws/install/osr_interfaces/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/muarcianos/osr_ws/install/osr_control:/opt/ros/jazzy'}), 'shell': False}
+[0.020297] (osr_bringup) JobProgress: {'identifier': 'osr_bringup', 'progress': 'cmake'}
+[0.021797] (osr_bringup) Command: {'cmd': ['/usr/bin/cmake', '/home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_bringup', '-DCMAKE_INSTALL_PREFIX=/home/muarcianos/rover_ws/install/osr_bringup'], 'cwd': '/home/muarcianos/rover_ws/build/osr_bringup', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'muarcianos', 'SSH_CLIENT': '192.168.2.224 41088 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/muarcianos', 'OLDPWD': '/home/muarcianos/rover_ws/src', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'PS1': '(venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/muarcianos/osr_ws/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'muarcianos', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '9', 'PATH': '/home/muarcianos/.local/bin:/opt/ros/jazzy/bin:/home/muarcianos/osr_ws/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'C.UTF-8', 'VIRTUAL_ENV_PROMPT': '(venv)', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_control:/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/muarcianos/osr_ws/venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/muarcianos/rover_ws/build/osr_bringup', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '192.168.2.224 41088 192.168.2.136 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/muarcianos/osr_ws/build/osr_control:/home/muarcianos/osr_ws/install/osr_control/lib/python3.12/site-packages:/home/muarcianos/osr_ws/install/osr_interfaces/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/muarcianos/osr_ws/install/osr_control:/opt/ros/jazzy'}), 'shell': False}
+[0.099654] (-) TimerEvent: {}
+[0.200042] (-) TimerEvent: {}
+[0.300464] (-) TimerEvent: {}
+[0.400851] (-) TimerEvent: {}
+[0.501620] (-) TimerEvent: {}
+[0.545391] (osr_interfaces) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.546044] (osr_bringup) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.601633] (-) TimerEvent: {}
+[0.702021] (-) TimerEvent: {}
+[0.802458] (-) TimerEvent: {}
+[0.903017] (-) TimerEvent: {}
+[0.977362] (osr_bringup) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[0.977647] (osr_interfaces) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[1.003102] (-) TimerEvent: {}
+[1.020445] (osr_bringup) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.020774] (osr_interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.103237] (-) TimerEvent: {}
+[1.203704] (-) TimerEvent: {}
+[1.263048] (osr_bringup) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.263292] (osr_interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.278830] (osr_bringup) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.279143] (osr_interfaces) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.279963] (osr_interfaces) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.280087] (osr_bringup) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.281092] (osr_bringup) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.281223] (osr_interfaces) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.298764] (osr_interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.299096] (osr_bringup) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.303811] (-) TimerEvent: {}
+[1.404342] (-) TimerEvent: {}
+[1.504867] (-) TimerEvent: {}
+[1.513431] (osr_interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.513825] (osr_bringup) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.531484] (osr_interfaces) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.531758] (osr_bringup) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.531946] (osr_interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.532096] (osr_bringup) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.532637] (osr_interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.532833] (osr_bringup) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.541242] (osr_interfaces) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.6.0 (/opt/ros/jazzy/share/rosidl_default_generators/cmake)\n'}
+[1.545139] (osr_bringup) StdoutLine: {'line': b'-- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)\n'}
+[1.605042] (-) TimerEvent: {}
+[1.705573] (-) TimerEvent: {}
+[1.805961] (-) TimerEvent: {}
+[1.823972] (osr_interfaces) StdoutLine: {'line': b'-- Found Python3: /home/muarcianos/osr_ws/venv/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[1.824366] (osr_bringup) StdoutLine: {'line': b'-- Found Python3: /home/muarcianos/osr_ws/venv/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[1.906083] (-) TimerEvent: {}
+[2.006411] (-) TimerEvent: {}
+[2.022503] (osr_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.093107] (osr_bringup) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.17.3 (/opt/ros/jazzy/share/ament_lint_auto/cmake)\n'}
+[2.106484] (-) TimerEvent: {}
+[2.184916] (osr_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.206571] (-) TimerEvent: {}
+[2.306878] (-) TimerEvent: {}
+[2.327505] (osr_interfaces) StdoutLine: {'line': b'-- Found rosidl_adapter: 4.6.6 (/opt/ros/jazzy/share/rosidl_adapter/cmake)\n'}
+[2.329979] (osr_bringup) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[2.334267] (osr_bringup) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[2.334566] (osr_bringup) StdoutLine: {'line': b"-- Configured 'flake8' exclude dirs and/or files: \n"}
+[2.336095] (osr_bringup) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.337458] (osr_bringup) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[2.339866] (osr_bringup) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.343348] (osr_bringup) StdoutLine: {'line': b'-- Configuring done (2.3s)\n'}
+[2.348607] (osr_bringup) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[2.351866] (osr_bringup) StdoutLine: {'line': b'-- Build files have been written to: /home/muarcianos/rover_ws/build/osr_bringup\n'}
+[2.362781] (osr_bringup) CommandEnded: {'returncode': 0}
+[2.363456] (osr_bringup) JobProgress: {'identifier': 'osr_bringup', 'progress': 'build'}
+[2.364185] (osr_bringup) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/muarcianos/rover_ws/build/osr_bringup', '--', '-j4', '-l4'], 'cwd': '/home/muarcianos/rover_ws/build/osr_bringup', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'muarcianos', 'SSH_CLIENT': '192.168.2.224 41088 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/muarcianos', 'OLDPWD': '/home/muarcianos/rover_ws/src', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'PS1': '(venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/muarcianos/osr_ws/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'muarcianos', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '9', 'PATH': '/home/muarcianos/.local/bin:/opt/ros/jazzy/bin:/home/muarcianos/osr_ws/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'C.UTF-8', 'VIRTUAL_ENV_PROMPT': '(venv)', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_control:/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/muarcianos/osr_ws/venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/muarcianos/rover_ws/build/osr_bringup', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '192.168.2.224 41088 192.168.2.136 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/muarcianos/osr_ws/build/osr_control:/home/muarcianos/osr_ws/install/osr_control/lib/python3.12/site-packages:/home/muarcianos/osr_ws/install/osr_interfaces/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/muarcianos/osr_ws/install/osr_control:/opt/ros/jazzy'}), 'shell': False}
+[2.406969] (-) TimerEvent: {}
+[2.437686] (osr_bringup) CommandEnded: {'returncode': 0}
+[2.438430] (osr_bringup) JobProgress: {'identifier': 'osr_bringup', 'progress': 'install'}
+[2.456058] (osr_bringup) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/muarcianos/rover_ws/build/osr_bringup'], 'cwd': '/home/muarcianos/rover_ws/build/osr_bringup', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'muarcianos', 'SSH_CLIENT': '192.168.2.224 41088 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/muarcianos', 'OLDPWD': '/home/muarcianos/rover_ws/src', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'PS1': '(venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/muarcianos/osr_ws/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'muarcianos', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '9', 'PATH': '/home/muarcianos/.local/bin:/opt/ros/jazzy/bin:/home/muarcianos/osr_ws/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'C.UTF-8', 'VIRTUAL_ENV_PROMPT': '(venv)', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_control:/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/muarcianos/osr_ws/venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/muarcianos/rover_ws/build/osr_bringup', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '192.168.2.224 41088 192.168.2.136 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/muarcianos/osr_ws/build/osr_control:/home/muarcianos/osr_ws/install/osr_control/lib/python3.12/site-packages:/home/muarcianos/osr_ws/install/osr_interfaces/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/muarcianos/osr_ws/install/osr_control:/opt/ros/jazzy'}), 'shell': False}
+[2.471473] (osr_bringup) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.471832] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/launch\n'}
+[2.472023] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/launch/.gitignore\n'}
+[2.472173] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/launch/osr_launch.py\n'}
+[2.472341] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/config\n'}
+[2.472515] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/config/roboclaw_params.yaml\n'}
+[2.472660] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/config/osr_params.yaml\n'}
+[2.472955] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/ament_index/resource_index/package_run_dependencies/osr_bringup\n'}
+[2.473226] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/ament_index/resource_index/parent_prefix_path/osr_bringup\n'}
+[2.473473] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/environment/ament_prefix_path.sh\n'}
+[2.473646] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/environment/ament_prefix_path.dsv\n'}
+[2.473813] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/environment/path.sh\n'}
+[2.474039] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/environment/path.dsv\n'}
+[2.474190] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/local_setup.bash\n'}
+[2.474361] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/local_setup.sh\n'}
+[2.474566] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/local_setup.zsh\n'}
+[2.474762] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/local_setup.dsv\n'}
+[2.474936] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/package.dsv\n'}
+[2.475185] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/ament_index/resource_index/packages/osr_bringup\n'}
+[2.475399] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/cmake/osr_bringupConfig.cmake\n'}
+[2.475538] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/cmake/osr_bringupConfig-version.cmake\n'}
+[2.475707] (osr_bringup) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_bringup/share/osr_bringup/package.xml\n'}
+[2.478589] (osr_bringup) CommandEnded: {'returncode': 0}
+[2.507078] (-) TimerEvent: {}
+[2.507763] (osr_bringup) JobEnded: {'identifier': 'osr_bringup', 'rc': 0}
+[2.607197] (-) TimerEvent: {}
+[2.707495] (-) TimerEvent: {}
+[2.807814] (-) TimerEvent: {}
+[2.908236] (-) TimerEvent: {}
+[3.008551] (-) TimerEvent: {}
+[3.108949] (-) TimerEvent: {}
+[3.209259] (-) TimerEvent: {}
+[3.277659] (osr_interfaces) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.12.0 (/opt/ros/jazzy/share/ament_cmake_ros/cmake)\n'}
+[3.309357] (-) TimerEvent: {}
+[3.409693] (-) TimerEvent: {}
+[3.510096] (-) TimerEvent: {}
+[3.610374] (-) TimerEvent: {}
+[3.710652] (-) TimerEvent: {}
+[3.810966] (-) TimerEvent: {}
+[3.911294] (-) TimerEvent: {}
+[3.938636] (osr_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[4.011395] (-) TimerEvent: {}
+[4.111827] (-) TimerEvent: {}
+[4.212250] (-) TimerEvent: {}
+[4.312536] (-) TimerEvent: {}
+[4.412873] (-) TimerEvent: {}
+[4.513319] (-) TimerEvent: {}
+[4.613631] (-) TimerEvent: {}
+[4.713986] (-) TimerEvent: {}
+[4.794898] (osr_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[4.800547] (osr_interfaces) StdoutLine: {'line': b'-- Found python_cmake_module: 0.11.1 (/opt/ros/jazzy/share/python_cmake_module/cmake)\n'}
+[4.814069] (-) TimerEvent: {}
+[4.914355] (-) TimerEvent: {}
+[5.014045] (osr_interfaces) StdoutLine: {'line': b'-- Found PythonExtra: /home/muarcianos/osr_ws/venv/bin/python3  \n'}
+[5.014418] (-) TimerEvent: {}
+[5.114689] (-) TimerEvent: {}
+[5.215081] (-) TimerEvent: {}
+[5.315372] (-) TimerEvent: {}
+[5.416940] (-) TimerEvent: {}
+[5.517295] (-) TimerEvent: {}
+[5.617707] (-) TimerEvent: {}
+[5.681476] (osr_interfaces) StdoutLine: {'line': b'-- Found Python3: /home/muarcianos/osr_ws/venv/bin/python3 (found version "3.12.3") found components: Interpreter Development NumPy Development.Module Development.Embed \n'}
+[5.717806] (-) TimerEvent: {}
+[5.735265] (osr_interfaces) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.17.3 (/opt/ros/jazzy/share/ament_lint_auto/cmake)\n'}
+[5.771529] (osr_interfaces) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[5.773954] (osr_interfaces) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[5.775386] (osr_interfaces) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[5.779533] (osr_interfaces) StdoutLine: {'line': b'-- Configuring done (5.7s)\n'}
+[5.817895] (-) TimerEvent: {}
+[5.835205] (osr_interfaces) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[5.851108] (osr_interfaces) StdoutLine: {'line': b'-- Build files have been written to: /home/muarcianos/rover_ws/build/osr_interfaces\n'}
+[5.865256] (osr_interfaces) CommandEnded: {'returncode': 0}
+[5.865868] (osr_interfaces) JobProgress: {'identifier': 'osr_interfaces', 'progress': 'build'}
+[5.866190] (osr_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/muarcianos/rover_ws/build/osr_interfaces', '--', '-j4', '-l4'], 'cwd': '/home/muarcianos/rover_ws/build/osr_interfaces', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'muarcianos', 'SSH_CLIENT': '192.168.2.224 41088 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/muarcianos', 'OLDPWD': '/home/muarcianos/rover_ws/src', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'PS1': '(venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/muarcianos/osr_ws/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'muarcianos', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '9', 'PATH': '/home/muarcianos/.local/bin:/opt/ros/jazzy/bin:/home/muarcianos/osr_ws/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'C.UTF-8', 'VIRTUAL_ENV_PROMPT': '(venv)', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_control:/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/muarcianos/osr_ws/venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/muarcianos/rover_ws/build/osr_interfaces', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '192.168.2.224 41088 192.168.2.136 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/muarcianos/osr_ws/build/osr_control:/home/muarcianos/osr_ws/install/osr_control/lib/python3.12/site-packages:/home/muarcianos/osr_ws/install/osr_interfaces/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/muarcianos/osr_ws/install/osr_control:/opt/ros/jazzy'}), 'shell': False}
+[5.917964] (-) TimerEvent: {}
+[5.955507] (osr_interfaces) StdoutLine: {'line': b'[  1%] \x1b[34m\x1b[1mGenerating type hashes for ROS interfaces\x1b[0m\n'}
+[5.971850] (osr_interfaces) StdoutLine: {'line': b'[  1%] Built target ament_cmake_python_copy_osr_interfaces\n'}
+[6.018076] (-) TimerEvent: {}
+[6.118502] (-) TimerEvent: {}
+[6.229816] (-) TimerEvent: {}
+[6.330106] (-) TimerEvent: {}
+[6.430476] (-) TimerEvent: {}
+[6.476533] (osr_interfaces) StdoutLine: {'line': b'running egg_info\n'}
+[6.478084] (osr_interfaces) StdoutLine: {'line': b'creating osr_interfaces.egg-info\n'}
+[6.509382] (osr_interfaces) StdoutLine: {'line': b'writing osr_interfaces.egg-info/PKG-INFO\n'}
+[6.509769] (osr_interfaces) StdoutLine: {'line': b'writing dependency_links to osr_interfaces.egg-info/dependency_links.txt\n'}
+[6.510067] (osr_interfaces) StdoutLine: {'line': b'writing top-level names to osr_interfaces.egg-info/top_level.txt\n'}
+[6.510258] (osr_interfaces) StdoutLine: {'line': b"writing manifest file 'osr_interfaces.egg-info/SOURCES.txt'\n"}
+[6.513848] (osr_interfaces) StdoutLine: {'line': b'[  1%] Built target osr_interfaces__rosidl_generator_type_description\n'}
+[6.530580] (-) TimerEvent: {}
+[6.531476] (osr_interfaces) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[6.557102] (osr_interfaces) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[6.630729] (-) TimerEvent: {}
+[6.666120] (osr_interfaces) StdoutLine: {'line': b"reading manifest file 'osr_interfaces.egg-info/SOURCES.txt'\n"}
+[6.667385] (osr_interfaces) StdoutLine: {'line': b"writing manifest file 'osr_interfaces.egg-info/SOURCES.txt'\n"}
+[6.730881] (-) TimerEvent: {}
+[6.816090] (osr_interfaces) StdoutLine: {'line': b'[  5%] Built target ament_cmake_python_build_osr_interfaces_egg\n'}
+[6.831013] (-) TimerEvent: {}
+[6.931464] (-) TimerEvent: {}
+[7.031785] (-) TimerEvent: {}
+[7.132173] (-) TimerEvent: {}
+[7.232449] (-) TimerEvent: {}
+[7.334055] (-) TimerEvent: {}
+[7.434696] (-) TimerEvent: {}
+[7.473044] (osr_interfaces) StdoutLine: {'line': b'[  5%] Built target osr_interfaces__cpp\n'}
+[7.535069] (-) TimerEvent: {}
+[7.595124] (osr_interfaces) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/osr_interfaces/msg/detail/status__description.c.o\x1b[0m\n'}
+[7.595680] (osr_interfaces) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/osr_interfaces/msg/detail/status__functions.c.o\x1b[0m\n'}
+[7.598082] (osr_interfaces) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/osr_interfaces/msg/detail/command_drive__description.c.o\x1b[0m\n'}
+[7.598493] (osr_interfaces) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/osr_interfaces/msg/detail/status__type_support.c.o\x1b[0m\n'}
+[7.635447] (-) TimerEvent: {}
+[7.728536] (osr_interfaces) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/osr_interfaces/msg/detail/command_drive__functions.c.o\x1b[0m\n'}
+[7.735537] (-) TimerEvent: {}
+[7.757142] (osr_interfaces) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/osr_interfaces/msg/detail/command_drive__type_support.c.o\x1b[0m\n'}
+[7.758880] (osr_interfaces) StdoutLine: {'line': b'[ 18%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/osr_interfaces/msg/detail/command_corner__description.c.o\x1b[0m\n'}
+[7.830952] (osr_interfaces) StdoutLine: {'line': b'[ 20%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/osr_interfaces/msg/detail/command_corner__functions.c.o\x1b[0m\n'}
+[7.835702] (-) TimerEvent: {}
+[7.869228] (osr_interfaces) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_c.dir/rosidl_generator_c/osr_interfaces/msg/detail/command_corner__type_support.c.o\x1b[0m\n'}
+[7.927832] (osr_interfaces) StdoutLine: {'line': b'[ 24%] \x1b[32m\x1b[1mLinking C shared library libosr_interfaces__rosidl_generator_c.so\x1b[0m\n'}
+[7.935811] (-) TimerEvent: {}
+[8.011483] (osr_interfaces) StdoutLine: {'line': b'[ 24%] Built target osr_interfaces__rosidl_generator_c\n'}
+[8.036923] (-) TimerEvent: {}
+[8.037989] (osr_interfaces) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[8.038471] (osr_interfaces) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[8.038727] (osr_interfaces) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[8.041006] (osr_interfaces) StdoutLine: {'line': b'[ 31%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[8.138053] (-) TimerEvent: {}
+[8.241162] (-) TimerEvent: {}
+[8.342364] (-) TimerEvent: {}
+[8.443365] (-) TimerEvent: {}
+[8.545166] (-) TimerEvent: {}
+[8.645877] (-) TimerEvent: {}
+[8.748251] (-) TimerEvent: {}
+[8.849439] (-) TimerEvent: {}
+[8.951271] (-) TimerEvent: {}
+[8.975724] (osr_interfaces) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/osr_interfaces/msg/status__type_support.cpp.o\x1b[0m\n'}
+[8.997019] (osr_interfaces) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/osr_interfaces/msg/status__type_support.cpp.o\x1b[0m\n'}
+[9.051430] (-) TimerEvent: {}
+[9.089112] (osr_interfaces) StdoutLine: {'line': b'[ 37%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/osr_interfaces/msg/detail/status__type_support.cpp.o\x1b[0m\n'}
+[9.153027] (osr_interfaces) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/osr_interfaces/msg/command_drive__type_support.cpp.o\x1b[0m\n'}
+[9.153505] (-) TimerEvent: {}
+[9.243122] (osr_interfaces) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/osr_interfaces/msg/command_corner__type_support.cpp.o\x1b[0m\n'}
+[9.243752] (osr_interfaces) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/osr_interfaces/msg/detail/dds_fastrtps/status__type_support.cpp.o\x1b[0m\n'}
+[9.254426] (-) TimerEvent: {}
+[9.355055] (-) TimerEvent: {}
+[9.385103] (osr_interfaces) StdoutLine: {'line': b'[ 44%] \x1b[32m\x1b[1mLinking CXX shared library libosr_interfaces__rosidl_typesupport_c.so\x1b[0m\n'}
+[9.455209] (-) TimerEvent: {}
+[9.488685] (osr_interfaces) StdoutLine: {'line': b'[ 44%] Built target osr_interfaces__rosidl_typesupport_c\n'}
+[9.528247] (osr_interfaces) StdoutLine: {'line': b'[ 46%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[9.557025] (-) TimerEvent: {}
+[9.657658] (-) TimerEvent: {}
+[9.758805] (-) TimerEvent: {}
+[9.862418] (-) TimerEvent: {}
+[9.963021] (-) TimerEvent: {}
+[10.063701] (-) TimerEvent: {}
+[10.083072] (osr_interfaces) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/osr_interfaces/msg/command_drive__type_support.cpp.o\x1b[0m\n'}
+[10.163851] (-) TimerEvent: {}
+[10.228908] (osr_interfaces) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/osr_interfaces/msg/detail/command_drive__type_support.cpp.o\x1b[0m\n'}
+[10.264032] (-) TimerEvent: {}
+[10.364527] (-) TimerEvent: {}
+[10.467264] (-) TimerEvent: {}
+[10.567934] (-) TimerEvent: {}
+[10.671338] (-) TimerEvent: {}
+[10.772217] (-) TimerEvent: {}
+[10.820297] (osr_interfaces) StdoutLine: {'line': b'[ 51%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/osr_interfaces/msg/detail/status__type_support_c.cpp.o\x1b[0m\n'}
+[10.874045] (-) TimerEvent: {}
+[10.974574] (-) TimerEvent: {}
+[11.000999] (osr_interfaces) StdoutLine: {'line': b'[ 53%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/osr_interfaces/msg/detail/dds_fastrtps/command_drive__type_support.cpp.o\x1b[0m\n'}
+[11.074735] (-) TimerEvent: {}
+[11.089712] (osr_interfaces) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/osr_interfaces/msg/command_corner__type_support.cpp.o\x1b[0m\n'}
+[11.177028] (-) TimerEvent: {}
+[11.234360] (osr_interfaces) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/osr_interfaces/msg/detail/command_corner__type_support.cpp.o\x1b[0m\n'}
+[11.277251] (-) TimerEvent: {}
+[11.380061] (-) TimerEvent: {}
+[11.480704] (-) TimerEvent: {}
+[11.581313] (-) TimerEvent: {}
+[11.683036] (-) TimerEvent: {}
+[11.783669] (-) TimerEvent: {}
+[11.887072] (-) TimerEvent: {}
+[11.987671] (-) TimerEvent: {}
+[12.088337] (-) TimerEvent: {}
+[12.103611] (osr_interfaces) StdoutLine: {'line': b'[ 59%] \x1b[32m\x1b[1mLinking CXX shared library libosr_interfaces__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[12.188592] (-) TimerEvent: {}
+[12.228214] (osr_interfaces) StdoutLine: {'line': b'[ 61%] \x1b[32m\x1b[1mLinking CXX shared library libosr_interfaces__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[12.252410] (osr_interfaces) StdoutLine: {'line': b'[ 61%] Built target osr_interfaces__rosidl_typesupport_cpp\n'}
+[12.277866] (osr_interfaces) StdoutLine: {'line': b'[ 62%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[12.290980] (osr_interfaces) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/osr_interfaces/msg/detail/command_drive__type_support_c.cpp.o\x1b[0m\n'}
+[12.291391] (-) TimerEvent: {}
+[12.391933] (-) TimerEvent: {}
+[12.493269] (-) TimerEvent: {}
+[12.532119] (osr_interfaces) StdoutLine: {'line': b'[ 64%] Built target osr_interfaces__rosidl_typesupport_introspection_cpp\n'}
+[12.568933] (osr_interfaces) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/osr_interfaces/msg/detail/dds_fastrtps/command_corner__type_support.cpp.o\x1b[0m\n'}
+[12.596033] (-) TimerEvent: {}
+[12.636063] (osr_interfaces) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/osr_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/osr_interfaces/msg/detail/command_corner__type_support_c.cpp.o\x1b[0m\n'}
+[12.696185] (-) TimerEvent: {}
+[12.799005] (-) TimerEvent: {}
+[12.899579] (-) TimerEvent: {}
+[13.000320] (-) TimerEvent: {}
+[13.101224] (-) TimerEvent: {}
+[13.203294] (-) TimerEvent: {}
+[13.305353] (-) TimerEvent: {}
+[13.407311] (-) TimerEvent: {}
+[13.436114] (osr_interfaces) StdoutLine: {'line': b'[ 70%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/osr_interfaces/msg/detail/status__type_support.c.o\x1b[0m\n'}
+[13.509055] (-) TimerEvent: {}
+[13.587864] (osr_interfaces) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/osr_interfaces/msg/detail/command_drive__type_support.c.o\x1b[0m\n'}
+[13.612052] (-) TimerEvent: {}
+[13.710114] (osr_interfaces) StdoutLine: {'line': b'[ 74%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/osr_interfaces/msg/detail/command_corner__type_support.c.o\x1b[0m\n'}
+[13.712206] (-) TimerEvent: {}
+[13.807912] (osr_interfaces) StdoutLine: {'line': b'[ 75%] \x1b[32m\x1b[1mLinking C shared library libosr_interfaces__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[13.812357] (-) TimerEvent: {}
+[13.892703] (osr_interfaces) StdoutLine: {'line': b'[ 75%] Built target osr_interfaces__rosidl_typesupport_introspection_c\n'}
+[13.912523] (-) TimerEvent: {}
+[13.981816] (osr_interfaces) StdoutLine: {'line': b'[ 77%] \x1b[32m\x1b[1mLinking CXX shared library libosr_interfaces__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[14.012655] (-) TimerEvent: {}
+[14.014575] (osr_interfaces) StdoutLine: {'line': b'[ 79%] \x1b[32m\x1b[1mLinking CXX shared library libosr_interfaces__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[14.113216] (-) TimerEvent: {}
+[14.214204] (-) TimerEvent: {}
+[14.232229] (osr_interfaces) StdoutLine: {'line': b'[ 79%] Built target osr_interfaces__rosidl_typesupport_fastrtps_c\n'}
+[14.263165] (osr_interfaces) StdoutLine: {'line': b'[ 79%] Built target osr_interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[14.298762] (osr_interfaces) StdoutLine: {'line': b'[ 79%] Built target osr_interfaces\n'}
+[14.314299] (-) TimerEvent: {}
+[14.333178] (osr_interfaces) StdoutLine: {'line': b'[ 81%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[14.414407] (-) TimerEvent: {}
+[14.514707] (-) TimerEvent: {}
+[14.614973] (-) TimerEvent: {}
+[14.715239] (-) TimerEvent: {}
+[14.815467] (-) TimerEvent: {}
+[14.915680] (-) TimerEvent: {}
+[15.015940] (-) TimerEvent: {}
+[15.116258] (-) TimerEvent: {}
+[15.125106] (osr_interfaces) StdoutLine: {'line': b'[ 81%] Built target osr_interfaces__py\n'}
+[15.162935] (osr_interfaces) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_py.dir/rosidl_generator_py/osr_interfaces/msg/_status_s.c.o\x1b[0m\n'}
+[15.163361] (osr_interfaces) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_py.dir/rosidl_generator_py/osr_interfaces/msg/_command_drive_s.c.o\x1b[0m\n'}
+[15.163525] (osr_interfaces) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces__rosidl_generator_py.dir/rosidl_generator_py/osr_interfaces/msg/_command_corner_s.c.o\x1b[0m\n'}
+[15.216410] (-) TimerEvent: {}
+[15.316870] (-) TimerEvent: {}
+[15.417283] (-) TimerEvent: {}
+[15.517763] (-) TimerEvent: {}
+[15.553720] (osr_interfaces) StdoutLine: {'line': b'[ 88%] \x1b[32m\x1b[1mLinking C shared library libosr_interfaces__rosidl_generator_py.so\x1b[0m\n'}
+[15.617881] (-) TimerEvent: {}
+[15.632743] (osr_interfaces) StdoutLine: {'line': b'[ 88%] Built target osr_interfaces__rosidl_generator_py\n'}
+[15.673516] (osr_interfaces) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir/rosidl_generator_py/osr_interfaces/_osr_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[15.673810] (osr_interfaces) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir/rosidl_generator_py/osr_interfaces/_osr_interfaces_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[15.673967] (osr_interfaces) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding C object CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/rosidl_generator_py/osr_interfaces/_osr_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[15.719039] (-) TimerEvent: {}
+[15.819506] (-) TimerEvent: {}
+[15.922260] (-) TimerEvent: {}
+[15.925834] (osr_interfaces) StdoutLine: {'line': b'[ 96%] \x1b[32m\x1b[1mLinking C shared module rosidl_generator_py/osr_interfaces/osr_interfaces_s__rosidl_typesupport_c.so\x1b[0m\n'}
+[15.929032] (osr_interfaces) StdoutLine: {'line': b'[ 98%] \x1b[32m\x1b[1mLinking C shared module rosidl_generator_py/osr_interfaces/osr_interfaces_s__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[15.933691] (osr_interfaces) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared module rosidl_generator_py/osr_interfaces/osr_interfaces_s__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[15.991188] (osr_interfaces) StdoutLine: {'line': b'[100%] Built target osr_interfaces_s__rosidl_typesupport_c\n'}
+[15.994727] (osr_interfaces) StdoutLine: {'line': b'[100%] Built target osr_interfaces_s__rosidl_typesupport_introspection_c\n'}
+[15.999132] (osr_interfaces) StdoutLine: {'line': b'[100%] Built target osr_interfaces_s__rosidl_typesupport_fastrtps_c\n'}
+[16.020030] (osr_interfaces) CommandEnded: {'returncode': 0}
+[16.020799] (osr_interfaces) JobProgress: {'identifier': 'osr_interfaces', 'progress': 'install'}
+[16.021089] (osr_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/muarcianos/rover_ws/build/osr_interfaces'], 'cwd': '/home/muarcianos/rover_ws/build/osr_interfaces', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'muarcianos', 'SSH_CLIENT': '192.168.2.224 41088 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/muarcianos', 'OLDPWD': '/home/muarcianos/rover_ws/src', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'PS1': '(venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/muarcianos/osr_ws/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'muarcianos', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '9', 'PATH': '/home/muarcianos/.local/bin:/opt/ros/jazzy/bin:/home/muarcianos/osr_ws/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'C.UTF-8', 'VIRTUAL_ENV_PROMPT': '(venv)', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_control:/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/muarcianos/osr_ws/venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/muarcianos/rover_ws/build/osr_interfaces', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '192.168.2.224 41088 192.168.2.136 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/muarcianos/osr_ws/build/osr_control:/home/muarcianos/osr_ws/install/osr_control/lib/python3.12/site-packages:/home/muarcianos/osr_ws/install/osr_interfaces/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/muarcianos/osr_ws/install/osr_control:/opt/ros/jazzy'}), 'shell': False}
+[16.022298] (-) TimerEvent: {}
+[16.038420] (osr_interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[16.038745] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/ament_index/resource_index/rosidl_interfaces/osr_interfaces\n'}
+[16.039049] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/msg/Status.json\n'}
+[16.039212] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/msg/CommandDrive.json\n'}
+[16.039371] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/msg/CommandCorner.json\n'}
+[16.039534] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces\n'}
+[16.039701] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg\n'}
+[16.039809] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/status.h\n'}
+[16.039922] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/command_corner.h\n'}
+[16.040055] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[16.040174] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail\n'}
+[16.040279] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__functions.h\n'}
+[16.040426] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__functions.c\n'}
+[16.040560] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__description.c\n'}
+[16.040692] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__type_support.c\n'}
+[16.040818] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__type_support.c\n'}
+[16.040952] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__functions.h\n'}
+[16.041084] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__type_support.c\n'}
+[16.041220] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__functions.h\n'}
+[16.041354] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__description.c\n'}
+[16.041486] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__struct.h\n'}
+[16.041614] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__struct.h\n'}
+[16.041741] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__type_support.h\n'}
+[16.041875] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__functions.c\n'}
+[16.042045] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__description.c\n'}
+[16.042187] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__struct.h\n'}
+[16.042312] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__functions.c\n'}
+[16.042449] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__type_support.h\n'}
+[16.042574] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__type_support.h\n'}
+[16.042698] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/command_drive.h\n'}
+[16.042940] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/environment/library_path.sh\n'}
+[16.043109] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/environment/library_path.dsv\n'}
+[16.043336] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_generator_c.so\n'}
+[16.043949] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_generator_c.so" to ""\n'}
+[16.044080] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces\n'}
+[16.044167] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg\n'}
+[16.044281] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[16.044366] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail\n'}
+[16.044480] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__rosidl_typesupport_fastrtps_c.h\n'}
+[16.044558] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__rosidl_typesupport_fastrtps_c.h\n'}
+[16.044663] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__rosidl_typesupport_fastrtps_c.h\n'}
+[16.044782] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[16.045358] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[16.045482] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces\n'}
+[16.045590] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg\n'}
+[16.045674] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[16.045789] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail\n'}
+[16.045869] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__type_support.c\n'}
+[16.045984] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__type_support.c\n'}
+[16.046098] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__rosidl_typesupport_introspection_c.h\n'}
+[16.046192] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__type_support.c\n'}
+[16.046342] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__rosidl_typesupport_introspection_c.h\n'}
+[16.046471] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__rosidl_typesupport_introspection_c.h\n'}
+[16.046656] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_introspection_c.so\n'}
+[16.047199] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_introspection_c.so" to ""\n'}
+[16.047313] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_c.so\n'}
+[16.047797] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_c.so" to ""\n'}
+[16.047939] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces\n'}
+[16.048046] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg\n'}
+[16.048129] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[16.048242] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/status.hpp\n'}
+[16.048321] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/command_drive.hpp\n'}
+[16.048414] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail\n'}
+[16.048520] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__builder.hpp\n'}
+[16.048626] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__traits.hpp\n'}
+[16.048728] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__type_support.hpp\n'}
+[16.048827] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__traits.hpp\n'}
+[16.048950] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__struct.hpp\n'}
+[16.049085] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__struct.hpp\n'}
+[16.049216] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__traits.hpp\n'}
+[16.049347] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__builder.hpp\n'}
+[16.049474] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__struct.hpp\n'}
+[16.049604] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__type_support.hpp\n'}
+[16.049736] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__builder.hpp\n'}
+[16.049865] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__type_support.hpp\n'}
+[16.050001] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/command_corner.hpp\n'}
+[16.050163] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces\n'}
+[16.050279] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg\n'}
+[16.050359] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[16.050471] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail\n'}
+[16.050548] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.050650] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.050752] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/dds_fastrtps\n'}
+[16.050852] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.051078] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[16.051648] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[16.051764] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces\n'}
+[16.051848] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg\n'}
+[16.051967] (osr_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail\n'}
+[16.052054] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__type_support.cpp\n'}
+[16.052168] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__type_support.cpp\n'}
+[16.052246] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__type_support.cpp\n'}
+[16.052359] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/status__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.052454] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_corner__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.052554] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/include/osr_interfaces/osr_interfaces/msg/detail/command_drive__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.052738] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[16.053329] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[16.053442] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_cpp.so\n'}
+[16.053955] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_typesupport_cpp.so" to ""\n'}
+[16.054071] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/environment/pythonpath.sh\n'}
+[16.054197] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/environment/pythonpath.dsv\n'}
+[16.054350] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces-0.0.0-py3.12.egg-info\n'}
+[16.054514] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces-0.0.0-py3.12.egg-info/dependency_links.txt\n'}
+[16.054645] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces-0.0.0-py3.12.egg-info/top_level.txt\n'}
+[16.054780] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces-0.0.0-py3.12.egg-info/SOURCES.txt\n'}
+[16.054910] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces-0.0.0-py3.12.egg-info/PKG-INFO\n'}
+[16.055081] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces\n'}
+[16.055188] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/_osr_interfaces_s.ep.rosidl_typesupport_c.c\n'}
+[16.055340] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/_osr_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[16.055480] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg\n'}
+[16.055608] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/_command_corner.py\n'}
+[16.055756] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/_status.py\n'}
+[16.055908] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/_command_corner_s.c\n'}
+[16.056061] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/_command_drive.py\n'}
+[16.056203] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/__init__.py\n'}
+[16.056330] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/_command_drive_s.c\n'}
+[16.056463] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/_status_s.c\n'}
+[16.056596] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/__init__.py\n'}
+[16.056713] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/osr_interfaces_s__rosidl_typesupport_fastrtps_c.so\n'}
+[16.056973] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/osr_interfaces_s__rosidl_typesupport_c.so\n'}
+[16.057248] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/_osr_interfaces_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[16.057397] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/osr_interfaces_s__rosidl_typesupport_introspection_c.so\n'}
+[16.122394] (-) TimerEvent: {}
+[16.163313] (osr_interfaces) StdoutLine: {'line': b"Listing '/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces'...\n"}
+[16.173348] (osr_interfaces) StdoutLine: {'line': b"Compiling '/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/__init__.py'...\n"}
+[16.173511] (osr_interfaces) StdoutLine: {'line': b"Listing '/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg'...\n"}
+[16.173608] (osr_interfaces) StdoutLine: {'line': b"Compiling '/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/__init__.py'...\n"}
+[16.173689] (osr_interfaces) StdoutLine: {'line': b"Compiling '/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/_command_corner.py'...\n"}
+[16.173767] (osr_interfaces) StdoutLine: {'line': b"Compiling '/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/_command_drive.py'...\n"}
+[16.173844] (osr_interfaces) StdoutLine: {'line': b"Compiling '/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/msg/_status.py'...\n"}
+[16.177725] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/osr_interfaces_s__rosidl_typesupport_fastrtps_c.so\n'}
+[16.178325] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/osr_interfaces_s__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[16.178688] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/osr_interfaces_s__rosidl_typesupport_introspection_c.so\n'}
+[16.179265] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/osr_interfaces_s__rosidl_typesupport_introspection_c.so" to ""\n'}
+[16.179599] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/osr_interfaces_s__rosidl_typesupport_c.so\n'}
+[16.180164] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages/osr_interfaces/osr_interfaces_s__rosidl_typesupport_c.so" to ""\n'}
+[16.180287] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_generator_py.so\n'}
+[16.180878] (osr_interfaces) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/muarcianos/rover_ws/install/osr_interfaces/lib/libosr_interfaces__rosidl_generator_py.so" to ""\n'}
+[16.181002] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/msg/Status.idl\n'}
+[16.181157] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/msg/CommandDrive.idl\n'}
+[16.181320] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/msg/CommandCorner.idl\n'}
+[16.181508] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/msg/Status.msg\n'}
+[16.181672] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/msg/CommandDrive.msg\n'}
+[16.181814] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/msg/CommandCorner.msg\n'}
+[16.182082] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/ament_index/resource_index/package_run_dependencies/osr_interfaces\n'}
+[16.182347] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/ament_index/resource_index/parent_prefix_path/osr_interfaces\n'}
+[16.182544] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/environment/ament_prefix_path.sh\n'}
+[16.182736] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/environment/ament_prefix_path.dsv\n'}
+[16.182947] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/environment/path.sh\n'}
+[16.183133] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/environment/path.dsv\n'}
+[16.183316] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/local_setup.bash\n'}
+[16.183498] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/local_setup.sh\n'}
+[16.183686] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/local_setup.zsh\n'}
+[16.183870] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/local_setup.dsv\n'}
+[16.184066] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/package.dsv\n'}
+[16.184316] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/ament_index/resource_index/packages/osr_interfaces\n'}
+[16.184578] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/export_osr_interfaces__rosidl_generator_cExport.cmake\n'}
+[16.184790] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/export_osr_interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[16.185021] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/export_osr_interfaces__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[16.185222] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/export_osr_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[16.185433] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/osr_interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[16.185641] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/osr_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[16.185855] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/osr_interfaces__rosidl_typesupport_cExport.cmake\n'}
+[16.186062] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/osr_interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[16.186273] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/export_osr_interfaces__rosidl_generator_cppExport.cmake\n'}
+[16.186490] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/export_osr_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[16.186686] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/export_osr_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[16.186904] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/osr_interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[16.187109] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/osr_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[16.187321] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/osr_interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[16.187519] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/osr_interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[16.187736] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/export_osr_interfaces__rosidl_generator_pyExport.cmake\n'}
+[16.187936] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/export_osr_interfaces__rosidl_generator_pyExport-noconfig.cmake\n'}
+[16.188135] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[16.188319] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[16.188503] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[16.188691] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[16.188876] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[16.189069] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[16.189261] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[16.189444] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/osr_interfacesConfig.cmake\n'}
+[16.189598] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/cmake/osr_interfacesConfig-version.cmake\n'}
+[16.189774] (osr_interfaces) StdoutLine: {'line': b'-- Installing: /home/muarcianos/rover_ws/install/osr_interfaces/share/osr_interfaces/package.xml\n'}
+[16.193408] (osr_interfaces) CommandEnded: {'returncode': 0}
+[16.222471] (-) TimerEvent: {}
+[16.223946] (osr_interfaces) JobEnded: {'identifier': 'osr_interfaces', 'rc': 0}
+[16.225396] (osr_control) JobStarted: {'identifier': 'osr_control'}
+[16.322594] (-) TimerEvent: {}
+[16.422881] (-) TimerEvent: {}
+[16.523193] (-) TimerEvent: {}
+[16.623582] (-) TimerEvent: {}
+[16.723879] (-) TimerEvent: {}
+[16.824127] (-) TimerEvent: {}
+[16.924354] (-) TimerEvent: {}
+[17.024591] (-) TimerEvent: {}
+[17.124801] (-) TimerEvent: {}
+[17.225067] (-) TimerEvent: {}
+[17.325312] (-) TimerEvent: {}
+[17.425557] (-) TimerEvent: {}
+[17.525799] (-) TimerEvent: {}
+[17.626015] (-) TimerEvent: {}
+[17.726265] (-) TimerEvent: {}
+[17.826598] (-) TimerEvent: {}
+[17.869048] (osr_control) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../../build/osr_control', 'build', '--build-base', '/home/muarcianos/rover_ws/build/osr_control/build', 'install', '--record', '/home/muarcianos/rover_ws/build/osr_control/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_control', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'muarcianos', 'SSH_CLIENT': '192.168.2.224 41088 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/muarcianos/rover_ws/install/osr_interfaces/lib:/home/muarcianos/osr_ws/install/osr_interfaces/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/muarcianos', 'OLDPWD': '/home/muarcianos/rover_ws/src', 'SSH_TTY': '/dev/pts/0', 'ROS_PYTHON_VERSION': '3', 'PS1': '(venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/muarcianos/osr_ws/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'muarcianos', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '9', 'PATH': '/home/muarcianos/.local/bin:/opt/ros/jazzy/bin:/home/muarcianos/osr_ws/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'C.UTF-8', 'VIRTUAL_ENV_PROMPT': '(venv)', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/muarcianos/rover_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_control:/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/muarcianos/osr_ws/venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/muarcianos/rover_ws/build/osr_control', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '192.168.2.224 41088 192.168.2.136 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/muarcianos/rover_ws/build/osr_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages:/home/muarcianos/rover_ws/install/osr_interfaces/lib/python3.12/site-packages:/home/muarcianos/osr_ws/build/osr_control:/home/muarcianos/osr_ws/install/osr_control/lib/python3.12/site-packages:/home/muarcianos/osr_ws/install/osr_interfaces/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/muarcianos/rover_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_interfaces:/home/muarcianos/osr_ws/install/osr_bringup:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}, 'shell': False}
+[17.926664] (-) TimerEvent: {}
+[18.026926] (-) TimerEvent: {}
+[18.127175] (-) TimerEvent: {}
+[18.227460] (-) TimerEvent: {}
+[18.236134] (osr_control) StdoutLine: {'line': b'running egg_info\n'}
+[18.236663] (osr_control) StdoutLine: {'line': b'creating ../../../../build/osr_control/osr_control.egg-info\n'}
+[18.262075] (osr_control) StdoutLine: {'line': b'writing ../../../../build/osr_control/osr_control.egg-info/PKG-INFO\n'}
+[18.262470] (osr_control) StdoutLine: {'line': b'writing dependency_links to ../../../../build/osr_control/osr_control.egg-info/dependency_links.txt\n'}
+[18.262726] (osr_control) StdoutLine: {'line': b'writing entry points to ../../../../build/osr_control/osr_control.egg-info/entry_points.txt\n'}
+[18.262878] (osr_control) StdoutLine: {'line': b'writing requirements to ../../../../build/osr_control/osr_control.egg-info/requires.txt\n'}
+[18.263018] (osr_control) StdoutLine: {'line': b'writing top-level names to ../../../../build/osr_control/osr_control.egg-info/top_level.txt\n'}
+[18.263155] (osr_control) StdoutLine: {'line': b"writing manifest file '../../../../build/osr_control/osr_control.egg-info/SOURCES.txt'\n"}
+[18.315708] (osr_control) StdoutLine: {'line': b"reading manifest file '../../../../build/osr_control/osr_control.egg-info/SOURCES.txt'\n"}
+[18.316614] (osr_control) StdoutLine: {'line': b"writing manifest file '../../../../build/osr_control/osr_control.egg-info/SOURCES.txt'\n"}
+[18.316829] (osr_control) StdoutLine: {'line': b'running build\n'}
+[18.316958] (osr_control) StdoutLine: {'line': b'running build_py\n'}
+[18.317146] (osr_control) StdoutLine: {'line': b'creating /home/muarcianos/rover_ws/build/osr_control/build\n'}
+[18.317260] (osr_control) StdoutLine: {'line': b'creating /home/muarcianos/rover_ws/build/osr_control/build/lib\n'}
+[18.317363] (osr_control) StdoutLine: {'line': b'creating /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control\n'}
+[18.317474] (osr_control) StdoutLine: {'line': b'copying osr_control/roboclaw_wrapper.py -> /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control\n'}
+[18.317729] (osr_control) StdoutLine: {'line': b'copying osr_control/servo_control.py -> /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control\n'}
+[18.317907] (osr_control) StdoutLine: {'line': b'copying osr_control/roboclaw.py -> /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control\n'}
+[18.318108] (osr_control) StdoutLine: {'line': b'copying osr_control/joy_extras.py -> /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control\n'}
+[18.318265] (osr_control) StdoutLine: {'line': b'copying osr_control/__init__.py -> /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control\n'}
+[18.318395] (osr_control) StdoutLine: {'line': b'copying osr_control/ina_260_pub.py -> /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control\n'}
+[18.318541] (osr_control) StdoutLine: {'line': b'copying osr_control/rover.py -> /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control\n'}
+[18.318921] (osr_control) StdoutLine: {'line': b'running install\n'}
+[18.327519] (-) TimerEvent: {}
+[18.328263] (osr_control) StdoutLine: {'line': b'running install_lib\n'}
+[18.354705] (osr_control) StdoutLine: {'line': b'creating /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control\n'}
+[18.354910] (osr_control) StdoutLine: {'line': b'copying /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control/roboclaw_wrapper.py -> /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control\n'}
+[18.355166] (osr_control) StdoutLine: {'line': b'copying /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control/servo_control.py -> /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control\n'}
+[18.355326] (osr_control) StdoutLine: {'line': b'copying /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control/roboclaw.py -> /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control\n'}
+[18.355518] (osr_control) StdoutLine: {'line': b'copying /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control/joy_extras.py -> /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control\n'}
+[18.355670] (osr_control) StdoutLine: {'line': b'copying /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control/__init__.py -> /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control\n'}
+[18.355799] (osr_control) StdoutLine: {'line': b'copying /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control/ina_260_pub.py -> /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control\n'}
+[18.355949] (osr_control) StdoutLine: {'line': b'copying /home/muarcianos/rover_ws/build/osr_control/build/lib/osr_control/rover.py -> /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control\n'}
+[18.356782] (osr_control) StdoutLine: {'line': b'byte-compiling /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control/roboclaw_wrapper.py to roboclaw_wrapper.cpython-312.pyc\n'}
+[18.363798] (osr_control) StdoutLine: {'line': b'byte-compiling /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control/servo_control.py to servo_control.cpython-312.pyc\n'}
+[18.365470] (osr_control) StdoutLine: {'line': b'byte-compiling /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control/roboclaw.py to roboclaw.cpython-312.pyc\n'}
+[18.379612] (osr_control) StdoutLine: {'line': b'byte-compiling /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control/joy_extras.py to joy_extras.cpython-312.pyc\n'}
+[18.380966] (osr_control) StdoutLine: {'line': b'byte-compiling /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control/__init__.py to __init__.cpython-312.pyc\n'}
+[18.381275] (osr_control) StdoutLine: {'line': b'byte-compiling /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control/ina_260_pub.py to ina_260_pub.cpython-312.pyc\n'}
+[18.382231] (osr_control) StdoutLine: {'line': b'byte-compiling /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control/rover.py to rover.cpython-312.pyc\n'}
+[18.386270] (osr_control) StdoutLine: {'line': b'running install_data\n'}
+[18.386427] (osr_control) StdoutLine: {'line': b'creating /home/muarcianos/rover_ws/install/osr_control/share/ament_index\n'}
+[18.386538] (osr_control) StdoutLine: {'line': b'creating /home/muarcianos/rover_ws/install/osr_control/share/ament_index/resource_index\n'}
+[18.386641] (osr_control) StdoutLine: {'line': b'creating /home/muarcianos/rover_ws/install/osr_control/share/ament_index/resource_index/packages\n'}
+[18.386737] (osr_control) StdoutLine: {'line': b'copying resource/osr_control -> /home/muarcianos/rover_ws/install/osr_control/share/ament_index/resource_index/packages\n'}
+[18.386945] (osr_control) StdoutLine: {'line': b'copying package.xml -> /home/muarcianos/rover_ws/install/osr_control/share/osr_control\n'}
+[18.387105] (osr_control) StdoutLine: {'line': b'creating /home/muarcianos/rover_ws/install/osr_control/share/osr_control/launch\n'}
+[18.387219] (osr_control) StdoutLine: {'line': b'creating /home/muarcianos/rover_ws/install/osr_control/share/osr_control/config\n'}
+[18.387319] (osr_control) StdoutLine: {'line': b'running install_egg_info\n'}
+[18.415411] (osr_control) StdoutLine: {'line': b'Copying ../../../../build/osr_control/osr_control.egg-info to /home/muarcianos/rover_ws/install/osr_control/lib/python3.12/site-packages/osr_control-0.0.0-py3.12.egg-info\n'}
+[18.416649] (osr_control) StdoutLine: {'line': b'running install_scripts\n'}
+[18.427587] (-) TimerEvent: {}
+[18.527779] (-) TimerEvent: {}
+[18.600067] (osr_control) StdoutLine: {'line': b'Installing ina260 script to /home/muarcianos/rover_ws/install/osr_control/lib/osr_control\n'}
+[18.600341] (osr_control) StdoutLine: {'line': b'Installing joy_extras script to /home/muarcianos/rover_ws/install/osr_control/lib/osr_control\n'}
+[18.600516] (osr_control) StdoutLine: {'line': b'Installing roboclaw_wrapper script to /home/muarcianos/rover_ws/install/osr_control/lib/osr_control\n'}
+[18.600663] (osr_control) StdoutLine: {'line': b'Installing rover script to /home/muarcianos/rover_ws/install/osr_control/lib/osr_control\n'}
+[18.600793] (osr_control) StdoutLine: {'line': b'Installing servo_control script to /home/muarcianos/rover_ws/install/osr_control/lib/osr_control\n'}
+[18.601275] (osr_control) StdoutLine: {'line': b"writing list of installed files to '/home/muarcianos/rover_ws/build/osr_control/install.log'\n"}
+[18.627871] (-) TimerEvent: {}
+[18.691913] (osr_control) CommandEnded: {'returncode': 0}
+[18.698916] (osr_control) JobEnded: {'identifier': 'osr_control', 'rc': 0}
+[18.699883] (-) EventReactorShutdown: {}
