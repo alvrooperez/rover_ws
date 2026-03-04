@@ -1,0 +1,4 @@
+source;share/osr_interfaces/local_setup.bash
+source;share/osr_interfaces/local_setup.dsv
+source;share/osr_interfaces/local_setup.sh
+source;share/osr_interfaces/local_setup.zsh

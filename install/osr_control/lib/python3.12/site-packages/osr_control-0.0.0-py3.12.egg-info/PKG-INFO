@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: osr-control
+Version: 0.0.0
+Summary: core control nodes for the OSR
+Maintainer: Achille
+Maintainer-email: achille.verheye@gmail.com
+License: Apache License 2.0
