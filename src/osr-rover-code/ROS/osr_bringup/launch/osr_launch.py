@@ -120,7 +120,7 @@ def generate_launch_description():
             emulate_tty=True,
             parameters=[
                 {"publish_rate": 1.0},
-                {"sensor_address": "0x45"},
+                {"sensor_address": "0x40"},
             ]        
         )
     )
