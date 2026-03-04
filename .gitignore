@@ -1,7 +1,0 @@
-build/
-install/
-log/
-.COLCON_IGNORE
-__pycache__/
-*.pyc
-.vscode/
