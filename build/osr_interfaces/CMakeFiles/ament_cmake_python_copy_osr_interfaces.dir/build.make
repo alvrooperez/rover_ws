@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_interfaces
+CMAKE_SOURCE_DIR = /home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/muarcianos/rover_ws/build/osr_interfaces
+CMAKE_BINARY_DIR = /home/alvaro/Desktop/rover_ws/build/osr_interfaces
 
 # Utility rule file for ament_cmake_python_copy_osr_interfaces.
 
@@ -67,7 +67,7 @@ include CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/compiler_depend.ma
 include CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/progress.make
 
 CMakeFiles/ament_cmake_python_copy_osr_interfaces:
-	/usr/bin/cmake -E copy_directory /home/muarcianos/rover_ws/build/osr_interfaces/rosidl_generator_py/osr_interfaces /home/muarcianos/rover_ws/build/osr_interfaces/ament_cmake_python/osr_interfaces/osr_interfaces
+	/usr/bin/cmake -E copy_directory /home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_generator_py/osr_interfaces /home/alvaro/Desktop/rover_ws/build/osr_interfaces/ament_cmake_python/osr_interfaces/osr_interfaces
 
 ament_cmake_python_copy_osr_interfaces: CMakeFiles/ament_cmake_python_copy_osr_interfaces
 ament_cmake_python_copy_osr_interfaces: CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/clean:
 .PHONY : CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/clean
 
 CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/depend:
-	cd /home/muarcianos/rover_ws/build/osr_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_interfaces /home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_interfaces /home/muarcianos/rover_ws/build/osr_interfaces /home/muarcianos/rover_ws/build/osr_interfaces /home/muarcianos/rover_ws/build/osr_interfaces/CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/alvaro/Desktop/rover_ws/build/osr_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces /home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces /home/alvaro/Desktop/rover_ws/build/osr_interfaces /home/alvaro/Desktop/rover_ws/build/osr_interfaces /home/alvaro/Desktop/rover_ws/build/osr_interfaces/CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/depend
 

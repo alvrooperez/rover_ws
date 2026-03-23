@@ -1,16 +1,16 @@
 {
   "package_name": "osr_interfaces",
-  "output_dir": "/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_generator_c/osr_interfaces",
+  "output_dir": "/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_generator_c/osr_interfaces",
   "template_dir": "/opt/ros/jazzy/share/rosidl_generator_c/cmake/../resource",
   "idl_tuples": [
-    "/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/Status.idl",
-    "/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/CommandDrive.idl",
-    "/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/CommandCorner.idl"
+    "/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/Status.idl",
+    "/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/CommandDrive.idl",
+    "/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/CommandCorner.idl"
   ],
   "ros_interface_files": [
-    "/home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_interfaces/msg/Status.msg",
-    "/home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_interfaces/msg/CommandDrive.msg",
-    "/home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_interfaces/msg/CommandCorner.msg"
+    "/home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces/msg/Status.msg",
+    "/home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces/msg/CommandDrive.msg",
+    "/home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces/msg/CommandCorner.msg"
   ],
   "target_dependencies": [
     "/opt/ros/jazzy/share/rosidl_generator_c/cmake/../../../lib/rosidl_generator_c/rosidl_generator_c",
@@ -32,13 +32,13 @@
     "/opt/ros/jazzy/share/rosidl_generator_c/cmake/../resource/msg__type_support.h.em",
     "/opt/ros/jazzy/share/rosidl_generator_c/cmake/../resource/srv__type_support.c.em",
     "/opt/ros/jazzy/share/rosidl_generator_c/cmake/../resource/srv__type_support.h.em",
-    "/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/Status.idl",
-    "/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/CommandDrive.idl",
-    "/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/CommandCorner.idl"
+    "/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/Status.idl",
+    "/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/CommandDrive.idl",
+    "/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/CommandCorner.idl"
   ],
   "type_description_tuples": [
-    "msg/Status.idl:/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_generator_type_description/osr_interfaces/msg/Status.json",
-    "msg/CommandDrive.idl:/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_generator_type_description/osr_interfaces/msg/CommandDrive.json",
-    "msg/CommandCorner.idl:/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_generator_type_description/osr_interfaces/msg/CommandCorner.json"
+    "msg/Status.idl:/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_generator_type_description/osr_interfaces/msg/Status.json",
+    "msg/CommandDrive.idl:/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_generator_type_description/osr_interfaces/msg/CommandDrive.json",
+    "msg/CommandCorner.idl:/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_generator_type_description/osr_interfaces/msg/CommandCorner.json"
   ]
 }

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_bringup
+CMAKE_SOURCE_DIR = /home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_bringup
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/muarcianos/rover_ws/build/osr_bringup
+CMAKE_BINARY_DIR = /home/alvaro/Desktop/rover_ws/build/osr_bringup
 
 # Utility rule file for osr_bringup_uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/osr_bringup_uninstall.dir/compiler_depend.make
 include CMakeFiles/osr_bringup_uninstall.dir/progress.make
 
 CMakeFiles/osr_bringup_uninstall:
-	/usr/bin/cmake -P /home/muarcianos/rover_ws/build/osr_bringup/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/alvaro/Desktop/rover_ws/build/osr_bringup/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 osr_bringup_uninstall: CMakeFiles/osr_bringup_uninstall
 osr_bringup_uninstall: CMakeFiles/osr_bringup_uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/osr_bringup_uninstall.dir/clean:
 .PHONY : CMakeFiles/osr_bringup_uninstall.dir/clean
 
 CMakeFiles/osr_bringup_uninstall.dir/depend:
-	cd /home/muarcianos/rover_ws/build/osr_bringup && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_bringup /home/muarcianos/rover_ws/src/osr-rover-code/ROS/osr_bringup /home/muarcianos/rover_ws/build/osr_bringup /home/muarcianos/rover_ws/build/osr_bringup /home/muarcianos/rover_ws/build/osr_bringup/CMakeFiles/osr_bringup_uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/alvaro/Desktop/rover_ws/build/osr_bringup && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_bringup /home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_bringup /home/alvaro/Desktop/rover_ws/build/osr_bringup /home/alvaro/Desktop/rover_ws/build/osr_bringup /home/alvaro/Desktop/rover_ws/build/osr_bringup/CMakeFiles/osr_bringup_uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/osr_bringup_uninstall.dir/depend
 

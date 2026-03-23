@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = -DROSIDL_TYPESUPPORT_INTROSPECTION_C_BUILDING_DLL_osr_interfaces -DROS_PACKAGE_NAME=\"osr_interfaces\"
 
-C_INCLUDES = -I/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_typesupport_introspection_c -I/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_generator_c -isystem /opt/ros/jazzy/include/rosidl_runtime_c -isystem /opt/ros/jazzy/include/rcutils -isystem /opt/ros/jazzy/include/rosidl_typesupport_interface -isystem /opt/ros/jazzy/include/rosidl_typesupport_introspection_c
+C_INCLUDES = -I/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_typesupport_introspection_c -I/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_generator_c -isystem /opt/ros/jazzy/include/rosidl_runtime_c -isystem /opt/ros/jazzy/include/rcutils -isystem /opt/ros/jazzy/include/rosidl_typesupport_interface -isystem /opt/ros/jazzy/include/rosidl_typesupport_introspection_c
 
 C_FLAGS = -std=gnu11 -fPIC -Wall
 

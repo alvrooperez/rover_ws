@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DFASTCDR_DYN_LINK -DROSIDL_TYPESUPPORT_FASTRTPS_CPP_BUILDING_DLL_osr_interfaces -DROS_PACKAGE_NAME=\"osr_interfaces\"
 
-CXX_INCLUDES = -I/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_typesupport_fastrtps_cpp -I/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_generator_c -I/home/muarcianos/rover_ws/build/osr_interfaces/rosidl_generator_cpp -isystem /opt/ros/jazzy/include/fastcdr -isystem /opt/ros/jazzy/include/rmw -isystem /opt/ros/jazzy/include/rcutils -isystem /opt/ros/jazzy/include/rosidl_dynamic_typesupport -isystem /opt/ros/jazzy/include/rosidl_runtime_c -isystem /opt/ros/jazzy/include/rosidl_typesupport_interface -isystem /opt/ros/jazzy/include/rosidl_runtime_cpp -isystem /opt/ros/jazzy/include/rosidl_typesupport_fastrtps_cpp
+CXX_INCLUDES = -I/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_typesupport_fastrtps_cpp -I/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_generator_c -I/home/alvaro/Desktop/rover_ws/build/osr_interfaces/rosidl_generator_cpp -isystem /opt/ros/jazzy/include/fastcdr -isystem /opt/ros/jazzy/include/rmw -isystem /opt/ros/jazzy/include/rcutils -isystem /opt/ros/jazzy/include/rosidl_dynamic_typesupport -isystem /opt/ros/jazzy/include/rosidl_runtime_c -isystem /opt/ros/jazzy/include/rosidl_typesupport_interface -isystem /opt/ros/jazzy/include/rosidl_runtime_cpp -isystem /opt/ros/jazzy/include/rosidl_typesupport_fastrtps_cpp
 
 CXX_FLAGS = -std=gnu++17 -fPIC -Wall -Wextra -Wpedantic -Wredundant-decls
 
