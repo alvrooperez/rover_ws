@@ -1,0 +1,21 @@
+# Carpetas de compilación de ROS 2 (¡Muy importante ignorarlas!)
+build/
+install/
+log/
+
+# Archivos compilados y caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales de Python (por si usas alguno)
+venv/
+env/
+.env/
+
+# Archivos de configuración de editores de código (opcional pero recomendado)
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
