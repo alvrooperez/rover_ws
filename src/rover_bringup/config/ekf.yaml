@@ -1,0 +1,37 @@
+ekf_filter_node:
+  ros__parameters:
+    use_sim_time: true
+    frequency: 30.0
+    two_d_mode: true
+    publish_tf: false
+
+    # Marcos de referencia (Frames)
+    map_frame: map
+    odom_frame: odom         # Nuestro Odom filtrado
+    base_link_frame: base_footprint # La base del Turtlebot3
+    world_frame: odom
+
+    # -----------------------------------------------------------
+    # CONFIGURACIÓN DEL SENSOR 1: ODOMETRÍA DE LAS RUEDAS (/odom)
+    # -----------------------------------------------------------
+    odom0: /odom
+    # De las ruedas nos fiamos de la velocidad lineal X (avanzar) 
+    # y la velocidad angular Z (girar). El resto lo ignoramos.
+    # El orden es: [X, Y, Z, Roll, Pitch, Yaw, Vx, Vy, Vz, Vroll, Vpitch, Vyaw, Ax, Ay, Az]
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true,  false, false,
+                   false, false, true,
+                   false, false, false]
+
+    # -----------------------------------------------------------
+    # CONFIGURACIÓN DEL SENSOR 2: IMU (/imu)
+    # -----------------------------------------------------------
+    imu0: /imu
+    # De la IMU nos fiamos de la orientación (Yaw), la velocidad de giro (Vyaw)
+    # y la aceleración lineal en X.
+    imu0_config: [false, false, false,
+                  false, false, true,
+                  false, false, false,
+                  false, false, true,
+                  true,  false, false]

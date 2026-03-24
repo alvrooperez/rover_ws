@@ -96,7 +96,7 @@ clean: CMakeFiles/osr_interfaces__cpp.dir/clean
 clean: CMakeFiles/osr_interfaces__rosidl_typesupport_fastrtps_cpp.dir/clean
 clean: CMakeFiles/osr_interfaces__rosidl_typesupport_introspection_cpp.dir/clean
 clean: CMakeFiles/osr_interfaces__rosidl_typesupport_cpp.dir/clean
-clean: CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/clean
+clean: CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/clean
 clean: CMakeFiles/ament_cmake_python_build_osr_interfaces_egg.dir/clean
 clean: CMakeFiles/osr_interfaces__rosidl_generator_py.dir/clean
 clean: CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/clean
@@ -176,8 +176,6 @@ CMakeFiles/osr_interfaces_uninstall.dir/clean:
 # Target rules for target CMakeFiles/osr_interfaces.dir
 
 # All Build rule for target.
-CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_introspection_cpp.dir/all
-CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_cpp.dir/all
 CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_type_description.dir/all
 CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_c.dir/all
 CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_fastrtps_c.dir/all
@@ -185,6 +183,8 @@ CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport
 CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_c.dir/all
 CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__cpp.dir/all
 CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_fastrtps_cpp.dir/all
+CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_introspection_cpp.dir/all
+CMakeFiles/osr_interfaces.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_cpp.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/osr_interfaces.dir/build.make CMakeFiles/osr_interfaces.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/osr_interfaces.dir/build.make CMakeFiles/osr_interfaces.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/alvaro/Desktop/rover_ws/build/osr_interfaces/CMakeFiles --progress-num= "Built target osr_interfaces"
@@ -444,36 +444,36 @@ CMakeFiles/osr_interfaces__rosidl_typesupport_cpp.dir/clean:
 .PHONY : CMakeFiles/osr_interfaces__rosidl_typesupport_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir
+# Target rules for target CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir
 
 # All Build rule for target.
-CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/build.make CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/build.make CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/alvaro/Desktop/rover_ws/build/osr_interfaces/CMakeFiles --progress-num= "Built target ament_cmake_python_copy_osr_interfaces"
-.PHONY : CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/all
+CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/build.make CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/build.make CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/alvaro/Desktop/rover_ws/build/osr_interfaces/CMakeFiles --progress-num= "Built target ament_cmake_python_symlink_osr_interfaces"
+.PHONY : CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/rule: cmake_check_build_system
+CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/alvaro/Desktop/rover_ws/build/osr_interfaces/CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/alvaro/Desktop/rover_ws/build/osr_interfaces/CMakeFiles 0
-.PHONY : CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/rule
+.PHONY : CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/rule
 
 # Convenience name for target.
-ament_cmake_python_copy_osr_interfaces: CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/rule
-.PHONY : ament_cmake_python_copy_osr_interfaces
+ament_cmake_python_symlink_osr_interfaces: CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/rule
+.PHONY : ament_cmake_python_symlink_osr_interfaces
 
 # clean rule for target.
-CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/build.make CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/clean
-.PHONY : CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/clean
+CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/build.make CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/clean
+.PHONY : CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/ament_cmake_python_build_osr_interfaces_egg.dir
 
 # All Build rule for target.
-CMakeFiles/ament_cmake_python_build_osr_interfaces_egg.dir/all: CMakeFiles/ament_cmake_python_copy_osr_interfaces.dir/all
+CMakeFiles/ament_cmake_python_build_osr_interfaces_egg.dir/all: CMakeFiles/ament_cmake_python_symlink_osr_interfaces.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_build_osr_interfaces_egg.dir/build.make CMakeFiles/ament_cmake_python_build_osr_interfaces_egg.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_build_osr_interfaces_egg.dir/build.make CMakeFiles/ament_cmake_python_build_osr_interfaces_egg.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/alvaro/Desktop/rover_ws/build/osr_interfaces/CMakeFiles --progress-num= "Built target ament_cmake_python_build_osr_interfaces_egg"
@@ -499,8 +499,8 @@ CMakeFiles/ament_cmake_python_build_osr_interfaces_egg.dir/clean:
 # Target rules for target CMakeFiles/osr_interfaces__rosidl_generator_py.dir
 
 # All Build rule for target.
-CMakeFiles/osr_interfaces__rosidl_generator_py.dir/all: osr_interfaces__py/CMakeFiles/osr_interfaces__py.dir/all
 CMakeFiles/osr_interfaces__rosidl_generator_py.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_c.dir/all
+CMakeFiles/osr_interfaces__rosidl_generator_py.dir/all: osr_interfaces__py/CMakeFiles/osr_interfaces__py.dir/all
 CMakeFiles/osr_interfaces__rosidl_generator_py.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_c.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/osr_interfaces__rosidl_generator_py.dir/build.make CMakeFiles/osr_interfaces__rosidl_generator_py.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/osr_interfaces__rosidl_generator_py.dir/build.make CMakeFiles/osr_interfaces__rosidl_generator_py.dir/build
@@ -527,9 +527,9 @@ CMakeFiles/osr_interfaces__rosidl_generator_py.dir/clean:
 # Target rules for target CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir
 
 # All Build rule for target.
+CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_c.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_py.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/all: osr_interfaces__py/CMakeFiles/osr_interfaces__py.dir/all
-CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_c.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_fastrtps_c.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_c.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/build.make CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/depend
@@ -557,9 +557,9 @@ CMakeFiles/osr_interfaces_s__rosidl_typesupport_fastrtps_c.dir/clean:
 # Target rules for target CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir
 
 # All Build rule for target.
+CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_c.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_py.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir/all: osr_interfaces__py/CMakeFiles/osr_interfaces__py.dir/all
-CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_c.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_introspection_c.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_c.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir/build.make CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir/depend
@@ -587,9 +587,9 @@ CMakeFiles/osr_interfaces_s__rosidl_typesupport_introspection_c.dir/clean:
 # Target rules for target CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir
 
 # All Build rule for target.
+CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_c.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_py.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir/all: osr_interfaces__py/CMakeFiles/osr_interfaces__py.dir/all
-CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir/all: CMakeFiles/osr_interfaces__rosidl_generator_c.dir/all
 CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir/all: CMakeFiles/osr_interfaces__rosidl_typesupport_c.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir/build.make CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir/build.make CMakeFiles/osr_interfaces_s__rosidl_typesupport_c.dir/build
