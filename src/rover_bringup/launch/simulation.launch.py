@@ -15,7 +15,9 @@ def generate_launch_description():
     tb3_gazebo_dir = get_package_share_directory('turtlebot3_gazebo')
     tb3_nav2_dir = get_package_share_directory('turtlebot3_navigation2')
 
-    set_turtlebot_model = SetEnvironmentVariable(name='TURTLEBOT3_MODEL', value='waffle')
+    # Cambiamos el modelo a 'waffle_pi' que es el que incluye la cámara de profundidad.
+    # El modelo 'waffle' a veces funciona, pero 'waffle_pi' es más seguro.
+    set_turtlebot_model = SetEnvironmentVariable(name='TURTLEBOT3_MODEL', value='waffle_pi')
 
     # 2. Gazebo (Aislamos su puente defectuoso)
     gazebo_launch = GroupAction(
@@ -70,6 +72,19 @@ def generate_launch_description():
         launch_arguments={'use_sim_time': use_sim_time}.items()
     )
 
+    # 6. Detección de ArUcos
+    # Se asume que el paquete 'ros2_aruco' ya está instalado en tu workspace.
+    # Asegúrate de haber ejecutado los comandos de instalación en el Paso 1.
+    aruco_params_path = os.path.join(rover_bringup_dir, 'config', 'aruco.yaml')
+
+    aruco_node = Node(
+        package='ros2_aruco',
+        executable='aruco_node',
+        name='aruco_node',
+        parameters=[aruco_params_path, {'use_sim_time': use_sim_time}],
+        output='screen'
+    )
+
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value='true'),
         set_turtlebot_model,
@@ -77,5 +92,6 @@ def generate_launch_description():
         puente_bueno, # Lanzamos nuestro puente parcheado
         nav2_launch,
         rviz_launch,
-        localizacion_launch
+        localizacion_launch,
+        aruco_node
     ])
