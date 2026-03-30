@@ -1,8 +1,8 @@
 {
   "package_name": "osr_interfaces",
   "non_idl_tuples": [
-    "/home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces:msg/Status.msg",
-    "/home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces:msg/CommandDrive.msg",
-    "/home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces:msg/CommandCorner.msg"
+    "/home/traaph/rover_ws/src/osr-rover-code/ROS/osr_interfaces:msg/Status.msg",
+    "/home/traaph/rover_ws/src/osr-rover-code/ROS/osr_interfaces:msg/CommandDrive.msg",
+    "/home/traaph/rover_ws/src/osr-rover-code/ROS/osr_interfaces:msg/CommandCorner.msg"
   ]
 }

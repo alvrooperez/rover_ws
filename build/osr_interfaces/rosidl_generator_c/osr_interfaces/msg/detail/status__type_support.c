@@ -4,10 +4,10 @@
 
 #include <string.h>
 
+#include "osr_interfaces/msg/detail/status__type_support.h"
+#include "osr_interfaces/msg/detail/status__struct.h"
 #include "osr_interfaces/msg/detail/status__functions.h"
 #include "rosidl_typesupport_interface/macros.h"
-#include "osr_interfaces/msg/detail/status__struct.h"
-#include "osr_interfaces/msg/detail/status__type_support.h"
 
 #ifdef __cplusplus
 extern "C"

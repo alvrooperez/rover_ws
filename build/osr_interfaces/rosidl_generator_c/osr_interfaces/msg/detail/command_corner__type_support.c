@@ -5,9 +5,9 @@
 #include <string.h>
 
 #include "osr_interfaces/msg/detail/command_corner__functions.h"
-#include "rosidl_typesupport_interface/macros.h"
-#include "osr_interfaces/msg/detail/command_corner__type_support.h"
 #include "osr_interfaces/msg/detail/command_corner__struct.h"
+#include "osr_interfaces/msg/detail/command_corner__type_support.h"
+#include "rosidl_typesupport_interface/macros.h"
 
 #ifdef __cplusplus
 extern "C"

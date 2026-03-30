@@ -1,1 +1,2 @@
-/home/alvaro/Desktop/rover_ws/build/osr_bringup/ament_cmake_environment_hooks/local_setup.dsv
+source;share/osr_bringup/environment/ament_prefix_path.sh
+source;share/osr_bringup/environment/path.sh

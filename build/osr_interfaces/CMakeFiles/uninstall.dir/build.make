@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces
+CMAKE_SOURCE_DIR = /home/traaph/rover_ws/src/osr-rover-code/ROS/osr_interfaces
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/alvaro/Desktop/rover_ws/build/osr_interfaces
+CMAKE_BINARY_DIR = /home/traaph/rover_ws/build/osr_interfaces
 
 # Utility rule file for uninstall.
 
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/alvaro/Desktop/rover_ws/build/osr_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces /home/alvaro/Desktop/rover_ws/src/osr-rover-code/ROS/osr_interfaces /home/alvaro/Desktop/rover_ws/build/osr_interfaces /home/alvaro/Desktop/rover_ws/build/osr_interfaces /home/alvaro/Desktop/rover_ws/build/osr_interfaces/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/traaph/rover_ws/build/osr_interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/traaph/rover_ws/src/osr-rover-code/ROS/osr_interfaces /home/traaph/rover_ws/src/osr-rover-code/ROS/osr_interfaces /home/traaph/rover_ws/build/osr_interfaces /home/traaph/rover_ws/build/osr_interfaces /home/traaph/rover_ws/build/osr_interfaces/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/uninstall.dir/depend
 
