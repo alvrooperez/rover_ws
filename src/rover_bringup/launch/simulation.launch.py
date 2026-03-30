@@ -28,7 +28,11 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource(
                     os.path.join(tb3_gazebo_dir, 'launch', 'turtlebot3_world.launch.py')
                 ),
-                launch_arguments={'use_sim_time': use_sim_time}.items()
+                launch_arguments={'use_sim_time': use_sim_time,
+                                  'x_pose': '0.0',   # <--- Forzamos aparición en el centro X
+                                  'y_pose': '-0.5',   # <--- Forzamos aparición en el centro Y
+                                  'z_pose': '0.2'
+                                  }.items()
             )
         ]
     )
@@ -85,6 +89,21 @@ def generate_launch_description():
         output='screen'
     )
 
+    # 7. Aparecer el ArUco en Gazebo automáticamente
+    aruco_sdf_path = os.path.join(rover_bringup_dir, 'models', 'aruco_marker', 'model.sdf')
+
+    spawn_aruco = Node(
+        package='ros_gz_sim',
+        executable='create',
+        arguments=[
+            '-name', 'marcador_1',
+            '-file', aruco_sdf_path,
+            '-x', '1.0', '-y', '-0.5', '-z', '0.1',
+            '-R', '0.0', '-P', '1.5708', '-Y', '0.0'
+        ],
+        output='screen'
+    )
+
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value='true'),
         set_turtlebot_model,
@@ -93,5 +112,7 @@ def generate_launch_description():
         nav2_launch,
         rviz_launch,
         localizacion_launch,
-        aruco_node
+        aruco_node,
+        spawn_aruco
+    
     ])
