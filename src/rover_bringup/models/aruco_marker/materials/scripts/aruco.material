@@ -6,7 +6,7 @@ material ArucoMarker
     {
       texture_unit
       {
-        texture aruco_16.png
+        texture aruco_per.png
       }
     }
   }
