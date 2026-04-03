@@ -2,36 +2,30 @@ ekf_filter_node:
   ros__parameters:
     use_sim_time: true
     frequency: 30.0
+    sensor_timeout: 0.1
     two_d_mode: true
-    publish_tf: false
+    publish_tf: true
 
-    # Marcos de referencia (Frames)
+    # Frames vitales para RViz
     map_frame: map
-    odom_frame: odom         # Nuestro Odom filtrado
-    base_link_frame: base_footprint # La base del Turtlebot3
+    odom_frame: odom
+    base_link_frame: base_footprint
     world_frame: odom
 
-    # -----------------------------------------------------------
-    # CONFIGURACIÓN DEL SENSOR 1: ODOMETRÍA DE LAS RUEDAS (/odom)
-    # -----------------------------------------------------------
-    odom0: /odom
-    # De las ruedas nos fiamos de la velocidad lineal X (avanzar) 
-    # y la velocidad angular Z (girar). El resto lo ignoramos.
-    # El orden es: [X, Y, Z, Roll, Pitch, Yaw, Vx, Vy, Vz, Vroll, Vpitch, Vyaw, Ax, Ay, Az]
-    odom0_config: [false, false, false,
-                   false, false, false,
-                   true,  false, false,
+    # Configuración de Odometría (Ruedas del C++)
+    odom0: odom
+    odom0_config: [true,  true,  false,
+                   false, false, true,
+                   true,  true,  false,
                    false, false, true,
                    false, false, false]
+    odom0_queue_size: 10
 
-    # -----------------------------------------------------------
-    # CONFIGURACIÓN DEL SENSOR 2: IMU (/imu)
-    # -----------------------------------------------------------
-    imu0: /imu
-    # De la IMU nos fiamos de la orientación (Yaw), la velocidad de giro (Vyaw)
-    # y la aceleración lineal en X.
+    # Configuración de IMU (Gazebo)
+    imu0: imu
     imu0_config: [false, false, false,
-                  false, false, true,
+                  true,  true,  true,
                   false, false, false,
-                  false, false, true,
-                  true,  false, false]
+                  true,  true,  true,
+                  true,  true,  true]
+    imu0_queue_size: 10

@@ -1,10 +1,11 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable, DeclareLaunchArgument, GroupAction
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import Node, SetRemap
+from launch_ros.actions import Node
+from launch_ros.actions import SetParameter
 
 def generate_launch_description():
     # 1. Configuración de tiempo de simulación
@@ -13,52 +14,35 @@ def generate_launch_description():
     # Directorios de paquetes
     rover_bringup_dir = get_package_share_directory('rover_bringup')
     nav2_bringup_dir = get_package_share_directory('nav2_bringup')
-    tb3_gazebo_dir = get_package_share_directory('turtlebot3_gazebo')
-    tb3_nav2_dir = get_package_share_directory('turtlebot3_navigation2')
+    # tb3_gazebo_dir = get_package_share_directory('turtlebot3_gazebo')
+    # tb3_nav2_dir = get_package_share_directory('turtlebot3_navigation2')
 
-    # Forzamos el modelo Waffle Pi (mejor soporte de cámara)
-    modelo_robot = 'waffle_pi'
-    set_turtlebot_model = SetEnvironmentVariable(name='TURTLEBOT3_MODEL', value=modelo_robot)
+    osr_gazebo_dir = get_package_share_directory('osr_gazebo')
 
-    # 2. Mundo de Gazebo (SIN el robot original para evitar duplicados)
-    # Cargamos solo el escenario
-    gazebo_world_launch = IncludeLaunchDescription(
+    # 2. Entorno y Robot (Usamos el launch de tu paquete osr_gazebo)
+    osr_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(tb3_gazebo_dir, 'launch', 'turtlebot3_world.launch.py')
+            os.path.join(osr_gazebo_dir, 'launch', 'empty_world.launch.py')
         ),
-        # Le pasamos poses imposibles o vacías para que no intente spawnear su propio robot
-        # O simplemente usamos el GroupAction para anular su cmd_vel
         launch_arguments={'use_sim_time': use_sim_time}.items()
-    )
-
-    # 2.1 INYECCIÓN FORZADA DEL ROBOT (Aquí mandas tú en las coordenadas)
-    # Buscamos el archivo SDF del modelo
-    robot_sdf_path = os.path.join(tb3_gazebo_dir, 'models', modelo_robot, 'model.sdf')
-    
-    spawn_robot_dir = Node(
-        package='ros_gz_sim',
-        executable='create',
-        arguments=[
-            '-name', modelo_robot,
-            '-file', robot_sdf_path,
-            '-x', '0.0',   # Centro X
-            '-y', '0.0',   # Centro Y
-            '-z', '0.05'   # Un poco elevado para que no se atasque
-        ],
-        output='screen'
     )
 
     # 2.5 Nuestro Puente Correcto (CMD_VEL)
     puente_bueno = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
-        arguments=['/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist'],
+        arguments=[
+            '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
+            '/imu@sensor_msgs/msg/Imu@gz.msgs.IMU',
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan'
+        ],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
     )
 
     # 3. Nav2
-    map_file = os.path.join(tb3_nav2_dir, 'map', 'map.yaml')
+    map_file = os.path.join(rover_bringup_dir, 'maps', 'map.yaml')  # usa tu mapa local
     nav2_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(nav2_bringup_dir, 'launch', 'bringup_launch.py')
@@ -66,7 +50,7 @@ def generate_launch_description():
         launch_arguments={
             'map': map_file,
             'use_sim_time': use_sim_time,
-            'autostart': 'true'
+            'autostart': 'false' # Desactivado temporalmente hasta tener un mapa de 7x7.sdf
         }.items()
     )
 
@@ -111,19 +95,13 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        SetParameter(name='use_sim_time', value=True),
         DeclareLaunchArgument('use_sim_time', default_value='true'),
-        set_turtlebot_model,
         
-        # Envolvemos el mundo en un GroupAction para silenciar su cmd_vel defectuoso
-        GroupAction(actions=[
-            SetRemap(src='/cmd_vel', dst='/cmd_vel_malo'),
-            gazebo_world_launch
-        ]),
-
-        spawn_robot_dir,    # El robot en 0,0
+        osr_launch,         # Levanta Gazebo, el mapa 7x7 y spawnea tu rover con sus controladores
         spawn_aruco,        # El ArUco en 1,0
         puente_bueno,
-        nav2_launch,
+        # nav2_launch,      # Comentado hasta generar el mapa de tu mundo
         rviz_launch,
         localizacion_launch,
         aruco_node
