@@ -50,7 +50,7 @@ def generate_launch_description():
         launch_arguments={
             'map': map_file,
             'use_sim_time': use_sim_time,
-            'autostart': 'false' # Desactivado temporalmente hasta tener un mapa de 7x7.sdf
+            'autostart': 'true' # Desactivado temporalmente hasta tener un mapa de 7x7.sdf
         }.items()
     )
 
@@ -101,7 +101,7 @@ def generate_launch_description():
         osr_launch,         # Levanta Gazebo, el mapa 7x7 y spawnea tu rover con sus controladores
         spawn_aruco,        # El ArUco en 1,0
         puente_bueno,
-        # nav2_launch,      # Comentado hasta generar el mapa de tu mundo
+        nav2_launch,      # Comentado hasta generar el mapa de tu mundo
         rviz_launch,
         localizacion_launch,
         aruco_node

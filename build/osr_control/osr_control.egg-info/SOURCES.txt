@@ -1,6 +1,13 @@
 package.xml
 setup.cfg
 setup.py
+../../../../build/osr_control/osr_control.egg-info/PKG-INFO
+../../../../build/osr_control/osr_control.egg-info/SOURCES.txt
+../../../../build/osr_control/osr_control.egg-info/dependency_links.txt
+../../../../build/osr_control/osr_control.egg-info/entry_points.txt
+../../../../build/osr_control/osr_control.egg-info/requires.txt
+../../../../build/osr_control/osr_control.egg-info/top_level.txt
+../../../../build/osr_control/osr_control.egg-info/zip-safe
 osr_control/__init__.py
 osr_control/ina_260_pub.py
 osr_control/joy_extras.py
@@ -8,11 +15,4 @@ osr_control/roboclaw.py
 osr_control/roboclaw_wrapper.py
 osr_control/rover.py
 osr_control/servo_control.py
-osr_control.egg-info/PKG-INFO
-osr_control.egg-info/SOURCES.txt
-osr_control.egg-info/dependency_links.txt
-osr_control.egg-info/entry_points.txt
-osr_control.egg-info/requires.txt
-osr_control.egg-info/top_level.txt
-osr_control.egg-info/zip-safe
 resource/osr_control
