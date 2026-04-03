@@ -1,4 +1,1 @@
-source;share/osr_interfaces/environment/ament_prefix_path.sh
-source;share/osr_interfaces/environment/library_path.sh
-source;share/osr_interfaces/environment/path.sh
-source;share/osr_interfaces/environment/pythonpath.sh
+/home/josemanuel/rover_completo/build/osr_interfaces/ament_cmake_environment_hooks/local_setup.dsv

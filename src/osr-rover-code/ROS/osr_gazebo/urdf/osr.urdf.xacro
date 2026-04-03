@@ -40,10 +40,10 @@
             <material name="brown"/>
         </visual>
 
-	    <inertial>
+        <inertial>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <mass value="10"/>
-            <inertia  ixx="0.28541666666666665" ixy="0" ixz="0" iyy="0.8666666666666666" 	iyz="0" izz="1.0854166666666665" />
+            <inertia  ixx="0.28541666666666665" ixy="0" ixz="0" iyy="0.8666666666666666"    iyz="0" izz="1.0854166666666665" />
         </inertial>
 
     </link>
@@ -284,7 +284,6 @@
         </link>
 
         <joint name="front_wheel_joint_${prefix}" type="revolute"> 
-        <!-- revolute continuous -->
             <parent link="rocker_bogie_link_${prefix}_2"/>
             <origin rpy="0 0 0" xyz="0.170113 -0.000335 0.076721"/>
             <child link="front_wheel_link_${prefix}"/>
@@ -350,7 +349,6 @@
         </link>
 
         <joint name="rear_wheel_joint_${prefix}" type="revolute">
-        <!-- revolute continuous -->
             <parent link="rocker_bogie_link_${prefix}_1"/>
             <origin rpy="0 0 0" xyz="-0.311763 0 -0.030379"/>
             <child link="rear_wheel_link_${prefix}"/>
@@ -370,14 +368,6 @@
                 <geometry>
                     <mesh filename="file://$(find osr_gazebo)/meshes/wheel.stl"/>
                 </geometry>
-                <surface>
-                    <friction>
-                        <ode>
-                            <mu>0.7</mu>
-                            <mu2>0.3</mu2>
-                        </ode>
-                    </friction>
-                </surface>
             </collision>
 
             <visual>
@@ -393,8 +383,12 @@
                 <mass value="0.8"/>
                 <inertia  ixx="0.0024621497157168697" ixy="0" ixz="0" iyy="0.002462972407314915" iyz="0" izz="0.0035658885464652456" />
             </inertial>
-
         </link>
+        
+        <gazebo reference="front_wheel_link_${prefix}">
+            <mu1>0.7</mu1>
+            <mu2>0.3</mu2>
+        </gazebo>
 
         <joint name="front_wheel_joint_${prefix}" type="continuous">
             <parent link="front_wheel_link_${prefix_1}"/>
@@ -410,14 +404,6 @@
                 <geometry>
                     <mesh filename="file://$(find osr_gazebo)/meshes/wheel.stl"/>
                 </geometry>
-                <surface>
-                    <friction>
-                        <ode>
-                            <mu>0.7</mu>
-                            <mu2>0.3</mu2>
-                        </ode>
-                    </friction>
-                </surface>
             </collision>
 
             <visual>
@@ -434,6 +420,11 @@
                 <inertia  ixx="0.0024621497157168697" ixy="0" ixz="0" iyy="0.002462972407314915" iyz="0" izz="0.0035658885464652456" />
             </inertial>
         </link>
+
+        <gazebo reference="middle_wheel_link_${prefix}">
+            <mu1>0.7</mu1>
+            <mu2>0.3</mu2>
+        </gazebo>
 
         <joint name="middle_wheel_joint_${prefix}" type="continuous">
             <parent link="middle_wheel_link_${prefix_1}"/>
@@ -449,14 +440,6 @@
                 <geometry>
                     <mesh filename="file://$(find osr_gazebo)/meshes/wheel.stl"/>
                 </geometry>
-                <surface>
-                    <friction>
-                        <ode>
-                            <mu>0.7</mu>
-                            <mu2>0.3</mu2>
-                        </ode>
-                    </friction>
-                </surface>
             </collision>
 
             <visual>
@@ -474,6 +457,11 @@
             </inertial>
         </link>
 
+        <gazebo reference="rear_wheel_link_${prefix}">
+            <mu1>0.7</mu1>
+            <mu2>0.3</mu2>
+        </gazebo>
+
         <joint name="rear_wheel_joint_${prefix}" type="continuous">
             <parent link="rear_wheel_link_${prefix_1}"/>
             <origin rpy="0 0 0" xyz="-0.000203 ${dir*0.008131} -0.160678"/>
@@ -487,12 +475,33 @@
     <xacro:wheel prefix="right" dir="-1" origin="3.14" prefix_1="R"/>
 
     <joint name="imu_joint" type="fixed">
-            <parent link="base_link"/>
-            <child link="imu_link"/>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-        </joint>
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
 
     <link name="imu_link"></link>
+
+    <link name="laser_frame">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.04"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.04"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </collision>
+    </link>
+    
+    <joint name="laser_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="laser_frame" /> 
+        <origin xyz="0.09 0 0.08" rpy="0 0 0" />
+    </joint>
 
     <xacro:insert_velocity_transmission name="rear_wheel_joint_right"/>
     <xacro:insert_velocity_transmission name="rear_wheel_joint_left"/>

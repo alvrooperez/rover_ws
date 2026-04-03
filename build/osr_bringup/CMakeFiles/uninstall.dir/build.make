@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/traaph/rover_ws/src/osr-rover-code/ROS/osr_bringup
+CMAKE_SOURCE_DIR = /home/josemanuel/rover_completo/src/osr-rover-code/ROS/osr_bringup
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/traaph/rover_ws/build/osr_bringup
+CMAKE_BINARY_DIR = /home/josemanuel/rover_completo/build/osr_bringup
 
 # Utility rule file for uninstall.
 
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/traaph/rover_ws/build/osr_bringup && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/traaph/rover_ws/src/osr-rover-code/ROS/osr_bringup /home/traaph/rover_ws/src/osr-rover-code/ROS/osr_bringup /home/traaph/rover_ws/build/osr_bringup /home/traaph/rover_ws/build/osr_bringup /home/traaph/rover_ws/build/osr_bringup/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/josemanuel/rover_completo/build/osr_bringup && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/josemanuel/rover_completo/src/osr-rover-code/ROS/osr_bringup /home/josemanuel/rover_completo/src/osr-rover-code/ROS/osr_bringup /home/josemanuel/rover_completo/build/osr_bringup /home/josemanuel/rover_completo/build/osr_bringup /home/josemanuel/rover_completo/build/osr_bringup/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/uninstall.dir/depend
 

@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-# EASY-INSTALL-ENTRY-SCRIPT: 'osr-control==0.0.0','console_scripts','roboclaw_wrapper'
+# EASY-INSTALL-ENTRY-SCRIPT: 'osr-control','console_scripts','roboclaw_wrapper'
 import re
 import sys
 
 # for compatibility with easy_install; see #2198
-__requires__ = 'osr-control==0.0.0'
+__requires__ = 'osr-control'
 
 try:
     from importlib.metadata import distribution
@@ -30,4 +30,4 @@ globals().setdefault('load_entry_point', importlib_load_entry_point)
 
 if __name__ == '__main__':
     sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
-    sys.exit(load_entry_point('osr-control==0.0.0', 'console_scripts', 'roboclaw_wrapper')())
+    sys.exit(load_entry_point('osr-control', 'console_scripts', 'roboclaw_wrapper')())

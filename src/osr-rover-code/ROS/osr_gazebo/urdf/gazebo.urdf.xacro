@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
   <ros2_control name="GazeboSystem" type="system">
     <hardware>
-      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
+    
     <joint name="middle_wheel_joint_left">
       <command_interface name="velocity">
         <param name="min">-10</param>
@@ -13,7 +13,6 @@
       </command_interface>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
-
     </joint>
 
     <joint name="middle_wheel_joint_right">
@@ -76,7 +75,6 @@
         <param name="min">-0.1</param>
         <param name="max">0.1</param>
       </command_interface>
-
       <state_interface name="position"/>
       <state_interface name="velocity"/>
       <state_interface name="effort"/>
@@ -95,6 +93,7 @@
       <state_interface name="velocity"/>
       <state_interface name="effort"/>
     </joint>
+    
     <joint name="rear_wheel_joint_R">
       <command_interface name="position">
         <param name="min">-5</param>
@@ -108,6 +107,7 @@
       <state_interface name="velocity"/>
       <state_interface name="effort"/>
     </joint>
+    
     <joint name="rear_wheel_joint_L">
       <command_interface name="position">
         <param name="min">-5</param>
@@ -125,31 +125,48 @@
   </ros2_control>
 
   <gazebo>
-    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
       <parameters>$(find osr_gazebo)/config/controller_velocity.yaml</parameters>
     </plugin>
   </gazebo>
 
-    <gazebo reference="imu_link">
-        <gravity>true</gravity>
-        <sensor name="imu_sensor" type="imu">
-        <always_on>true</always_on>
-        <update_rate>100</update_rate>
-        <visualize>true</visualize>
-        <topic>"imu"</topic>
-        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-            <topicName>imu</topicName>
-            <bodyName>imu_link</bodyName>
-            <updateRateHZ>100.0</updateRateHZ>
-            <gaussianNoise>0.0</gaussianNoise>
-            <xyzOffset>0 0 0</xyzOffset>
-            <rpyOffset>0 0 0</rpyOffset>
-            <frameName>imu_link</frameName>
-            <initialOrientationAsReference>false</initialOrientationAsReference>
-        </plugin>
-        <pose>0 0 0 0 0 0</pose>
-        </sensor>
-    </gazebo>
+  <gazebo reference="imu_link">
+      <sensor name="imu_sensor" type="imu">
+          <always_on>true</always_on>
+          <update_rate>100</update_rate>
+          <visualize>true</visualize>
+          <topic>imu</topic>
+          <gz_frame_id>imu_link</gz_frame_id>
+      </sensor>
+  </gazebo>
 
+  <gazebo reference="laser_frame">
+      <sensor name="laser" type="gpu_lidar">
+          <pose>0 0 0 0 0 0</pose>
+          <visualize>false</visualize> <update_rate>10</update_rate>
+          <topic>scan</topic>
+          <gz_frame_id>laser_frame</gz_frame_id>
+          <ray>
+              <scan>
+                  <horizontal>
+                      <samples>400</samples>
+                      <resolution>1</resolution>
+                      <min_angle>-3.14159</min_angle>
+                      <max_angle>3.14159</max_angle>
+                  </horizontal>
+              </scan>
+              <range>
+                  <min>0.15</min>
+                  <max>12.0</max>
+                  <resolution>0.01</resolution>
+              </range>
+              <noise>
+                  <type>gaussian</type>
+                  <mean>0.0</mean>
+                  <stddev>0.01</stddev>
+              </noise>
+          </ray>
+      </sensor>
+  </gazebo>
 
 </robot>

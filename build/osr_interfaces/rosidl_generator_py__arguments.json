@@ -1,11 +1,11 @@
 {
   "package_name": "osr_interfaces",
-  "output_dir": "/home/traaph/rover_ws/build/osr_interfaces/rosidl_generator_py/osr_interfaces",
+  "output_dir": "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_generator_py/osr_interfaces",
   "template_dir": "/opt/ros/jazzy/share/rosidl_generator_py/cmake/../resource",
   "idl_tuples": [
-    "/home/traaph/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/Status.idl",
-    "/home/traaph/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/CommandDrive.idl",
-    "/home/traaph/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/CommandCorner.idl"
+    "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/Status.idl",
+    "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/CommandDrive.idl",
+    "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/CommandCorner.idl"
   ],
   "target_dependencies": [
     "/opt/ros/jazzy/share/rosidl_generator_py/cmake/../../../lib/rosidl_generator_py/rosidl_generator_py",
@@ -21,8 +21,8 @@
     "/opt/ros/jazzy/share/rosidl_generator_py/cmake/../resource/_msg.py.em",
     "/opt/ros/jazzy/share/rosidl_generator_py/cmake/../resource/_srv_pkg_typesupport_entry_point.c.em",
     "/opt/ros/jazzy/share/rosidl_generator_py/cmake/../resource/_srv.py.em",
-    "/home/traaph/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/Status.idl",
-    "/home/traaph/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/CommandDrive.idl",
-    "/home/traaph/rover_ws/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/CommandCorner.idl"
+    "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/Status.idl",
+    "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/CommandDrive.idl",
+    "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_adapter/osr_interfaces/msg/CommandCorner.idl"
   ]
 }

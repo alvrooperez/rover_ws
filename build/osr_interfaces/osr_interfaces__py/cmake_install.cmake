@@ -1,8 +1,8 @@
-# Install script for directory: /home/traaph/rover_ws/build/osr_interfaces/osr_interfaces__py
+# Install script for directory: /home/josemanuel/rover_completo/build/osr_interfaces/osr_interfaces__py
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/traaph/rover_ws/install/osr_interfaces")
+  set(CMAKE_INSTALL_PREFIX "/home/josemanuel/rover_completo/install/osr_interfaces")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

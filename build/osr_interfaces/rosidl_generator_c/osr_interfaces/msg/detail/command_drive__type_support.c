@@ -4,9 +4,9 @@
 
 #include <string.h>
 
-#include "osr_interfaces/msg/detail/command_drive__type_support.h"
-#include "osr_interfaces/msg/detail/command_drive__struct.h"
 #include "osr_interfaces/msg/detail/command_drive__functions.h"
+#include "osr_interfaces/msg/detail/command_drive__struct.h"
+#include "osr_interfaces/msg/detail/command_drive__type_support.h"
 #include "rosidl_typesupport_interface/macros.h"
 
 #ifdef __cplusplus
