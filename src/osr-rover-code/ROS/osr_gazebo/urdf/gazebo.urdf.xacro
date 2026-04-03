@@ -120,7 +120,7 @@
       <state_interface name="position"/>
       <state_interface name="velocity"/>
       <state_interface name="effort"/>
-    </joint>
+    </joint> 
 
     <joint name="rocker_bogie_joint_L_2">
       <state_interface name="position"/>
