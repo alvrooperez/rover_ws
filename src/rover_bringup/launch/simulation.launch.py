@@ -33,18 +33,20 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            # Reloj con ruta absoluta del mundo
+            '/world/7x7/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
             '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
-            # Ruta absoluta para Jazzy basada en tu mundo 7x7
-            '/world/7x7/model/rover/link/imu_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU', 
+            # IMU con la ruta jerárquica que Gazebo Jazzy genera
+            '/world/7x7/model/rover/link/base_footprint/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU', 
             '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
             '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
             '/odom_gazebo@nav_msgs/msg/Odometry[gz.msgs.Odometry'
         ],
         remappings=[
-            ('/world/7x7/model/rover/link/imu_link/sensor/imu_sensor/imu', '/imu'),
+            ('/world/7x7/clock', '/clock'),
+            ('/world/7x7/model/rover/link/base_footprint/sensor/imu_sensor/imu', '/imu'),
         ],
-        parameters=[{'use_sim_time': use_sim_time}],
+        parameters=[{'use_sim_time': True}],
         output='screen'
     )
 
