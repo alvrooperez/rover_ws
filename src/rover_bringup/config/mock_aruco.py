@@ -32,8 +32,8 @@ class MockAruco(Node):
         self.pub_initial = self.create_publisher(PoseWithCovarianceStamped, '/initialpose', 10)
         self.amcl_inicializado = False
 
-        # Temporizador para simular que vemos un ArUco cada 6 segundos
-        self.timer = self.create_timer(6.0, self.timer_cb)
+        # Temporizador a 2 Hz (0.5s) simulando los FPS de una cámara real
+        self.timer = self.create_timer(0.5, self.timer_cb)
         self.latest_odom = None
         
         self.get_logger().info("Nodo Mock ArUco iniciado. Enviando datos al EKF Global en /aruco_pose...")
@@ -46,8 +46,13 @@ class MockAruco(Node):
         if self.latest_odom is None:
             return
 
-        # Simulamos que a veces la cámara no ve el ArUco (30% de probabilidad de fallar)
-        if random.random() < 0.3:
+        # Simulamos que el ArUco es físico: si el robot avanza más de 2.5 metros, la cámara lo pierde de vista.
+        dist_origen = math.sqrt(self.latest_odom.pose.pose.position.x**2 + self.latest_odom.pose.pose.position.y**2)
+        if dist_origen > 2.5:
+            return
+
+        # Simulamos que a veces la cámara parpadea (10% de probabilidad de fallar)
+        if random.random() < 0.1:
             self.get_logger().info("Buscando ArUco... No hay marcadores a la vista.")
             return
 
@@ -93,10 +98,13 @@ class MockAruco(Node):
         pose_msg.pose.pose.orientation.z = math.sin(new_yaw / 2.0)
         pose_msg.pose.pose.orientation.w = math.cos(new_yaw / 2.0)
 
-        # Matriz de covarianza moderada (le decimos a AMCL que confiamos bastante en esta lectura)
-        pose_msg.pose.covariance[0] = 0.05   # Varianza en X
-        pose_msg.pose.covariance[7] = 0.05   # Varianza en Y
-        pose_msg.pose.covariance[35] = 0.05  # Varianza en Yaw
+        # Matriz de covarianza completa para el EKF (Evita errores matemáticos)
+        pose_msg.pose.covariance[0] = 0.1
+        pose_msg.pose.covariance[7] = 0.1
+        pose_msg.pose.covariance[14] = 9999.0 # Ignoramos Z
+        pose_msg.pose.covariance[21] = 9999.0 # Ignoramos Roll
+        pose_msg.pose.covariance[28] = 9999.0 # Ignoramos Pitch
+        pose_msg.pose.covariance[35] = 0.1
 
         self.pub_ekf.publish(pose_msg)
         

@@ -19,7 +19,8 @@ def generate_launch_description():
         parameters=[
             ekf_config_path,
             {'use_sim_time': True}
-        ]
+        ],
+        remappings=[('odometry/filtered', 'odometry/local')]
     )
 
     # EKF Global (Odometría, IMU y ArUcos -> map a odom)
@@ -31,7 +32,8 @@ def generate_launch_description():
         parameters=[
             ekf_config_path,
             {'use_sim_time': True}
-        ]
+        ],
+        remappings=[('odometry/filtered', 'odometry/global')]
     )
 
     return LaunchDescription([
