@@ -13,7 +13,10 @@ INVERTIR_MAPA = True
 # Ajusta estos valores a las coordenadas reales del mapa donde hace spawn el rover.
 OFFSET_X = 5.2
 OFFSET_Y = 2.7
-OFFSET_YAW = 3.14159 # Offset de orientación inicial en Radianes (180 grados)
+
+# Usamos grados para que sea más fácil de probar (el código lo pasa a radianes solo)
+OFFSET_YAW_GRADOS = -90.0
+INVERTIR_GIRO = False # Cambiar a True si cuando el rover gira a la izquierda en Gazebo, en RViz la flecha gira a la derecha
 
 class MockAruco(Node):
     def __init__(self):
@@ -57,18 +60,22 @@ class MockAruco(Node):
         q_gz = self.latest_odom.pose.pose.orientation
         current_yaw = math.atan2(2.0 * (q_gz.w * q_gz.z + q_gz.x * q_gz.y), 1.0 - 2.0 * (q_gz.y * q_gz.y + q_gz.z * q_gz.z))
 
+        # Invertimos el sentido del giro si es necesario
+        if INVERTIR_GIRO:
+            current_yaw = -current_yaw
+
         if INVERTIR_MAPA:
             # Invertimos X e Y y aplicamos el offset
             pose_msg.pose.pose.position.x = -self.latest_odom.pose.pose.position.x + OFFSET_X + noise_x
             pose_msg.pose.pose.position.y = -self.latest_odom.pose.pose.position.y + OFFSET_Y + noise_y
             
-            # Sumamos 180 grados (pi radianes) más el offset
-            new_yaw = current_yaw + math.pi + OFFSET_YAW
+            # Sumamos 180 grados (pi radianes) más el offset en grados
+            new_yaw = current_yaw + math.pi + math.radians(OFFSET_YAW_GRADOS)
         else:
             pose_msg.pose.pose.position.x = self.latest_odom.pose.pose.position.x + OFFSET_X + noise_x
             pose_msg.pose.pose.position.y = self.latest_odom.pose.pose.position.y + OFFSET_Y + noise_y
             
-            new_yaw = current_yaw + OFFSET_YAW
+            new_yaw = current_yaw + math.radians(OFFSET_YAW_GRADOS)
 
         # Convertimos de nuevo el Yaw a cuaternión para publicarlo
         pose_msg.pose.pose.orientation.x = 0.0
