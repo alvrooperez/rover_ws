@@ -33,6 +33,7 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
+            # Usamos el simple para evitar conflictos con el nombre del mundo
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
             '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
             # Corregido: Añadida la coma al final y simplificado el nombre
@@ -46,6 +47,7 @@ def generate_launch_description():
             ('/model/rover/link/imu_link/sensor/imu_sensor/imu', '/imu'),
         ],
         parameters=[{'use_sim_time': use_sim_time}],
+        parameters=[{'use_sim_time': True}],
         output='screen'
     )
 
