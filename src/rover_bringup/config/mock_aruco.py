@@ -4,6 +4,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import PoseWithCovarianceStamped
 from nav_msgs.msg import Odometry
 import random
+import math
 
 # Si el (0,0) del mapa se generó mirando hacia el lado opuesto al de Gazebo
 INVERTIR_MAPA = True
@@ -12,6 +13,7 @@ INVERTIR_MAPA = True
 # Ajusta estos valores a las coordenadas reales del mapa donde hace spawn el rover.
 OFFSET_X = 5.2
 OFFSET_Y = 2.7
+OFFSET_YAW = -1.5708 # Offset de orientación inicial en Radianes (-90 grados)
 
 class MockAruco(Node):
     def __init__(self):
@@ -51,19 +53,28 @@ class MockAruco(Node):
         noise_x = random.uniform(-0.1, 0.1)
         noise_y = random.uniform(-0.1, 0.1)
 
+        # Extraemos el Yaw (rotación en Z) del cuaternión de Gazebo
+        q_gz = self.latest_odom.pose.pose.orientation
+        current_yaw = math.atan2(2.0 * (q_gz.w * q_gz.z + q_gz.x * q_gz.y), 1.0 - 2.0 * (q_gz.y * q_gz.y + q_gz.z * q_gz.z))
+
         if INVERTIR_MAPA:
             # Invertimos X e Y y aplicamos el offset
             pose_msg.pose.pose.position.x = -self.latest_odom.pose.pose.position.x + OFFSET_X + noise_x
             pose_msg.pose.pose.position.y = -self.latest_odom.pose.pose.position.y + OFFSET_Y + noise_y
-            # Rotamos el cuaternión de orientación exactamente 180 grados (Eje Z)
-            pose_msg.pose.pose.orientation.x = 0.0
-            pose_msg.pose.pose.orientation.y = 0.0
-            pose_msg.pose.pose.orientation.z = self.latest_odom.pose.pose.orientation.w
-            pose_msg.pose.pose.orientation.w = -self.latest_odom.pose.pose.orientation.z
+            
+            # Sumamos 180 grados (pi radianes) más el offset
+            new_yaw = current_yaw + math.pi + OFFSET_YAW
         else:
             pose_msg.pose.pose.position.x = self.latest_odom.pose.pose.position.x + OFFSET_X + noise_x
             pose_msg.pose.pose.position.y = self.latest_odom.pose.pose.position.y + OFFSET_Y + noise_y
-            pose_msg.pose.pose.orientation = self.latest_odom.pose.pose.orientation
+            
+            new_yaw = current_yaw + OFFSET_YAW
+
+        # Convertimos de nuevo el Yaw a cuaternión para publicarlo
+        pose_msg.pose.pose.orientation.x = 0.0
+        pose_msg.pose.pose.orientation.y = 0.0
+        pose_msg.pose.pose.orientation.z = math.sin(new_yaw / 2.0)
+        pose_msg.pose.pose.orientation.w = math.cos(new_yaw / 2.0)
 
         # Matriz de covarianza moderada (le decimos a AMCL que confiamos bastante en esta lectura)
         pose_msg.pose.covariance[0] = 0.05   # Varianza en X
