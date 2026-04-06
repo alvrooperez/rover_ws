@@ -80,14 +80,26 @@ def generate_launch_description():
         node_robot_state_publisher,
         spawn_entity,
         controller_spawn,
+        
+        # 1. Cuando termine de aparecer el robot, lanzamos SOLO el estado de las articulaciones
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=spawn_entity,
-                on_exit=[
-                    load_joint_state_controller,
-                    rover_wheel_controller,
-                    servo_controller,
-                ],
+                on_exit=[load_joint_state_controller],
+            )
+        ),
+        # 2. Cuando termine de cargar el estado, lanzamos las ruedas
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=load_joint_state_controller,
+                on_exit=[rover_wheel_controller],
+            )
+        ),
+        # 3. Cuando terminen las ruedas, lanzamos los servos de dirección
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=rover_wheel_controller,
+                on_exit=[servo_controller],
             )
         )
     ])
