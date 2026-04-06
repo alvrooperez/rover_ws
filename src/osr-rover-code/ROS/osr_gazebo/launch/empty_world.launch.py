@@ -41,7 +41,8 @@ def generate_launch_description():
         package='osr_gazebo',
         executable='osr_controller',
         output='screen',
-        parameters=[{'use_sim_time': True}]
+        parameters=[{'use_sim_time': True},
+                    {'publish_tf': False}]
     )
     
     spawn_entity = Node(
