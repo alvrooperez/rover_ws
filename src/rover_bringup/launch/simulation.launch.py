@@ -33,19 +33,19 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-            # Usamos el simple para evitar conflictos con el nombre del mundo
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
             '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
-            # Corregimos la ruta de la IMU al link real (base_link)
-            '/world/7x7/model/rover/link/base_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu[gz.msgs.IMU', 
+            # Corregido: Añadida la coma al final y simplificado el nombre
+            '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU', 
             '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
+            '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
             '/odom_gazebo@nav_msgs/msg/Odometry[gz.msgs.Odometry'
         ],
+        # Si Gazebo publica en el nombre largo, el remapping lo pasa a /imu en ROS
         remappings=[
-            # Elimina el remapping del clock, ya no es necesario si usas /clock directo
-            ('/world/7x7/model/rover/link/base_link/sensor/imu_sensor/imu', '/imu'),
+            ('/model/rover/link/imu_link/sensor/imu_sensor/imu', '/imu'),
         ],
-        parameters=[{'use_sim_time': True}],
+        parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
     )
 
