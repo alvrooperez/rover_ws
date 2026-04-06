@@ -13,7 +13,7 @@ INVERTIR_MAPA = True
 # Ajusta estos valores a las coordenadas reales del mapa donde hace spawn el rover.
 OFFSET_X = 5.2
 OFFSET_Y = 2.7
-OFFSET_YAW = 1.5708 # Offset de orientación inicial en Radianes (+90 grados)
+OFFSET_YAW = 3.14159 # Offset de orientación inicial en Radianes (180 grados)
 
 class MockAruco(Node):
     def __init__(self):
