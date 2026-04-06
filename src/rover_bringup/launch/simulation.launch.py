@@ -35,11 +35,10 @@ def generate_launch_description():
         arguments=[
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
             '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
-            # Mantenemos el nombre corto pero nos aseguramos de que el sensor lo use
             '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU', 
             '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
             '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
-            # ¡Añadimos la odometría que te falta!
+            # Esta es la pieza que falta para conectar Gazebo con ROS
             '/odom_gazebo@nav_msgs/msg/Odometry[gz.msgs.Odometry'
         ],
         parameters=[{'use_sim_time': use_sim_time}],
