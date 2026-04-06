@@ -25,14 +25,14 @@ class MockAruco(Node):
         # Nos suscribimos a la odometría de Gazebo que es nuestra posición "Dios" (100% real)
         self.sub = self.create_subscription(Odometry, '/odom_gazebo', self.odom_cb, 10)
         
-        # Publicador para inyectar la pose a AMCL (que usa el LiDAR)
-        self.pub = self.create_publisher(PoseWithCovarianceStamped, '/initialpose', 10)
+        # Publicador para inyectar la pose al EKF Global
+        self.pub = self.create_publisher(PoseWithCovarianceStamped, '/aruco_pose', 10)
         
         # Temporizador para simular que vemos un ArUco cada 6 segundos
         self.timer = self.create_timer(6.0, self.timer_cb)
         self.latest_odom = None
         
-        self.get_logger().info("Nodo Mock ArUco iniciado. Trabajando en conjunto con el LiDAR (AMCL)...")
+        self.get_logger().info("Nodo Mock ArUco iniciado. Enviando datos al EKF Global en /aruco_pose...")
 
     def odom_cb(self, msg):
         # Guardamos la última posición real conocida
@@ -95,7 +95,7 @@ class MockAruco(Node):
         pose_msg.pose.covariance[35] = 0.05  # Varianza en Yaw
 
         self.pub.publish(pose_msg)
-        self.get_logger().info(f"¡ArUco detectado! Corrigiendo LiDAR/AMCL a X: {pose_msg.pose.pose.position.x:.2f}, Y: {pose_msg.pose.pose.position.y:.2f}")
+        self.get_logger().info(f"¡ArUco detectado! Enviando corrección global (X: {pose_msg.pose.pose.position.x:.2f}, Y: {pose_msg.pose.pose.position.y:.2f})")
 
 def main(args=None):
     rclpy.init(args=args)

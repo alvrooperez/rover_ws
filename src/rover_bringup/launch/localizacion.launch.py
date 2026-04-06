@@ -10,18 +10,31 @@ def generate_launch_description():
     # Ruta al archivo YAML que acabamos de crear
     ekf_config_path = os.path.join(rover_bringup_dir, 'config', 'ekf.yaml')
 
-    # Configurar el nodo de robot_localization
-    ekf_node = Node(
+    # EKF Local (Odometría e IMU -> odom a base_link)
+    ekf_local_node = Node(
         package='robot_localization',
         executable='ekf_node',
-        name='ekf_filter_node',
+        name='ekf_local_node',
         output='screen',
         parameters=[
             ekf_config_path,
-            {'use_sim_time': True} # Forzamos el tiempo simulado aquí también
+            {'use_sim_time': True}
+        ]
+    )
+
+    # EKF Global (Odometría, IMU y ArUcos -> map a odom)
+    ekf_global_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_global_node',
+        output='screen',
+        parameters=[
+            ekf_config_path,
+            {'use_sim_time': True}
         ]
     )
 
     return LaunchDescription([
-        ekf_node
+        ekf_local_node,
+        ekf_global_node
     ])
