@@ -43,7 +43,7 @@ def generate_launch_description():
         ],
         remappings=[
             ('/world/7x7/model/rover/link/imu_link/sensor/imu_sensor/imu', '/imu'),
-        ]
+        ],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
     )
