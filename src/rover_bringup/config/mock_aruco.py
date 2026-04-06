@@ -5,6 +5,9 @@ from geometry_msgs.msg import PoseWithCovarianceStamped
 from nav_msgs.msg import Odometry
 import random
 
+# Si el (0,0) del mapa se generó mirando hacia el lado opuesto al de Gazebo
+INVERTIR_MAPA = True
+
 class MockAruco(Node):
     def __init__(self):
         super().__init__('mock_aruco')
@@ -43,9 +46,19 @@ class MockAruco(Node):
         noise_x = random.uniform(-0.1, 0.1)
         noise_y = random.uniform(-0.1, 0.1)
 
-        pose_msg.pose.pose.position.x = self.latest_odom.pose.pose.position.x + noise_x
-        pose_msg.pose.pose.position.y = self.latest_odom.pose.pose.position.y + noise_y
-        pose_msg.pose.pose.orientation = self.latest_odom.pose.pose.orientation
+        if INVERTIR_MAPA:
+            # Invertimos X e Y
+            pose_msg.pose.pose.position.x = -self.latest_odom.pose.pose.position.x + noise_x
+            pose_msg.pose.pose.position.y = -self.latest_odom.pose.pose.position.y + noise_y
+            # Rotamos el cuaternión de orientación exactamente 180 grados (Eje Z)
+            pose_msg.pose.pose.orientation.x = 0.0
+            pose_msg.pose.pose.orientation.y = 0.0
+            pose_msg.pose.pose.orientation.z = self.latest_odom.pose.pose.orientation.w
+            pose_msg.pose.pose.orientation.w = -self.latest_odom.pose.pose.orientation.z
+        else:
+            pose_msg.pose.pose.position.x = self.latest_odom.pose.pose.position.x + noise_x
+            pose_msg.pose.pose.position.y = self.latest_odom.pose.pose.position.y + noise_y
+            pose_msg.pose.pose.orientation = self.latest_odom.pose.pose.orientation
 
         # Matriz de covarianza moderada (le decimos a AMCL que confiamos bastante en esta lectura)
         pose_msg.pose.covariance[0] = 0.05   # Varianza en X
