@@ -26,8 +26,12 @@ class MockAruco(Node):
         self.sub = self.create_subscription(Odometry, '/odom_gazebo', self.odom_cb, 10)
         
         # Publicador para inyectar la pose al EKF Global
-        self.pub = self.create_publisher(PoseWithCovarianceStamped, '/aruco_pose', 10)
+        self.pub_ekf = self.create_publisher(PoseWithCovarianceStamped, '/aruco_pose', 10)
         
+        # Publicador para inicializar AMCL (solo la primera vez)
+        self.pub_initial = self.create_publisher(PoseWithCovarianceStamped, '/initialpose', 10)
+        self.amcl_inicializado = False
+
         # Temporizador para simular que vemos un ArUco cada 6 segundos
         self.timer = self.create_timer(6.0, self.timer_cb)
         self.latest_odom = None
@@ -94,8 +98,17 @@ class MockAruco(Node):
         pose_msg.pose.covariance[7] = 0.05   # Varianza en Y
         pose_msg.pose.covariance[35] = 0.05  # Varianza en Yaw
 
-        self.pub.publish(pose_msg)
-        self.get_logger().info(f"¡ArUco detectado! Enviando corrección global (X: {pose_msg.pose.pose.position.x:.2f}, Y: {pose_msg.pose.pose.position.y:.2f})")
+        self.pub_ekf.publish(pose_msg)
+        
+        if not self.amcl_inicializado:
+            # Le mandamos la posición a AMCL la primera vez para que las partículas empiecen en el lugar correcto
+            pose_msg.pose.covariance[0] = 0.25 # Covarianza un poco mayor para esparcir las partículas iniciales
+            pose_msg.pose.covariance[7] = 0.25
+            self.pub_initial.publish(pose_msg)
+            self.amcl_inicializado = True
+            self.get_logger().info("¡Primera detección ArUco! Inicializando las partículas de AMCL en el mapa...")
+        else:
+            self.get_logger().info(f"¡ArUco detectado! Enviando corrección al EKF (X: {pose_msg.pose.pose.position.x:.2f}, Y: {pose_msg.pose.pose.position.y:.2f})")
 
 def main(args=None):
     rclpy.init(args=args)
