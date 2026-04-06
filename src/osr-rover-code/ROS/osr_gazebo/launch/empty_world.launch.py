@@ -5,7 +5,7 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, RegisterEventHandler
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-
+from launch.actions import TimerAction
 from launch_ros.actions import Node
 import xacro
 
@@ -81,21 +81,28 @@ def generate_launch_description():
         spawn_entity,
         controller_spawn,
         
-        # 1. Cuando termine de aparecer el robot, lanzamos SOLO el estado de las articulaciones
+        # 1. Esperamos 8 segundos reales después de que aparezca el robot
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=spawn_entity,
-                on_exit=[load_joint_state_controller],
+                on_exit=[
+                    TimerAction(
+                        period=8.0,
+                        actions=[load_joint_state_controller]
+                    )
+                ],
             )
         ),
-        # 2. Cuando termine de cargar el estado, lanzamos las ruedas
+        
+        # 2. Las ruedas esperan al broadcaster
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=load_joint_state_controller,
                 on_exit=[rover_wheel_controller],
             )
         ),
-        # 3. Cuando terminen las ruedas, lanzamos los servos de dirección
+        
+        # 3. Los servos esperan a las ruedas
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=rover_wheel_controller,
