@@ -386,8 +386,8 @@
         </link>
         
         <gazebo reference="front_wheel_link_${prefix}">
-            <mu1>0.7</mu1>
-            <mu2>0.3</mu2>
+            <mu1>2.0</mu1>
+            <mu2>2.0</mu2>
         </gazebo>
 
         <joint name="front_wheel_joint_${prefix}" type="continuous">
@@ -422,8 +422,8 @@
         </link>
 
         <gazebo reference="middle_wheel_link_${prefix}">
-            <mu1>0.7</mu1>
-            <mu2>0.3</mu2>
+            <mu1>2.0</mu1>
+            <mu2>2.0</mu2>
         </gazebo>
 
         <joint name="middle_wheel_joint_${prefix}" type="continuous">
@@ -458,8 +458,8 @@
         </link>
 
         <gazebo reference="rear_wheel_link_${prefix}">
-            <mu1>0.7</mu1>
-            <mu2>0.3</mu2>
+            <mu1>2.0</mu1>
+            <mu2>2.0</mu2>
         </gazebo>
 
         <joint name="rear_wheel_joint_${prefix}" type="continuous">
