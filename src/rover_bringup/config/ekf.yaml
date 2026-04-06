@@ -13,7 +13,7 @@ ekf_filter_node:
     world_frame: odom
 
     # Configuración de Odometría (Ruedas del C++)
-    odom0: odom
+    odom0: odom_gazebo
     odom0_config: [false, false, false, # X, Y, Z (Posición) -> FALSE
                    false, false, false, # Roll, Pitch, Yaw -> FALSE
                    true,  true,  false, # VX, VY, VZ (Velocidad lineal) -> TRUE

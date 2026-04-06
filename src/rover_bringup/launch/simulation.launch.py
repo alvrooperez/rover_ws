@@ -33,14 +33,14 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-            # El reloj vital para que no se congele ROS 2
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
-            # Sensores para Nav2
             '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
-            '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU',
-            # ¡Los ojos para el ArUco!
+            # Mantenemos el nombre corto pero nos aseguramos de que el sensor lo use
+            '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU', 
             '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
-            '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo'
+            '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
+            # ¡Añadimos la odometría que te falta!
+            '/odom_gazebo@nav_msgs/msg/Odometry[gz.msgs.Odometry'
         ],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
