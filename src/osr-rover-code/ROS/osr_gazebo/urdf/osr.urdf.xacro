@@ -251,6 +251,7 @@
             <origin rpy="0 0 0" xyz="0.099618 0 -0.091275"/>
             <child link="rocker_bogie_link_${prefix}_2"/>
             <limit effort="10000.0" velocity="1.0" lower="-0.5" upper="0.5"/>
+            <dynamics damping="50.0" friction="20.0"/>
             <axis xyz="0 1 0"/>
         </joint>
 
@@ -287,7 +288,8 @@
             <parent link="rocker_bogie_link_${prefix}_2"/>
             <origin rpy="0 0 0" xyz="0.170113 -0.000335 0.076721"/>
             <child link="front_wheel_link_${prefix}"/>
-            <limit effort="100000.0" velocity="10" lower="-0.523599" upper="0.523599"/>
+            <limit effort="100000.0" velocity="10.0" lower="-0.523599" upper="0.523599"/>
+            <dynamics damping="20.0" friction="10.0"/>
             <axis xyz="0 0 1"/>
         </joint>
 
@@ -352,7 +354,8 @@
             <parent link="rocker_bogie_link_${prefix}_1"/>
             <origin rpy="0 0 0" xyz="-0.311763 0 -0.030379"/>
             <child link="rear_wheel_link_${prefix}"/>
-            <limit effort="100000.0" velocity="3" lower="-0.523599" upper="0.523599"/>
+            <limit effort="100000.0" velocity="3.0" lower="-0.523599" upper="0.523599"/>
+            <dynamics damping="20.0" friction="10.0"/>
             <axis xyz="0 0 1"/>
         </joint>
 
@@ -386,8 +389,8 @@
         </link>
         
         <gazebo reference="front_wheel_link_${prefix}">
-            <mu1>2.0</mu1>
-            <mu2>2.0</mu2>
+            <mu1>0.7</mu1>
+            <mu2>0.05</mu2>
         </gazebo>
 
         <joint name="front_wheel_joint_${prefix}" type="continuous">
@@ -395,7 +398,7 @@
             <origin rpy="0 0 0" xyz="0.006231 ${dir*0.019544} -0.169991"/>
             <child link="front_wheel_link_${prefix}"/>
             <axis xyz="0 1 0"/>
-            <velocity>5.0</velocity>
+            <limit effort="100.0" velocity="5.0"/>
         </joint>
 
         <link name="middle_wheel_link_${prefix}">
@@ -422,8 +425,8 @@
         </link>
 
         <gazebo reference="middle_wheel_link_${prefix}">
-            <mu1>2.0</mu1>
-            <mu2>2.0</mu2>
+            <mu1>0.7</mu1>
+            <mu2>0.05</mu2>
         </gazebo>
 
         <joint name="middle_wheel_joint_${prefix}" type="continuous">
@@ -431,7 +434,7 @@
             <origin rpy="0 0 0" xyz="0.006691 ${dir*0.100382} 0.005425"/>
             <child link="middle_wheel_link_${prefix}"/>
             <axis xyz="0 1 0"/>
-            <velocity>5.0</velocity>
+            <limit effort="100.0" velocity="5.0"/>
         </joint>
 
         <link name="rear_wheel_link_${prefix}">
@@ -458,8 +461,8 @@
         </link>
 
         <gazebo reference="rear_wheel_link_${prefix}">
-            <mu1>2.0</mu1>
-            <mu2>2.0</mu2>
+            <mu1>0.7</mu1>
+            <mu2>0.05</mu2>
         </gazebo>
 
         <joint name="rear_wheel_joint_${prefix}" type="continuous">
@@ -467,7 +470,7 @@
             <origin rpy="0 0 0" xyz="-0.000203 ${dir*0.008131} -0.160678"/>
             <child link="rear_wheel_link_${prefix}"/>
             <axis xyz="0 1 0"/>
-            <velocity>5.0</velocity>
+            <limit effort="100.0" velocity="5.0"/>
         </joint>
 
     </xacro:macro>
@@ -480,7 +483,13 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
-    <link name="imu_link"></link>
+    <link name="imu_link">
+        <inertial>
+            <mass value="0.01"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+        </inertial>
+    </link>
 
     <link name="laser_frame">
         <visual>
