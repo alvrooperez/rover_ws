@@ -93,7 +93,7 @@ def generate_launch_description():
         arguments=[
             '-name', 'marcador_1',
             '-file', aruco_sdf_path,
-            '-x', '1.0', '-y', '0.0', '-z', '0.15',
+            '-x', '4.0', '-y', '0.0', '-z', '0.15',
             '-R', '0.0', '-P', '1.5708', '-Y', '0.0'
         ],
         output='screen'
