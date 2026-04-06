@@ -47,7 +47,6 @@ def generate_launch_description():
             ('/model/rover/link/imu_link/sensor/imu_sensor/imu', '/imu'),
         ],
         parameters=[{'use_sim_time': use_sim_time}],
-        parameters=[{'use_sim_time': True}],
         output='screen'
     )
 
