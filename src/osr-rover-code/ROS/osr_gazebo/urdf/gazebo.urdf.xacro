@@ -143,12 +143,12 @@
   </gazebo>
 
   <gazebo reference="imu_link">
-      <sensor name="imu_sensor_rover" type="imu">
-          <always_on>true</always_on>
-          <update_rate>20</update_rate>
-          <topic>/model/rover/imu</topic>
-          <gz_frame_id>imu_link</gz_frame_id>
-      </sensor>
+    <sensor name="imu_sensor" type="imu">
+        <always_on>true</always_on>
+        <update_rate>50</update_rate>
+        <visualize>true</visualize>
+        <topic>imu</topic>
+    </sensor>
   </gazebo>
 
   <gazebo reference="laser_frame">
@@ -182,9 +182,6 @@
 
   <gazebo>
     <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu">
-    </plugin>
-    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
-      <render_engine>ogre2</render_engine>
     </plugin>
   </gazebo>
 
