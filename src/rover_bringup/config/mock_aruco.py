@@ -64,18 +64,24 @@ class MockAruco(Node):
         if INVERTIR_GIRO:
             current_yaw = -current_yaw
 
+        # Calculamos la rotación total que hay entre el mundo de Gazebo y el Mapa de RViz
+        angulo_offset_rad = math.radians(OFFSET_YAW_GRADOS)
         if INVERTIR_MAPA:
-            # Invertimos X e Y y aplicamos el offset
-            pose_msg.pose.pose.position.x = -self.latest_odom.pose.pose.position.x + OFFSET_X + noise_x
-            pose_msg.pose.pose.position.y = -self.latest_odom.pose.pose.position.y + OFFSET_Y + noise_y
+            angulo_offset_rad += math.pi
             
-            # Sumamos 180 grados (pi radianes) más el offset en grados
-            new_yaw = current_yaw + math.pi + math.radians(OFFSET_YAW_GRADOS)
-        else:
-            pose_msg.pose.pose.position.x = self.latest_odom.pose.pose.position.x + OFFSET_X + noise_x
-            pose_msg.pose.pose.position.y = self.latest_odom.pose.pose.position.y + OFFSET_Y + noise_y
-            
-            new_yaw = current_yaw + math.radians(OFFSET_YAW_GRADOS)
+        # 1. Rotamos la posición X e Y de Gazebo para que coincida con los ejes del mapa
+        x_g = self.latest_odom.pose.pose.position.x
+        y_g = self.latest_odom.pose.pose.position.y
+        
+        x_rot = x_g * math.cos(angulo_offset_rad) - y_g * math.sin(angulo_offset_rad)
+        y_rot = x_g * math.sin(angulo_offset_rad) + y_g * math.cos(angulo_offset_rad)
+        
+        # Aplicamos la posición rotada + los offsets
+        pose_msg.pose.pose.position.x = x_rot + OFFSET_X + noise_x
+        pose_msg.pose.pose.position.y = y_rot + OFFSET_Y + noise_y
+        
+        # 2. Rotamos la orientación del robot con el mismo ángulo exacto
+        new_yaw = current_yaw + angulo_offset_rad
 
         # Convertimos de nuevo el Yaw a cuaternión para publicarlo
         pose_msg.pose.pose.orientation.x = 0.0
