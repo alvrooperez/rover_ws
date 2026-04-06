@@ -105,18 +105,18 @@ controller_server:
       ay_min: -3.0
       az_max: 3.5
       vx_std: 0.2
-      vy_std: 0.2
+      vy_std: 0.0 #0.2
       wz_std: 0.4
       vx_max: 0.5
       vx_min: -0.35
-      vy_max: 0.5
+      vy_max: 0.0 #0.5
       wz_max: 1.9
       iteration_count: 1
       prune_distance: 1.7
       transform_tolerance: 0.1
       temperature: 0.3
       gamma: 0.015
-      motion_model: "DiffDrive"
+      motion_model: "Ackerman" #DiffDrive
       visualize: true
       regenerate_noises: true
       TrajectoryVisualizer:
@@ -196,7 +196,8 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      robot_radius: 0.22
+      #robot_radius: 0.22
+      footprint: "[ [0.30, 0.25], [-0.30, 0.25], [-0.30, -0.25], [0.30, -0.25] ]"
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
@@ -234,7 +235,8 @@ global_costmap:
       publish_frequency: 1.0
       global_frame: map
       robot_base_frame: base_link
-      robot_radius: 0.22
+      #robot_radius: 0.22
+      footprint: "[ [0.30, 0.25], [-0.30, 0.25], [-0.30, -0.25], [0.30, -0.25] ]"
       resolution: 0.05
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
@@ -281,10 +283,18 @@ planner_server:
     planner_plugins: ["GridBased"]
     costmap_update_timeout: 1.0
     GridBased:
-      plugin: "nav2_navfn_planner::NavfnPlanner"
+      plugin: "nav2_smac_planner::SmacPlannerHybrid"
       tolerance: 0.5
-      use_astar: false
+      downsample_costmap: false
       allow_unknown: true
+      max_iterations: 1000000
+      max_on_approach_iterations: 1000
+      max_planning_time: 2.0
+      motion_model_for_search: "REEDS_SHEPP" # O "REEDS_SHEPP" si tu rover puede ir marcha atrás o DUBIN
+      minimum_turning_radius: 0.40     # Pon aquí tu radio de giro real
+      angle_quantization_bins: 72
+      analytic_expansion_ratio: 3.5
+      analytic_expansion_max_length: 3.0
 
 smoother_server:
   ros__parameters:
