@@ -57,21 +57,21 @@ def generate_launch_description():
     load_joint_state_controller = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=['joint_state_broadcaster'],
+        arguments=['joint_state_broadcaster','--controller-manager-timeout', '30'],
         output='screen'
     )
 
     rover_wheel_controller = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=['wheel_controller'],
+        arguments=['wheel_controller','--controller-manager-timeout', '30'],
         output='screen'
     )
 
     servo_controller = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=['servo_controller'],
+        arguments=['servo_controller','--controller-manager-timeout', '30'],
         output='screen'
     )
     
