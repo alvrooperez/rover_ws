@@ -8,6 +8,11 @@ import random
 # Si el (0,0) del mapa se generó mirando hacia el lado opuesto al de Gazebo
 INVERTIR_MAPA = True
 
+# Offset de posición inicial en el mapa.
+# Ajusta estos valores a las coordenadas reales del mapa donde hace spawn el rover.
+OFFSET_X = 0.0
+OFFSET_Y = 0.0
+
 class MockAruco(Node):
     def __init__(self):
         super().__init__('mock_aruco')
@@ -47,17 +52,17 @@ class MockAruco(Node):
         noise_y = random.uniform(-0.1, 0.1)
 
         if INVERTIR_MAPA:
-            # Invertimos X e Y
-            pose_msg.pose.pose.position.x = -self.latest_odom.pose.pose.position.x + noise_x
-            pose_msg.pose.pose.position.y = -self.latest_odom.pose.pose.position.y + noise_y
+            # Invertimos X e Y y aplicamos el offset
+            pose_msg.pose.pose.position.x = -self.latest_odom.pose.pose.position.x + OFFSET_X + noise_x
+            pose_msg.pose.pose.position.y = -self.latest_odom.pose.pose.position.y + OFFSET_Y + noise_y
             # Rotamos el cuaternión de orientación exactamente 180 grados (Eje Z)
             pose_msg.pose.pose.orientation.x = 0.0
             pose_msg.pose.pose.orientation.y = 0.0
             pose_msg.pose.pose.orientation.z = self.latest_odom.pose.pose.orientation.w
             pose_msg.pose.pose.orientation.w = -self.latest_odom.pose.pose.orientation.z
         else:
-            pose_msg.pose.pose.position.x = self.latest_odom.pose.pose.position.x + noise_x
-            pose_msg.pose.pose.position.y = self.latest_odom.pose.pose.position.y + noise_y
+            pose_msg.pose.pose.position.x = self.latest_odom.pose.pose.position.x + OFFSET_X + noise_x
+            pose_msg.pose.pose.position.y = self.latest_odom.pose.pose.position.y + OFFSET_Y + noise_y
             pose_msg.pose.pose.orientation = self.latest_odom.pose.pose.orientation
 
         # Matriz de covarianza moderada (le decimos a AMCL que confiamos bastante en esta lectura)
