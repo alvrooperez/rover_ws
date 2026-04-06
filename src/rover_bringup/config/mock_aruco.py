@@ -104,6 +104,7 @@ class MockAruco(Node):
             # Le mandamos la posición a AMCL la primera vez para que las partículas empiecen en el lugar correcto
             pose_msg.pose.covariance[0] = 0.25 # Covarianza un poco mayor para esparcir las partículas iniciales
             pose_msg.pose.covariance[7] = 0.25
+            pose_msg.pose.covariance[35] = 0.25 # Permitimos que el LiDAR ajuste un poco el Yaw inicial
             self.pub_initial.publish(pose_msg)
             self.amcl_inicializado = True
             self.get_logger().info("¡Primera detección ArUco! Inicializando las partículas de AMCL en el mapa...")
