@@ -16,15 +16,13 @@ ParametersBackend::ParametersBackend(rclcpp::Node *node)
     : node_(node), logger_(node_->get_logger()) {}
 
 ParametersBackend::~ParametersBackend() {
-  if (ros_callback_) {
-    node_->remove_on_set_parameters_callback(
-        (rclcpp::node_interfaces::OnSetParametersCallbackHandle *)(ros_callback_.get()));
-    ros_callback_.reset();
-  }
+  // OnSetParametersCallbackHandle::SharedPtr is RAII: resetting it removes the callback.
+  ros_callback_.reset();
 }
 
 void ParametersBackend::addOnSetParametersCallback(
-    rclcpp::node_interfaces::NodeParametersInterface::OnParametersSetCallbackType callback) {
+    std::function<rcl_interfaces::msg::SetParametersResult(
+        const std::vector<rclcpp::Parameter>&)> callback) {
   ros_callback_ = node_->add_on_set_parameters_callback(std::move(callback));
 }
 

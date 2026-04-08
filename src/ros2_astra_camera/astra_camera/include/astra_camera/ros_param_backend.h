@@ -11,7 +11,10 @@
 /**************************************************************************/
 
 #pragma once
+#include <functional>
+#include <vector>
 #include <rclcpp/rclcpp.hpp>
+#include <rcl_interfaces/msg/set_parameters_result.hpp>
 
 namespace astra_camera {
 class ParametersBackend {
@@ -19,11 +22,12 @@ class ParametersBackend {
   explicit ParametersBackend(rclcpp::Node* node);
   ~ParametersBackend();
   void addOnSetParametersCallback(
-      rclcpp::node_interfaces::NodeParametersInterface::OnParametersSetCallbackType callback);
+      std::function<rcl_interfaces::msg::SetParametersResult(
+          const std::vector<rclcpp::Parameter>&)> callback);
 
  private:
   rclcpp::Node* node_;
   rclcpp::Logger logger_;
-  std::shared_ptr<void> ros_callback_;
+  rclcpp::node_interfaces::OnSetParametersCallbackHandle::SharedPtr ros_callback_;
 };
 }  // namespace astra_camera

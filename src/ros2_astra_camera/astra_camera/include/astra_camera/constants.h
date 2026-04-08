@@ -12,8 +12,9 @@
 
 #pragma once
 
-#include <string>
+#include <cstdint>
 #include <cstdlib>
+#include <string>
 
 #define OB_ROS_MAJOR_VERSION 1
 #define OB_ROS_MINOR_VERSION 1
