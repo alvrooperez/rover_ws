@@ -22,7 +22,7 @@ def generate_launch_description():
     # Esto levantará los motores, leerá encoders y publicará la odometría real.
     osr_control_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(osr_bringup_dir, 'launch', 'osr_bringup.launch.py') # IMPORTANTE: Ajusta el nombre si tu archivo real se llama distinto
+            os.path.join(osr_bringup_dir, 'launch', 'osr_launch.py') # IMPORTANTE: Ajusta el nombre si tu archivo real se llama distinto
         )
     )
     

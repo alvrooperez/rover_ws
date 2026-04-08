@@ -1,90 +1,139 @@
 import os
-from ament_index_python.packages import get_package_share_directory
+
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+from ament_index_python.packages import get_package_share_directory
+
 
 def generate_launch_description():
-    # 1. Configuración de tiempo de simulación
-    use_sim_time = LaunchConfiguration('use_sim_time', default='true')
 
-    # Directorios de los paquetes
-    rover_bringup_dir = get_package_share_directory('rover_bringup')
-    nav2_bringup_dir = get_package_share_directory('nav2_bringup')
-    osr_gazebo_dir = get_package_share_directory('osr_gazebo')
+    roboclaw_params = os.path.join(
+        get_package_share_directory('osr_bringup'),
+        'config',
+        'roboclaw_params.yaml'
+    )
+    osr_params = os.path.join(
+        get_package_share_directory('osr_bringup'),
+        'config',
+        'osr_params.yaml'
+    )
 
-    # 2. Simulación Base (Mundo + Rover + Controladores)
-    # En lugar de reescribir todo, llamamos a tu launch de osr_gazebo que ya funciona perfecto.
-    gazebo_rover_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(osr_gazebo_dir, 'launch', 'empty_world.launch.py')
+    ld = LaunchDescription()
+    
+    ld.add_action(
+        Node(
+            package='osr_control',
+            executable='roboclaw_wrapper',
+            name='roboclaw_wrapper',
+            output='screen',
+            emulate_tty=True,
+            respawn=True,
+            parameters=[roboclaw_params]
         )
     )
-
-    # 3. Puente de Sensores (Gazebo Harmonic -> ROS 2 Jazzy)
-    # IMPORTANTÍSIMO: Pasa los datos del Lidar, IMU y Cámara para que Nav2 y el EKF no estén ciegos.
-    # Nota: Tu C++ node ya escucha cmd_vel nativamente, así que no hace falta puentear la velocidad.
-    sensor_bridge = Node(
-        package='ros_gz_bridge',
-        executable='parameter_bridge',
-        arguments=[
-            '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
-            '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU',
-            '/camera@sensor_msgs/msg/Image[gz.msgs.Image',
-            '/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo'
-        ],
-        parameters=[{'use_sim_time': use_sim_time}],
-        output='screen'
+    ld.add_action(
+        DeclareLaunchArgument('enable_odometry', default_value='false')
     )
-
-    # 4. Localización (EKF / Filtro de Kalman de tu compañero)
-    localizacion_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(rover_bringup_dir, 'launch', 'localizacion.launch.py')
-        ),
-        launch_arguments={'use_sim_time': use_sim_time}.items()
+    ld.add_action(
+        Node(
+            package='osr_control',
+            executable='servo_control',
+            name='servo_wrapper',
+            output='screen',
+            emulate_tty=True,
+            respawn=True,
+            parameters=[{'centered_pulse_widths': [65, 70, 77, 92]}]  # pulse width where the corner motors are in their default position, see rover_bringup.md.
+        )
     )
-
-    # 5. Nav2 (Navegación Autónoma)
-    # OJO: Asegúrate de tener un mapa guardado en esta ruta
-    map_file = os.path.join(rover_bringup_dir, 'maps', 'mapa.yaml')
-    nav2_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(nav2_bringup_dir, 'launch', 'bringup_launch.py')
-        ),
-        launch_arguments={
-            'map': map_file,
-            'use_sim_time': use_sim_time,
-            'autostart': 'true'
-        }.items()
+    ld.add_action(
+        DeclareLaunchArgument('enable_odometry', default_value='false')
     )
-
-    # 6. RViz (Interfaz visual)
-    rviz_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(nav2_bringup_dir, 'launch', 'rviz_launch.py')
-        ),
-        launch_arguments={'use_sim_time': use_sim_time}.items()
+    ld.add_action(
+        DeclareLaunchArgument('publish_transform', default_value='false')
     )
-
-    # 7. Nodo de detección ArUco
-    aruco_params_path = os.path.join(rover_bringup_dir, 'config', 'aruco.yaml')
-    aruco_node = Node(
-        package='ros2_aruco',
-        executable='aruco_node',
-        name='aruco_node',
-        parameters=[aruco_params_path, {'use_sim_time': use_sim_time}],
-        output='screen'
+    ld.add_action(
+        Node(
+            package='osr_control',
+            executable='rover',
+            name='rover',
+            output='screen',
+            emulate_tty=True,
+            respawn=True,
+            parameters=[osr_params,
+                        {'enable_odometry': LaunchConfiguration('enable_odometry'),
+                         'publish_transform': LaunchConfiguration('publish_transform')}]
+        )
     )
+    ld.add_action(
+        Node(
+            package='teleop_twist_joy',
+            executable='teleop_node',
+            name='teleop_twist_joy',
+            output='screen',
+            emulate_tty=True,
+            respawn=True,
+            parameters=[
+                # {"scale_linear.x": 0.4},  # scale to apply to drive speed, in m/s: drive_motor_rpm * 2pi / 60 * wheel radius * slowdown_factor
+                {"scale_linear.x": -0.4},  # scale to apply to drive speed, in m/s: drive_motor_rpm * 2pi / 60 * wheel radius * slowdown_factor
+                # {"axis_linear.x": 4},
+                {"axis_linear.x": 1},
+                # {"axis_angular.yaw": 0},  # which joystick axis to use for driving
+                {"axis_angular.yaw": 3},  # which joystick axis to use for driving
+                # {"scale_angular.yaw": 1.25},  # scale to apply to angular speed, in rad/s: scale_linear / min_radius(=0.45m)
+                {"axis_angular.pitch": 0},  # axis to use for in-place rotation
+                {"scale_angular.yaw": -1.25/4},   # -1.25 scale to apply to angular speed, in rad/s: scale_linear / min_radius(=0.45m)
+                {"scale_angular.pitch": 0.25},  # scale to apply to angular speed, in rad/s: scale_linear / min_radius(=0.45m)
+                {"scale_angular_turbo.yaw": 3.95},  # scale to apply to angular speed, in rad/s: scale_linear_turbo / min_radius
+                {"scale_linear_turbo.x": 1.78},  # scale to apply to linear speed, in m/s
+                # {"enable_button": 4},  # which button to press to enable movement
+                {"enable_button": 7},  # which button to press to enable movement
+                 {"enable_turbo_button": 6}  # -1 to disable turbo
+                #{"enable_turbo_button": -1}  # -1 to disable turbo
+            ],
+            remappings=[
+                ('/cmd_vel', '/cmd_vel_intuitive')
+            ]
+        )
+    )
+    ld.add_action(
+        Node(
+            package='joy',
+            executable='joy_node',
+            name='joy',
+            output='screen',
+            emulate_tty=True,
+            respawn=True,
+            parameters=[
+                {"autorepeat_rate": 5.0},
+                {"device_id": 0},  # This might be different on your computer. Run `ls -l /dev/input/event*`. If you have event1, put 1.
+            ]        
+        )
+    )
+    ld.add_action(
+        Node(
+            package='osr_control',
+            executable='ina260',
+            name='ina260_node',
+            output='screen',
+            emulate_tty=True,
+            parameters=[
+                {"publish_rate": 1.0},
+                {"sensor_address": "0x40"},
+            ]        
+        )
+    )
+    # ld.add_action(
+    #     Node(
+    #         package='osr_control',
+    #         executable='joy_extras',
+    #         output='screen',
+    #         emulate_tty=True,
+    #         parameters=[
+    #             {"duty_button_index": 1}  # which button toggles duty mode on/off
+    #         ]
+    #     )
+    # )
 
-    return LaunchDescription([
-        DeclareLaunchArgument('use_sim_time', default_value='true'),
-        gazebo_rover_launch,
-        sensor_bridge,
-        localizacion_launch,
-        nav2_launch,
-        rviz_launch,
-        aruco_node
-    ])
+    return ld
