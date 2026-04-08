@@ -2,7 +2,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, ExecuteProcess
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.launch_description_sources import PythonLaunchDescriptionSource, AnyLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node, SetParameter
 
@@ -14,6 +14,8 @@ def generate_launch_description():
     rover_bringup_dir = get_package_share_directory('rover_bringup')
     nav2_bringup_dir = get_package_share_directory('nav2_bringup')
     osr_bringup_dir = get_package_share_directory('osr_bringup')
+    astra_camera_dir = get_package_share_directory('ros2_astra_camera')
+    ydlidar_dir = get_package_share_directory('ydlidar_ros2_driver')
 
     # ========================================================================
     # ESPACIO PARA EL HARDWARE FÍSICO (Para añadir en el futuro)
@@ -26,9 +28,19 @@ def generate_launch_description():
         )
     )
     
-    # Aquí irían nodos como:
-    # - v4l2_camera (Cámara USB real)
-    # - rplidar_ros (Lidar físico)
+    # 1.6 Nodo de la cámara Astra Pro Plus
+    camera_launch = IncludeLaunchDescription(
+        AnyLaunchDescriptionSource(
+            os.path.join(astra_camera_dir, 'launch', 'astro_pro_plus.launch.xml')
+        )
+    )
+
+    # 1.7 Nodo del YDLidar
+    lidar_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(ydlidar_dir, 'launch', 'ydlidar_launch.py') # Asegúrate de que el archivo existe con este nombre exacto
+        )
+    )
     # ========================================================================
 
     # 2. Localización (EKF local y global)
@@ -65,6 +77,8 @@ def generate_launch_description():
         DeclareLaunchArgument('use_sim_time', default_value='false'),
         
         osr_control_launch,
+        camera_launch,
+        lidar_launch,
         localizacion_launch,
         aruco_node,
         mock_aruco_node
