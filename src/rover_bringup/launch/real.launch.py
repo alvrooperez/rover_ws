@@ -14,31 +14,36 @@ def generate_launch_description():
     rover_bringup_dir = get_package_share_directory('rover_bringup')
     nav2_bringup_dir = get_package_share_directory('nav2_bringup')
     osr_bringup_dir = get_package_share_directory('osr_bringup')
-    astra_camera_dir = get_package_share_directory('ros2_astra_camera')
     ydlidar_dir = get_package_share_directory('ydlidar_ros2_driver')
+    # (Hemos eliminado el directorio de la astra_camera porque ya no nos hace falta)
 
     # ========================================================================
-    # ESPACIO PARA EL HARDWARE FÍSICO (Para añadir en el futuro)
+    # ESPACIO PARA EL HARDWARE FÍSICO
     # ========================================================================
     # 1.5 Nodo/Launch del control real del Open Source Rover (OSR)
     # Esto levantará los motores, leerá encoders y publicará la odometría real.
     osr_control_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(osr_bringup_dir, 'launch', 'osr_launch.py') # IMPORTANTE: Ajusta el nombre si tu archivo real se llama distinto
+            os.path.join(osr_bringup_dir, 'launch', 'osr_launch.py') 
         )
     )
     
-    # 1.6 Nodo de la cámara Astra Pro Plus
-    camera_launch = IncludeLaunchDescription(
-        AnyLaunchDescriptionSource(
-            os.path.join(astra_camera_dir, 'launch', 'astro_pro_plus.launch.xml')
-        )
+    # 1.6 NUEVO: Nodo de la cámara universal V4L2 (Sustituye a la Astra)
+    v4l2_camera_node = Node(
+        package='v4l2_camera',
+        executable='v4l2_camera_node',
+        name='v4l2_camera',
+        parameters=[
+            {'video_device': '/dev/video0'}, # Apuntamos al dispositivo que descubriste que funciona
+            {'image_size': [640, 480]}       # Resolución ideal para el Hub y los ArUcos
+        ],
+        output='screen'
     )
 
     # 1.7 Nodo del YDLidar
     lidar_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(ydlidar_dir, 'launch', 'ydlidar_launch.py') # Asegúrate de que el archivo existe con este nombre exacto
+            os.path.join(ydlidar_dir, 'launch', 'ydlidar_launch.py') 
         )
     )
     # ========================================================================
@@ -58,6 +63,11 @@ def generate_launch_description():
         executable='aruco_node',
         name='aruco_node',
         parameters=[aruco_params_path, {'use_sim_time': use_sim_time}],
+        # Le decimos al nodo de ArUco que lea la imagen del nuevo driver genérico
+        remappings=[
+            ('/camera/color/image_raw', '/image_raw'),
+            ('/camera/color/camera_info', '/camera_info')
+        ],
         output='screen'
     )
     
@@ -77,7 +87,7 @@ def generate_launch_description():
         DeclareLaunchArgument('use_sim_time', default_value='false'),
         
         osr_control_launch,
-        camera_launch,
+        v4l2_camera_node,      # Arrancamos la nueva cámara
         lidar_launch,
         localizacion_launch,
         aruco_node,
