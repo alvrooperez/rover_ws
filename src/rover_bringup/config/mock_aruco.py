@@ -1,127 +1,98 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import PoseWithCovarianceStamped
-from nav_msgs.msg import Odometry
-import random
+from geometry_msgs.msg import PoseWithCovarianceStamped, PoseArray
+from tf2_ros import Buffer, TransformListener
 import math
 
-# Si el (0,0) del mapa se generó mirando hacia el lado opuesto al de Gazebo
-INVERTIR_MAPA = True
-
-# Offset de posición inicial en el mapa.
-# Ajusta estos valores a las coordenadas reales del mapa donde hace spawn el rover.
-OFFSET_X = 5.2
-OFFSET_Y = 2.7
-
-# Usamos grados para que sea más fácil de probar (el código lo pasa a radianes solo)
-OFFSET_YAW_GRADOS = -90.0
-INVERTIR_GIRO = False # Cambiar a True si cuando el rover gira a la izquierda en Gazebo, en RViz la flecha gira a la derecha
-
-class MockAruco(Node):
+class ArucoProcessor(Node):
     def __init__(self):
-        super().__init__('mock_aruco')
+        super().__init__('aruco_processor')
         
-        # Nos suscribimos a la odometría de Gazebo que es nuestra posición "Dios" (100% real)
-        self.sub = self.create_subscription(Odometry, '/odom_gazebo', self.odom_cb, 10)
+        # Nos suscribimos a las detecciones REALES de ros2_aruco
+        self.sub = self.create_subscription(PoseArray, '/aruco_poses', self.pose_cb, 10)
         
-        # Publicador para inyectar la pose al EKF Global
         self.pub_ekf = self.create_publisher(PoseWithCovarianceStamped, '/aruco_pose', 10)
-        
-        # Publicador para inicializar AMCL (solo la primera vez)
         self.pub_initial = self.create_publisher(PoseWithCovarianceStamped, '/initialpose', 10)
         self.amcl_inicializado = False
 
-        # Temporizador a 2 Hz (0.5s) simulando los FPS de una cámara real
-        self.timer = self.create_timer(0.5, self.timer_cb)
-        self.latest_odom = None
+        # Buffer de TF para conocer hacia dónde está mirando el rover
+        self.tf_buffer = Buffer()
+        self.tf_listener = TransformListener(self.tf_buffer, self)
         
-        self.get_logger().info("Nodo Mock ArUco iniciado. Enviando datos al EKF Global en /aruco_pose...")
+        self.get_logger().info("Puente ArUco Real -> EKF iniciado. Esperando detectar marcadores...")
 
-    def odom_cb(self, msg):
-        # Guardamos la última posición real conocida
-        self.latest_odom = msg
-
-    def timer_cb(self):
-        if self.latest_odom is None:
+    def pose_cb(self, msg: PoseArray):
+        if not msg.poses:
             return
 
-        # Simulamos que el ArUco es físico: si el robot avanza más de 2.5 metros, la cámara lo pierde de vista.
-        dist_origen = math.sqrt(self.latest_odom.pose.pose.position.x**2 + self.latest_odom.pose.pose.position.y**2)
-        if dist_origen > 2.5:
+        try:
+            # Buscamos la transformación desde el mapa hasta la cámara
+            trans = self.tf_buffer.lookup_transform('map', msg.header.frame_id, rclpy.time.Time())
+        except Exception as e:
+            self.get_logger().warn(f"Esperando árbol TF para transformar el ArUco: {e}")
             return
 
-        # Simulamos que a veces la cámara parpadea (10% de probabilidad de fallar)
-        if random.random() < 0.1:
-            self.get_logger().info("Buscando ArUco... No hay marcadores a la vista.")
-            return
-
-        # Creamos el mensaje de pose inicial para AMCL
+        # Tomamos la primera detección (si hubiera más, podríamos promediar o elegir por id)
+        marker_pose = msg.poses[0]
+        
+        # La posición del marcador respecto a la cámara (frame óptico: Z al frente, X derecha)
+        z_c = marker_pose.position.z
+        x_c = marker_pose.position.x
+        
+        # Sabemos que en Gazebo spawneamos el marcador en estas coordenadas absolutas:
+        MARKER_X = 4.0
+        MARKER_Y = 0.0
+        
+        # Extraemos el Yaw actual de la cámara respecto al mapa usando cuaterniones del TF
+        q = trans.transform.rotation
+        siny_cosp = 2 * (q.w * q.z + q.x * q.y)
+        cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z)
+        yaw = math.atan2(siny_cosp, cosy_cosp)
+        
+        # Proyectamos el vector de distancia cámara->marcador hacia los ejes del mapa global
+        dx = z_c * math.cos(yaw) - x_c * math.sin(yaw)
+        dy = z_c * math.sin(yaw) + x_c * math.cos(yaw)
+        
+        # La posición de la cámara (rover) es la posición del marcador menos el vector de distancia
+        cam_x = MARKER_X - dx
+        cam_y = MARKER_Y - dy
+        
+        # Creamos el mensaje para el EKF
         pose_msg = PoseWithCovarianceStamped()
         pose_msg.header.stamp = self.get_clock().now().to_msg()
-        pose_msg.header.frame_id = 'map' # La detección es absoluta respecto al mapa
-
-        # Simulamos el error/ruido de lectura de la cámara (+/- 10 cm de error)
-        noise_x = random.uniform(-0.1, 0.1)
-        noise_y = random.uniform(-0.1, 0.1)
-
-        # Extraemos el Yaw (rotación en Z) del cuaternión de Gazebo
-        q_gz = self.latest_odom.pose.pose.orientation
-        current_yaw = math.atan2(2.0 * (q_gz.w * q_gz.z + q_gz.x * q_gz.y), 1.0 - 2.0 * (q_gz.y * q_gz.y + q_gz.z * q_gz.z))
-
-        # Invertimos el sentido del giro si es necesario
-        if INVERTIR_GIRO:
-            current_yaw = -current_yaw
-
-        # Calculamos la rotación total que hay entre el mundo de Gazebo y el Mapa de RViz
-        angulo_offset_rad = math.radians(OFFSET_YAW_GRADOS)
-        if INVERTIR_MAPA:
-            angulo_offset_rad += math.pi
-            
-        # 1. Rotamos la posición X e Y de Gazebo para que coincida con los ejes del mapa
-        x_g = self.latest_odom.pose.pose.position.x
-        y_g = self.latest_odom.pose.pose.position.y
+        pose_msg.header.frame_id = 'map'
         
-        x_rot = x_g * math.cos(angulo_offset_rad) - y_g * math.sin(angulo_offset_rad)
-        y_rot = x_g * math.sin(angulo_offset_rad) + y_g * math.cos(angulo_offset_rad)
+        pose_msg.pose.pose.position.x = cam_x
+        pose_msg.pose.pose.position.y = cam_y
+        pose_msg.pose.pose.position.z = 0.0
         
-        # Aplicamos la posición rotada + los offsets
-        pose_msg.pose.pose.position.x = x_rot + OFFSET_X + noise_x
-        pose_msg.pose.pose.position.y = y_rot + OFFSET_Y + noise_y
-        
-        # 2. Rotamos la orientación del robot con el mismo ángulo exacto
-        new_yaw = current_yaw + angulo_offset_rad
+        # Ignoramos la orientación enviada al EKF, dejando que el Odom/IMU hagan ese trabajo
+        pose_msg.pose.pose.orientation.w = 1.0
 
-        # Convertimos de nuevo el Yaw a cuaternión para publicarlo
-        pose_msg.pose.pose.orientation.x = 0.0
-        pose_msg.pose.pose.orientation.y = 0.0
-        pose_msg.pose.pose.orientation.z = math.sin(new_yaw / 2.0)
-        pose_msg.pose.pose.orientation.w = math.cos(new_yaw / 2.0)
-
-        # Matriz de covarianza completa para el EKF (Evita errores matemáticos)
-        pose_msg.pose.covariance[0] = 0.1
-        pose_msg.pose.covariance[7] = 0.1
-        pose_msg.pose.covariance[14] = 9999.0 # Ignoramos Z
-        pose_msg.pose.covariance[21] = 9999.0 # Ignoramos Roll
-        pose_msg.pose.covariance[28] = 9999.0 # Ignoramos Pitch
-        pose_msg.pose.covariance[35] = 0.1
+        # Matriz de covarianza: Damos mucha confianza a (X, Y) y anulamos el resto
+        pose_msg.pose.covariance[0] = 0.05
+        pose_msg.pose.covariance[7] = 0.05
+        pose_msg.pose.covariance[14] = 9999.0 # Ignorar Z
+        pose_msg.pose.covariance[21] = 9999.0 # Ignorar Roll
+        pose_msg.pose.covariance[28] = 9999.0 # Ignorar Pitch
+        pose_msg.pose.covariance[35] = 9999.0 # Ignorar Yaw
 
         self.pub_ekf.publish(pose_msg)
         
         if not self.amcl_inicializado:
-            # Le mandamos la posición a AMCL la primera vez para que las partículas empiecen en el lugar correcto
-            pose_msg.pose.covariance[0] = 0.25 # Covarianza un poco mayor para esparcir las partículas iniciales
-            pose_msg.pose.covariance[7] = 0.25
-            pose_msg.pose.covariance[35] = 0.25 # Permitimos que el LiDAR ajuste un poco el Yaw inicial
-            self.pub_initial.publish(pose_msg)
+            init_msg = PoseWithCovarianceStamped()
+            init_msg.header = pose_msg.header
+            init_msg.pose.pose = pose_msg.pose.pose
+            init_msg.pose.covariance = pose_msg.pose.covariance
+            init_msg.pose.covariance[35] = 0.25 # Permitimos dispersión angular en AMCL
+            self.pub_initial.publish(init_msg)
             self.amcl_inicializado = True
-            self.get_logger().info("¡Primera detección ArUco! Inicializando las partículas de AMCL en el mapa...")
-        else:
-            self.get_logger().info(f"¡ArUco detectado! Enviando corrección al EKF (X: {pose_msg.pose.pose.position.x:.2f}, Y: {pose_msg.pose.pose.position.y:.2f})")
+            self.get_logger().info(f"¡ArUco detectado! Partículas de AMCL inicializadas en X:{cam_x:.2f}, Y:{cam_y:.2f}")
 
 def main(args=None):
     rclpy.init(args=args)
-    node = MockAruco()
+    node = ArucoProcessor()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()

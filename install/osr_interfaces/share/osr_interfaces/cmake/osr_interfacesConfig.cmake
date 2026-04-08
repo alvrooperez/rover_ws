@@ -1,1 +1,0 @@
-/home/josemanuel/rover_completo/build/osr_interfaces/ament_cmake_core/osr_interfacesConfig.cmake

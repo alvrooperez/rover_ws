@@ -1,1 +1,0 @@
-/home/josemanuel/rover_completo/src/osr-rover-code/ROS/osr_interfaces/msg/Status.msg

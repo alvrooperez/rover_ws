@@ -1,1 +1,0 @@
-/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_generator_cpp/osr_interfaces/msg/detail/command_drive__struct.hpp

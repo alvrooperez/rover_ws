@@ -1,9 +1,0 @@
-{
-  "package_name": "osr_interfaces",
-  "output_dir": "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_generator_type_description/osr_interfaces",
-  "idl_tuples": [
-    "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/Status.idl",
-    "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/CommandDrive.idl",
-    "/home/josemanuel/rover_completo/build/osr_interfaces/rosidl_adapter/osr_interfaces:msg/CommandCorner.idl"
-  ]
-}

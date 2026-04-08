@@ -79,15 +79,15 @@ def generate_launch_description():
         launch_arguments={'use_sim_time': use_sim_time}.items()
     )
 
-    # 6. Nodo de detección ArUco (Reemplazado temporalmente por nuestro MOCK)
-    # aruco_params_path = os.path.join(rover_bringup_dir, 'config', 'aruco.yaml')
-    # aruco_node = Node(
-    #     package='ros2_aruco',
-    #     executable='aruco_node',
-    #     name='aruco_node',
-    #     parameters=[aruco_params_path, {'use_sim_time': use_sim_time}],
-    #     output='screen'
-    # )
+    # 6. Nodo de detección ArUco (El real de ros2_aruco)
+    aruco_params_path = os.path.join(rover_bringup_dir, 'config', 'aruco.yaml')
+    aruco_node = Node(
+        package='ros2_aruco',
+        executable='aruco_node',
+        name='aruco_node',
+        parameters=[aruco_params_path, {'use_sim_time': use_sim_time}],
+        output='screen'
+    )
     
     mock_aruco_node = ExecuteProcess(
         cmd=['python3', os.path.join(os.getcwd(), 'src', 'rover_bringup', 'config', 'mock_aruco.py'), '--ros-args', '-p', 'use_sim_time:=true'],
@@ -118,5 +118,6 @@ def generate_launch_description():
         nav2_launch,      # Comentado hasta generar el mapa de tu mundo
         rviz_launch,
         localizacion_launch,
+        aruco_node,         # Levantamos el reconocedor real
         mock_aruco_node
     ])
