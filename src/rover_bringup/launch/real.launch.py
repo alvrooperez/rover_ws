@@ -13,14 +13,22 @@ def generate_launch_description():
     # Directorios de paquetes
     rover_bringup_dir = get_package_share_directory('rover_bringup')
     nav2_bringup_dir = get_package_share_directory('nav2_bringup')
+    osr_bringup_dir = get_package_share_directory('osr_bringup')
 
     # ========================================================================
     # ESPACIO PARA EL HARDWARE FÍSICO (Para añadir en el futuro)
     # ========================================================================
+    # 1.5 Nodo/Launch del control real del Open Source Rover (OSR)
+    # Esto levantará los motores, leerá encoders y publicará la odometría real.
+    osr_control_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(osr_bringup_dir, 'launch', 'osr_bringup.launch.py') # IMPORTANTE: Ajusta el nombre si tu archivo real se llama distinto
+        )
+    )
+    
     # Aquí irían nodos como:
     # - v4l2_camera (Cámara USB real)
     # - rplidar_ros (Lidar físico)
-    # - Tu nodo C++ que lee los encoders reales y mueve los motores
     # ========================================================================
 
     # 2. Localización (EKF local y global)
@@ -56,6 +64,7 @@ def generate_launch_description():
         SetParameter(name='use_sim_time', value=False),
         DeclareLaunchArgument('use_sim_time', default_value='false'),
         
+        osr_control_launch,
         localizacion_launch,
         aruco_node,
         mock_aruco_node
