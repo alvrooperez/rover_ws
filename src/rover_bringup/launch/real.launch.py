@@ -53,12 +53,11 @@ def generate_launch_description():
         executable='bno055',
         name='bno055_node',
         parameters=[
-            # Descomenta y ajusta según cómo tengas conectada la IMU (I2C o UART)
-            # {'uart_port': '/dev/ttyUSB0'},
-            # {'i2c_bus': 1},
+            # Forzamos el modo I2C
+            {'connection_type': 'i2c'},
+            {'i2c_bus': 1},
             {'frame_id': 'imu_link'}
         ],
-        # Remapeamos el topic para que coincida con lo que espera el ekf.yaml
         remappings=[
             ('bno055/imu', 'imu'),
             ('bno055/calib_status', 'imu/calib_status')
