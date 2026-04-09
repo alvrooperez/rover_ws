@@ -25,7 +25,8 @@ def generate_launch_description():
     osr_control_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(osr_bringup_dir, 'launch', 'osr_launch.py') 
-        )
+        ),
+        launch_arguments={'enable_odometry': 'true'}.items()
     )
     
     # 1.6 NUEVO: Nodo de la cámara universal V4L2 (Sustituye a la Astra)
