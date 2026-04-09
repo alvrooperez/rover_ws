@@ -18,7 +18,7 @@ def generate_launch_description():
         output='screen',
         parameters=[
             ekf_config_path,
-            {'use_sim_time': True}
+            {'use_sim_time': False} # <--- CORREGIDO
         ],
         remappings=[('odometry/filtered', 'odometry/local')]
     )
@@ -31,7 +31,7 @@ def generate_launch_description():
         output='screen',
         parameters=[
             ekf_config_path,
-            {'use_sim_time': True}
+            {'use_sim_time': False} # <--- CORREGIDO
         ],
         remappings=[('odometry/filtered', 'odometry/global')]
     )
