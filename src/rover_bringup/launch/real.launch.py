@@ -81,6 +81,14 @@ def generate_launch_description():
     # map_file = os.path.join(rover_bringup_dir, 'maps', 'map_real.yaml') 
     # nav2_launch = IncludeLaunchDescription( ... )
 
+    # 6. RViz para visualizar sensores y TF en tiempo real
+    rviz_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(nav2_bringup_dir, 'launch', 'rviz_launch.py')
+        ),
+        launch_arguments={'use_sim_time': use_sim_time}.items()
+    )
+
     return LaunchDescription([
         # Forzamos el uso del reloj del sistema (hardware real)
         SetParameter(name='use_sim_time', value=False),
@@ -91,6 +99,7 @@ def generate_launch_description():
         lidar_launch,
         localizacion_launch,
         aruco_node,
-        mock_aruco_node
+        mock_aruco_node,
+        rviz_launch
         # nav2_launch
     ])
