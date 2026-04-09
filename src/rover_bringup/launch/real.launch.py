@@ -46,6 +46,25 @@ def generate_launch_description():
             os.path.join(ydlidar_dir, 'launch', 'ydlidar_launch.py') 
         )
     )
+
+    # 1.8 NUEVO: Nodo IMU BNO055
+    bno055_node = Node(
+        package='bno055',
+        executable='bno055',
+        name='bno055_node',
+        parameters=[
+            # Descomenta y ajusta según cómo tengas conectada la IMU (I2C o UART)
+            # {'uart_port': '/dev/ttyUSB0'},
+            # {'i2c_bus': 1},
+            {'frame_id': 'imu_link'}
+        ],
+        # Remapeamos el topic para que coincida con lo que espera el ekf.yaml
+        remappings=[
+            ('bno055/imu', 'imu'),
+            ('bno055/calib_status', 'imu/calib_status')
+        ],
+        output='screen'
+    )
     # ========================================================================
 
     # 2. Localización (EKF local y global)
@@ -97,9 +116,10 @@ def generate_launch_description():
         osr_control_launch,
         v4l2_camera_node,      # Arrancamos la nueva cámara
         lidar_launch,
+        bno055_node,           # Arrancamos la IMU
         localizacion_launch,
         aruco_node,
         mock_aruco_node,
-        rviz_launch
+        #rviz_launch
         # nav2_launch
     ])
