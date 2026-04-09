@@ -95,17 +95,32 @@ def generate_launch_description():
         cmd=['python3', os.path.join(os.getcwd(), 'src', 'rover_bringup', 'config', 'mock_aruco.py'), '--ros-args', '-p', 'use_sim_time:=false'],
         output='screen'
     )
-
-    # 5. Nav2 (Navegación Autónoma) - Descomentar cuando tengas el mapa real
-    # map_file = os.path.join(rover_bringup_dir, 'maps', 'map_real.yaml') 
-    # nav2_launch = IncludeLaunchDescription( ... )
-
+	# 5. Nav2 (Navegación Autónoma)
+    map_file = os.path.join(rover_bringup_dir, 'maps', 'mapa_pasillo.yaml') 
+    
+    nav2_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(nav2_bringup_dir, 'launch', 'bringup_launch.py')
+        ),
+        launch_arguments={
+            'map': map_file,
+            'use_sim_time': use_sim_time,
+            'params_file': os.path.join(rover_bringup_dir, 'config', 'nav2_params.yaml') # Descomenta esto si usas un archivo de parámetros específico
+        }.items()
+    )
     # 6. RViz para visualizar sensores y TF en tiempo real
     rviz_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(nav2_bringup_dir, 'launch', 'rviz_launch.py')
         ),
         launch_arguments={'use_sim_time': use_sim_time}.items()
+    )
+    # 1.9 NUEVO: Puente TF entre base_footprint (Nav2) y base_link (Rover)
+    base_footprint_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='base_footprint_tf',
+        arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint'] # <--- CAMBIO AQUÍ
     )
 
     return LaunchDescription([
@@ -120,6 +135,7 @@ def generate_launch_description():
         localizacion_launch,
         aruco_node,
         mock_aruco_node,
+        base_footprint_tf,
         #rviz_launch
-        # nav2_launch
+        nav2_launch
     ])
