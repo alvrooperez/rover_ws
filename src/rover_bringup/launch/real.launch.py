@@ -96,7 +96,7 @@ def generate_launch_description():
         output='screen'
     )
 	# 5. Nav2 (Navegación Autónoma)
-    map_file = os.path.join(rover_bringup_dir, 'maps', 'mapa_pasillo.yaml') 
+    map_file = os.path.join(rover_bringup_dir, 'maps', 'map.yaml')
     
     nav2_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
