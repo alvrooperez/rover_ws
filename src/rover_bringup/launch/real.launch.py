@@ -108,6 +108,8 @@ def generate_launch_description():
             'params_file': os.path.join(rover_bringup_dir, 'config', 'nav2_params.yaml') # Descomenta esto si usas un archivo de parámetros específico
         }.items()
     )
+    nav2_remapped_launch = SetParameter(name='remappings', value=[('/cmd_vel', '/cmd_vel_intuitive')])
+    
     # 6. RViz para visualizar sensores y TF en tiempo real
     rviz_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
