@@ -117,6 +117,14 @@ def generate_launch_description():
         ),
         launch_arguments={'use_sim_time': use_sim_time}.items()
     )
+    # 1.10 TF estático base_link -> camera (cámara frontal, misma posición que laser_frame)
+    camera_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='camera_tf',
+        arguments=['0.09', '0.0', '0.2', '0', '0', '0', 'base_link', 'camera']
+    )
+
     # 1.9 NUEVO: Puente TF entre base_footprint (Nav2) y base_link (Rover)
     base_footprint_tf = Node(
         package='tf2_ros',
@@ -137,6 +145,7 @@ def generate_launch_description():
         localizacion_launch,
         aruco_node,
         mock_aruco_node,
+        camera_tf,
         base_footprint_tf,
         #rviz_launch
         nav2_launch
