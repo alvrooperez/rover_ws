@@ -63,7 +63,7 @@ def generate_launch_description():
     # --- LOCALIZACIÓN Y MAPAS ---
     localizacion_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(rover_bringup_dir, 'launch', 'localizacion.launch.py')
+            os.path.join(rover_bringup_dir, 'launch', 'localizacion_simple.launch.py')
         ),
         launch_arguments={'use_sim_time': use_sim_time}.items()
     )
@@ -140,12 +140,12 @@ def generate_launch_description():
         
         osr_control_launch,
         v4l2_camera_node,
-        lidar_launch,
-        bno055_node,
+        #lidar_launch,
+        #bno055_node,
         localizacion_launch,
         map_server_node,
-        amcl_node,
-        lifecycle_manager,
+        #amcl_node,
+        #lifecycle_manager,
         aruco_node,
         mock_aruco_node,
         pure_pursuit_node,

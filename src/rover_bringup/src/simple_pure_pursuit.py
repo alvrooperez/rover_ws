@@ -8,7 +8,7 @@ import math
 class SimplePurePursuit(Node):
     def __init__(self):
         super().__init__('simple_pure_pursuit')
-        self.publisher_ = self.create_publisher(Twist, '/cmd_vel_intuitive', 10)
+        self.publisher_ = self.create_publisher(Twist, '/cmd_vel_intuitive', 1)
         self.subscription = self.create_subscription(PoseStamped, '/goal_pose', self.goal_callback, 10)
         
         # Buffer de TF para saber dónde estamos en el mapa
@@ -79,6 +79,15 @@ class SimplePurePursuit(Node):
         else:
             msg.linear.x = 0.0 # Pivotar en el sitio
         
+        #LOG DETALLADO DE NAVEGACIÓN (Cada medio segundo para no saturar)
+        self.get_logger().info(
+            f"[DEBUG] Pose_Actual: (X:{x:.2f}, Y:{y:.2f}, Yaw:{yaw:.2f}) | "
+            f"Meta: (X:{self.goal.position.x:.2f}, Y:{self.goal.position.y:.2f}) | "
+            f"Distancia: {dist:.2f}m | Error_Giro: {yaw_error:.2f}rad | "
+            f"Enviando -> V:{msg.linear.x:.2f} m/s, W:{msg.angular.z:.2f} rad/s",
+            throttle_duration_sec=0.5
+        )
+
         self.publisher_.publish(msg)
 
 def main(args=None):
