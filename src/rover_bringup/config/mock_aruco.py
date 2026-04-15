@@ -26,10 +26,22 @@ class ArucoProcessor(Node):
         # Solo necesitamos X e Y absolutos de tu mapa.
         # ==========================================================
         self.mapa_arucos = {
-            10: (0.035927, 0.027083), # Las coordenadas que me pasaste para el ID 10
-            # Añade aquí otros ArUcos si los tienes en tu mapa, separados por comas:
-            # 17: (2.5, -1.2), 
-            # 22: (4.0, 3.0)
+            # Pared norte (Y=7)
+            10: (1.5, 7.0),
+            11: (3.5, 7.0),
+            12: (5.5, 7.0),
+            # Pared oeste (X=0)
+             1: (0.0, 1.5),
+             2: (0.0, 3.5),
+             3: (0.0, 5.5),
+            # Pared sur (Y=0)
+            30: (1.5, 0.0),
+            31: (3.5, 0.0),
+            32: (5.5, 0.0),
+            # Pared este (X=7)
+            50: (7.0, 1.5),
+            51: (7.0, 3.5),
+            52: (7.0, 5.5),
         }
         
         self.get_logger().info("Puente ArUco Real -> EKF iniciado. Esperando detectar marcadores...")
