@@ -8,7 +8,7 @@ import math
 class SimplePurePursuit(Node):
     def __init__(self):
         super().__init__('simple_pure_pursuit')
-        self.publisher_ = self.create_publisher(Twist, '/cmd_vel_intuitive', 10)
+        self.publisher_ = self.create_publisher(Twist, '/cmd_vel_intuitive', 5)
         self.subscription = self.create_subscription(PoseStamped, '/goal_pose', self.goal_callback, 10)
         
         # Buffer de TF para saber dónde estamos en el mapa
@@ -20,10 +20,10 @@ class SimplePurePursuit(Node):
         
         # Parámetros del controlador
         self.max_v = 0.3      # Velocidad lineal máxima (m/s)
-        self.max_w = 0.8      # Velocidad angular máxima (rad/s)
+        self.max_w = 0.4      # Velocidad angular máxima (rad/s)
         self.kp_v = 0.5       # Constante proporcional para avanzar
         self.kp_w = 1.5       # Constante proporcional para girar
-        self.dist_tol = 0.15  # Tolerancia de llegada (metros)
+        self.dist_tol = 0.65  # Tolerancia de llegada (metros)
 
         self.get_logger().info("Controlador 'Chapuza' Iniciado. Manda un 2D Goal Pose desde RViz.")
 
@@ -33,7 +33,7 @@ class SimplePurePursuit(Node):
 
     def get_current_pose(self):
         try:
-            trans = self.tf_buffer.lookup_transform('odom', 'base_link', rclpy.time.Time())
+            trans = self.tf_buffer.lookup_transform('map', 'base_link', rclpy.time.Time())
             x = trans.transform.translation.x
             y = trans.transform.translation.y
             q = trans.transform.rotation
@@ -72,12 +72,12 @@ class SimplePurePursuit(Node):
         yaw_error = math.atan2(math.sin(yaw_error), math.cos(yaw_error)) # Normalizar -pi a pi
         
         # Lógica chapuza: Primero me oriento, luego avanzo
-        msg.angular.z = max(min(self.kp_w * yaw_error, self.max_w), -self.max_w)
+        msg.angular.z = -max(min(self.kp_w * yaw_error, self.max_w), -self.max_w)
         
-        if abs(yaw_error) < 0.3: # Si estamos mirando casi al objetivo, avanzamos
-            msg.linear.x = max(min(self.kp_v * dist, self.max_v), -self.max_v)
-        else:
-            msg.linear.x = 0.0 # Pivotar en el sitio
+        
+        msg.linear.x = max(min(self.kp_v * dist, self.max_v), -self.max_v)
+        if yaw_error < 0.2:
+            msg.angular.z=0.0
         
         #LOG DETALLADO DE NAVEGACIÓN (Cada medio segundo para no saturar)
         self.get_logger().info(

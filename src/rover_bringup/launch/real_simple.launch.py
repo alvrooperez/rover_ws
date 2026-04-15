@@ -23,7 +23,8 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(osr_bringup_dir, 'launch', 'osr_launch.py') 
         ),
-        launch_arguments={'enable_odometry': 'true'}.items()
+        launch_arguments={'enable_odometry': 'true',
+                          'publish_transform': 'true'}.items()
     )
     
     v4l2_camera_node = Node(
@@ -32,7 +33,7 @@ def generate_launch_description():
         name='v4l2_camera',
         parameters=[
             {'video_device': '/dev/video0'}, 
-            {'image_size': [640, 480]},      
+            {'image_size': [640, 480]},     
             {'framerate': 10}                
         ],
         output='screen'
@@ -63,7 +64,7 @@ def generate_launch_description():
     # --- LOCALIZACIÓN Y MAPAS ---
     localizacion_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(rover_bringup_dir, 'launch', 'localizacion_simple.launch.py')
+            os.path.join(rover_bringup_dir, 'launch', 'localizacion.launch.py')
         ),
         launch_arguments={'use_sim_time': use_sim_time}.items()
     )
@@ -92,7 +93,7 @@ def generate_launch_description():
         output='screen',
         parameters=[{'use_sim_time': use_sim_time},
                     {'autostart': True},
-                    {'node_names': ['map_server', 'amcl']}]
+                    {'node_names': ['map_server']}]
     )
 
     # --- RECONOCIMIENTO Y CONTROL ---
@@ -145,7 +146,7 @@ def generate_launch_description():
         localizacion_launch,
         map_server_node,
         #amcl_node,
-        #lifecycle_manager,
+        lifecycle_manager,
         aruco_node,
         mock_aruco_node,
         pure_pursuit_node,
