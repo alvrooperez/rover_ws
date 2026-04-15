@@ -145,8 +145,8 @@ def generate_launch_description():
     imu_tf = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
-        name='camera_tf',
-        arguments=['0.09', '0.0', '0.2', '0', '0', '0', 'base_link', 'imu_link']
+        name='imu_tf',
+        arguments=['0.09', '0.0', '0.2', '-1.57', '0', '0', 'base_link', 'imu_link']
     )
 
     return LaunchDescription([

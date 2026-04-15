@@ -1,4 +1,4 @@
-ekf_simple_node:
+ekf_imu_node:
   ros__parameters:
     use_sim_time: false
     frequency: 10.0
