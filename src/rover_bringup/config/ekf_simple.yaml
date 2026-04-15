@@ -1,7 +1,7 @@
 ekf_simple_node:
   ros__parameters:
     use_sim_time: false
-    frequency: 30.0
+    frequency: 15.0
     sensor_timeout: 0.1
     two_d_mode: true
     publish_tf: true
@@ -9,7 +9,7 @@ ekf_simple_node:
     map_frame: map
     odom_frame: odom
     base_link_frame: base_link
-    world_frame: map
+    world_frame: odom
 
     # 1. Odometría de ruedas (relativa, continua)
     odom0: odom

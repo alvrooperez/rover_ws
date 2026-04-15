@@ -8,7 +8,7 @@ import math
 class SimplePurePursuit(Node):
     def __init__(self):
         super().__init__('simple_pure_pursuit')
-        self.publisher_ = self.create_publisher(Twist, '/cmd_vel_intuitive', 1)
+        self.publisher_ = self.create_publisher(Twist, '/cmd_vel_intuitive', 10)
         self.subscription = self.create_subscription(PoseStamped, '/goal_pose', self.goal_callback, 10)
         
         # Buffer de TF para saber dónde estamos en el mapa
@@ -33,7 +33,7 @@ class SimplePurePursuit(Node):
 
     def get_current_pose(self):
         try:
-            trans = self.tf_buffer.lookup_transform('map', 'base_link', rclpy.time.Time())
+            trans = self.tf_buffer.lookup_transform('odom', 'base_link', rclpy.time.Time())
             x = trans.transform.translation.x
             y = trans.transform.translation.y
             q = trans.transform.rotation
