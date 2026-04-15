@@ -64,7 +64,7 @@ def generate_launch_description():
     # --- LOCALIZACIÓN Y MAPAS ---
     localizacion_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(rover_bringup_dir, 'launch', 'localizacion.launch.py')
+            os.path.join(rover_bringup_dir, 'launch', 'localizacion_imu.launch.py')
         ),
         launch_arguments={'use_sim_time': use_sim_time}.items()
     )
@@ -135,14 +135,28 @@ def generate_launch_description():
         arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint']
     )
 
+    map_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='map_tf',
+        arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom']
+    )
+    
+    imu_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='camera_tf',
+        arguments=['0.09', '0.0', '0.2', '0', '0', '0', 'base_link', 'imu_link']
+    )
+
     return LaunchDescription([
         SetParameter(name='use_sim_time', value=False),
         DeclareLaunchArgument('use_sim_time', default_value='false'),
         
-        osr_control_launch,
+       	osr_control_launch,
         v4l2_camera_node,
         #lidar_launch,
-        #bno055_node,
+        bno055_node,
         localizacion_launch,
         map_server_node,
         #amcl_node,
@@ -151,5 +165,7 @@ def generate_launch_description():
         mock_aruco_node,
         pure_pursuit_node,
         camera_tf,
-        base_footprint_tf
+        map_tf,
+        base_footprint_tf,
+        imu_tf
     ])

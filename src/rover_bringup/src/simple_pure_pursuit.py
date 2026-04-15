@@ -10,22 +10,16 @@ class SimplePurePursuit(Node):
         super().__init__('simple_pure_pursuit')
         self.publisher_ = self.create_publisher(Twist, '/cmd_vel_intuitive', 5)
         self.subscription = self.create_subscription(PoseStamped, '/goal_pose', self.goal_callback, 10)
-        
-        # Buffer de TF para saber dónde estamos en el mapa
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
-        
         self.timer = self.create_timer(0.1, self.control_loop)
         self.goal = None
-        
-        # Parámetros del controlador
-        self.max_v = 0.3      # Velocidad lineal máxima (m/s)
-        self.max_w = 0.4      # Velocidad angular máxima (rad/s)
-        self.kp_v = 0.5       # Constante proporcional para avanzar
-        self.kp_w = 1.5       # Constante proporcional para girar
-        self.dist_tol = 0.65  # Tolerancia de llegada (metros)
-
-        self.get_logger().info("Controlador 'Chapuza' Iniciado. Manda un 2D Goal Pose desde RViz.")
+        self.max_v = 0.3
+        self.max_w = 0.3
+        self.kp_v = 0.5
+        self.kp_w = 1.5
+        self.dist_tol = 0.65
+        self.get_logger().info("Controlador iniciado.")
 
     def goal_callback(self, msg):
         self.goal = msg.pose
@@ -37,57 +31,42 @@ class SimplePurePursuit(Node):
             x = trans.transform.translation.x
             y = trans.transform.translation.y
             q = trans.transform.rotation
-            
-            # Cuaternión a Yaw manualmente (sin dependencias extra)
             siny_cosp = 2 * (q.w * q.z + q.x * q.y)
             cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z)
             yaw = math.atan2(siny_cosp, cosy_cosp)
-            
             return x, y, yaw
-        except Exception:
+        except Exception as e:
+            self.get_logger().warn(f'No se pudo obtener TF map->base_link: {str(e)}')
             return None
 
     def control_loop(self):
         if self.goal is None:
             return
-
         pose = self.get_current_pose()
         if pose is None:
             return
-        
         x, y, yaw = pose
         dx = self.goal.position.x - x
         dy = self.goal.position.y - y
         dist = math.hypot(dx, dy)
-        
         msg = Twist()
         if dist < self.dist_tol:
-            self.get_logger().info("¡Destino alcanzado!")
+            self.get_logger().info("Destino alcanzado!")
             self.goal = None
-            self.publisher_.publish(msg) # Parada total
+            self.publisher_.publish(msg)
             return
-            
         target_yaw = math.atan2(dy, dx)
         yaw_error = target_yaw - yaw
-        yaw_error = math.atan2(math.sin(yaw_error), math.cos(yaw_error)) # Normalizar -pi a pi
-        
-        # Lógica chapuza: Primero me oriento, luego avanzo
-        msg.angular.z = -max(min(self.kp_w * yaw_error, self.max_w), -self.max_w)
-        
-        
+        yaw_error = math.atan2(math.sin(yaw_error), math.cos(yaw_error))
+        msg.angular.z = max(min(self.kp_w * yaw_error, self.max_w), -self.max_w)
         msg.linear.x = max(min(self.kp_v * dist, self.max_v), -self.max_v)
-        if yaw_error < 0.2:
-            msg.angular.z=0.0
-        
-        #LOG DETALLADO DE NAVEGACIÓN (Cada medio segundo para no saturar)
+        if abs(yaw_error) < 0.2:
+            msg.angular.z = 0.0
         self.get_logger().info(
-            f"[DEBUG] Pose_Actual: (X:{x:.2f}, Y:{y:.2f}, Yaw:{yaw:.2f}) | "
-            f"Meta: (X:{self.goal.position.x:.2f}, Y:{self.goal.position.y:.2f}) | "
-            f"Distancia: {dist:.2f}m | Error_Giro: {yaw_error:.2f}rad | "
-            f"Enviando -> V:{msg.linear.x:.2f} m/s, W:{msg.angular.z:.2f} rad/s",
+            f"Pose: ({x:.2f},{y:.2f},{yaw:.2f}) Meta: ({self.goal.position.x:.2f},{self.goal.position.y:.2f}) "
+            f"Dist: {dist:.2f}m Error: {yaw_error:.2f}rad V:{msg.linear.x:.2f} W:{msg.angular.z:.2f}",
             throttle_duration_sec=0.5
         )
-
         self.publisher_.publish(msg)
 
 def main(args=None):

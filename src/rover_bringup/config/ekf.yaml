@@ -2,7 +2,7 @@ ekf_local_node:
   ros__parameters:
     use_sim_time: false
     frequency: 30.0
-    sensor_timeout: 0.1
+    sensor_timeout: 0.5    # Aumentado: IMU puede tener latencia de arranque
     two_d_mode: true
     publish_tf: true
 
@@ -12,16 +12,7 @@ ekf_local_node:
     base_link_frame: base_link
     world_frame: odom
 
-    # Configuración de Odometría (Ruedas del C++)
-    odom0: odom
-    odom0_config: [false, false, false, # X, Y, Z (Posición) -> FALSE
-                   false, false, false, # Roll, Pitch, Yaw -> FALSE
-                   true,  true,  false, # VX, VY, VZ (Velocidad lineal) -> TRUE
-                   false, false, true,  # Vroll, Vpitch, Vyaw -> TRUE
-                   false, false, false]
-    odom0_queue_size: 10
-
-    # Configuración de IMU (Gazebo)
+    # Sin odometría de ruedas: solo IMU para dead-reckoning
     imu0: imu
     imu0_config: [false, false, false, # Posición X, Y, Z
                   false, false, false, # Roll, Pitch, Yaw absoluto -> FALSE (evita divergencia)
@@ -29,12 +20,13 @@ ekf_local_node:
                   true,  true,  true,  # Vroll, Vpitch, Vyaw -> TRUE
                   true,  true,  true]  # Aceleraciones lineales -> TRUE
     imu0_queue_size: 10
+    imu0_remove_gravitational_acceleration: true  # Evita que la gravedad se integre como aceleración real
 
 ekf_global_node:
   ros__parameters:
     use_sim_time: false
     frequency: 30.0
-    sensor_timeout: 0.1
+    sensor_timeout: 0.5    # Aumentado: tolerancia mientras ArUcos o AMCL no están disponibles
     two_d_mode: true
     publish_tf: true
 
@@ -44,34 +36,28 @@ ekf_global_node:
     base_link_frame: base_link
     world_frame: map
 
-    # Misma odometría de las ruedas
-    odom0: odom
-    odom0_config: [false, false, false,
-                   false, false, false,
-                   true,  true,  false,
-                   false, false, true,
-                   false, false, false]
-    
-    # Misma IMU
+    # IMU: dead-reckoning entre correcciones absolutas
     imu0: imu
     imu0_config: [false, false, false, # Posición X, Y, Z
                   false, false, false, # Roll, Pitch, Yaw absolutos ignorados para estabilidad
                   false, false, false,
-                  true,  true,  true,
-                  true,  true,  true]
+                  true,  true,  true,  # Vroll, Vpitch, Vyaw
+                  true,  true,  true]  # Aceleraciones lineales
+    imu0_queue_size: 10
+    imu0_remove_gravitational_acceleration: true
 
-    # NUEVO: Detección absoluta de nuestro ArUco (X, Y y Yaw)
+    # ArUco: corrección absoluta de posición (X, Y) cuando sea visible
     pose0: aruco_pose
     pose0_config: [true,  true,  false,
-                   false, false, false, # Dejamos que la IMU maneje el Yaw, ArUco solo corrige X,Y
+                   false, false, true, # Yaw lo maneja AMCL con más consistencia
                    false, false, false,
                    false, false, false,
                    false, false, false]
 
-    # NUEVO: Detección global de AMCL (LiDAR)
+    # AMCL (LiDAR): corrección global continua de X, Y y Yaw
     pose1: amcl_pose
     pose1_config: [true,  true,  false,
-                   false, false, true,
+                   false, false, true,  # Yaw desde AMCL
                    false, false, false,
                    false, false, false,
                    false, false, false]
