@@ -14,8 +14,8 @@ ekf_imu_node:
     odom0: odom
     odom0_config: [false, false, false,
                    false, false, false,
-                   true,  false, false,
-                   false, false, true,
+                   true,  true, false,
+                   false, false, false,
                    false, false, false]
     odom0_noise_covariance: [0.1, 0.0, 0.0, 0.0, 0.0, 0.0,
                              0.0, 0.1, 0.0, 0.0, 0.0, 0.0,
@@ -27,9 +27,9 @@ ekf_imu_node:
     # 2. IMU: orientación absoluta (solo Yaw)
     imu0: /imu
     imu0_config: [false, false, false,
-                  false, false, true,   # Yaw absoluto
+                  false, false, false,   # Yaw absoluto
                   false, false, false,
-                  false, false, false,
+                  false, false, true,
                   false, false, false]
     imu0_differential: false
     imu0_relative: false
@@ -42,9 +42,9 @@ ekf_imu_node:
                    false, false, false,
                    false, false, false,
                    false, false, false]
-    pose0_noise_covariance: [0.5, 0.0, 0.0, 0.0, 0.0, 0.0,
-                             0.0, 0.5, 0.0, 0.0, 0.0, 0.0,
-                             0.0, 0.0, 0.5, 0.0, 0.0, 0.0,
-                             0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
-                             0.0, 0.0, 0.0, 0.0, 0.5, 0.0,
-                             0.0, 0.0, 0.0, 0.0, 0.0, 0.5]
+    pose0_noise_covariance: [0.1, 0.0, 0.0, 0.0, 0.0, 0.0,
+                             0.0, 0.1, 0.0, 0.0, 0.0, 0.0,
+                             0.0, 0.0, 0.1, 0.0, 0.0, 0.0,
+                             0.0, 0.0, 0.0, 0.1, 0.0, 0.0,
+                             0.0, 0.0, 0.0, 0.0, 0.1, 0.0,
+                             0.0, 0.0, 0.0, 0.0, 0.0, 0.1]

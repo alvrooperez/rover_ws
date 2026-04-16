@@ -16,7 +16,7 @@ class ArucoProcessor(Node):
         self.pub_initial = self.create_publisher(PoseWithCovarianceStamped, '/initialpose', 10)
         self.amcl_inicializado = True
 
-        self.DISTANCIA_MAXIMA = 3.0
+        self.DISTANCIA_MAXIMA = 5.0
         # ==========================================================
         # AQUÍ ESTÁ TU MAPA DE ARUCOS (ID: [X, Y, YAW_GLOBAL])
         # ==========================================================

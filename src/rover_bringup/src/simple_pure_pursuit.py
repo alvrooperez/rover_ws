@@ -27,7 +27,7 @@ class SimplePurePursuit(Node):
         self.max_w = 0.3
         self.kp_v = 0.5
         self.kp_w = 1.5
-        self.dist_tol = 0.5
+        self.dist_tol = 0.3
         
         self.get_logger().info("Controlador Pure Pursuit iniciado (Leyendo de /odometry/filtered).")
 

@@ -23,8 +23,8 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(osr_bringup_dir, 'launch', 'osr_launch.py') 
         ),
-        launch_arguments={'enable_odometry': 'true',
-                          'publish_transform': 'true'}.items()
+        launch_arguments={'enable_odometry': 'false',
+                          'publish_transform': 'false'}.items()
     )
     
     v4l2_camera_node = Node(
@@ -119,6 +119,10 @@ def generate_launch_description():
         cmd=['python3', os.path.join(os.getcwd(), 'src', 'rover_bringup', 'src', 'simple_pure_pursuit.py')],
         output='screen'
     )
+    fake_odom_node = ExecuteProcess(
+        cmd=['python3', os.path.join(os.getcwd(), 'src', 'rover_bringup', 'src', 'fake_odom.py')],
+        output='screen'
+    )
 
     # --- TF ---
     camera_tf = Node(
@@ -167,5 +171,6 @@ def generate_launch_description():
         camera_tf,
         map_tf,
         base_footprint_tf,
-        imu_tf
+        imu_tf,
+        fake_odom_node
     ])
