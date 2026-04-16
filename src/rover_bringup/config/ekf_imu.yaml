@@ -42,9 +42,24 @@ ekf_imu_node:
                    false, false, false,
                    false, false, false,
                    false, false, false]
-    pose0_noise_covariance: [0.1, 0.0, 0.0, 0.0, 0.0, 0.0,
-                             0.0, 0.1, 0.0, 0.0, 0.0, 0.0,
-                             0.0, 0.0, 0.1, 0.0, 0.0, 0.0,
-                             0.0, 0.0, 0.0, 0.1, 0.0, 0.0,
-                             0.0, 0.0, 0.0, 0.0, 0.1, 0.0,
-                             0.0, 0.0, 0.0, 0.0, 0.0, 0.1]
+    pose0_noise_covariance: [0.05, 0.0, 0.0, 0.0, 0.0, 0.0,
+                             0.0, 0.05, 0.0, 0.0, 0.0, 0.0,
+                             0.0, 0.0, 0.05, 0.0, 0.0, 0.0,
+                             0.0, 0.0, 0.0, 0.05, 0.0, 0.0,
+                             0.0, 0.0, 0.0, 0.0, 0.05, 0.0,
+                             0.0, 0.0, 0.0, 0.0, 0.0, 0.05]
+
+
+    pose1: /initialpose
+    pose1_config: [true,  true,  false,                   
+                      false, false, true,  # Lee X, Y y Yaw del clic de RViz
+                      false, false, false,                                                            
+                      false, false, false,
+                      false, false, false]
+        # Le ponemos una covarianza muy baja (0.01) para que el EKF obedezca a RViz ciegamente y al instante
+    pose1_noise_covariance: [0.01, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.01, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.01, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.01, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.01, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.01]

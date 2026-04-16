@@ -12,7 +12,7 @@ class FakeOdom(Node):
         
         # --- CALIBRACIÓN DE ODOMETRÍA ---
         # Factor lineal: Realidad (2.0m) / Odom Falsa (4.2m)
-        self.linear_scale = 1
+        self.linear_scale = 0.7
         # Factor angular: Dejar a 1.0 por ahora, ajustar si al rotar no coincide
         self.angular_scale = 1.0 
         

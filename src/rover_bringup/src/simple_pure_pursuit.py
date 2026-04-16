@@ -25,16 +25,21 @@ class SimplePurePursuit(Node):
         
         self.max_v = 0.3
         self.max_w = 0.3
+        self.min_v = 0.2
+        self.min_w = 0.2
         self.kp_v = 0.5
         self.kp_w = 1.5
-        self.dist_tol = 0.3
+        self.dist_tol = 0.1
+
+        self.goal_reached_count = 0
+        self.required_reach_counts = 10  # Número de veces seguidas que debe estar en el destino
         
         self.get_logger().info("Controlador Pure Pursuit iniciado (Leyendo de /odometry/filtered).")
 
     def goal_callback(self, msg):
         self.goal = msg.pose
         self.get_logger().info(f"Nuevo destino: X={self.goal.position.x:.2f}, Y={self.goal.position.y:.2f}")
-
+        self.goal_reached_count = 0  # Reiniciamos el contador si nos dan una meta nueva
     # NUEVO: Callback que lee la posición exacta del EKF continuamente
     def odom_callback(self, msg):
         x = msg.pose.pose.position.x
@@ -61,23 +66,48 @@ class SimplePurePursuit(Node):
         msg = Twist()
         
         if dist < self.dist_tol:
-            self.get_logger().info("¡Destino alcanzado!")
-            self.goal = None
-            msg.linear.x = 0.0
-            msg.angular.z = 0.0
-            self.publisher_.publish(msg)
-            return
-            
+            self.goal_reached_count += 1
+            if self.goal_reached_count >= self.required_reach_counts:
+                self.get_logger().info("¡Destino alcanzado y confirmado!")
+                self.goal = None
+                self.goal_reached_count = 0
+                msg.linear.x = 0.0
+                msg.angular.z = 0.0
+                self.publisher_.publish(msg)
+                return
+            else:
+                self.get_logger().info(f"En destino, confirmando... ({self.goal_reached_count}/{self.required_reach_counts})")
+
+                
+        else:
+            self.goal_reached_count = 0  # Si se sale de la zona de tolerancia, reiniciamos la cuenta
+
         target_yaw = math.atan2(dy, dx)
         yaw_error = target_yaw - yaw
         yaw_error = math.atan2(math.sin(yaw_error), math.cos(yaw_error)) 
         
         w_calc = max(min(self.kp_w * yaw_error, self.max_w), -self.max_w)
         v_calc = max(min(self.kp_v * dist, self.max_v), -self.max_v)
+
+        if v_calc > 0.0 and v_calc < self.min_v:
+            v_calc = self.min_v
+            
+        if w_calc > 0.0 and w_calc < self.min_w:
+            w_calc = self.min_w
+        elif w_calc < 0.0 and w_calc > -self.min_w:
+            w_calc = -self.min_w
+            
         
         if abs(yaw_error) < 0.2:
             w_calc = 0.0
-            
+
+        if yaw_error >1.0:
+            w_calc = 0.4
+            v_calc = 0.2 
+
+        if yaw_error < -1.0:
+            w_calc = -0.4
+            v_calc = 0.2  
         msg.angular.z = float(w_calc)
         msg.linear.x = float(v_calc)
         
