@@ -29,10 +29,10 @@ class SimplePurePursuit(Node):
         self.min_w = 0.2
         self.kp_v = 0.5
         self.kp_w = 1.5
-        self.dist_tol = 0.1
+        self.dist_tol = 0.2
 
         self.goal_reached_count = 0
-        self.required_reach_counts = 10  # Número de veces seguidas que debe estar en el destino
+        self.required_reach_counts = 23  # Número de veces seguidas que debe estar en el destino
         
         self.get_logger().info("Controlador Pure Pursuit iniciado (Leyendo de /odometry/filtered).")
 
@@ -96,7 +96,7 @@ class SimplePurePursuit(Node):
             w_calc = self.min_w
         elif w_calc < 0.0 and w_calc > -self.min_w:
             w_calc = -self.min_w
-            
+
         
         if abs(yaw_error) < 0.2:
             w_calc = 0.0
