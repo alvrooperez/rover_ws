@@ -1,0 +1,65 @@
+ekf_imu_node:
+  ros__parameters:
+    use_sim_time: false
+    frequency: 10.0
+    sensor_timeout: 0.1
+    two_d_mode: true
+    publish_tf: true
+    map_frame: map
+    odom_frame: map     # Truco: Al poner map aquí, el EKF publica la TF directa map -> base_link
+    base_link_frame: base_link
+    world_frame: map
+
+    # 1. Odometría de ruedas (VX y Vyaw activos)
+    odom0: odom
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true,  true, false,
+                   false, false, false,
+                   false, false, false]
+    odom0_noise_covariance: [0.1, 0.0, 0.0, 0.0, 0.0, 0.0,
+                             0.0, 0.1, 0.0, 0.0, 0.0, 0.0,
+                             0.0, 0.0, 0.1, 0.0, 0.0, 0.0,
+                             0.0, 0.0, 0.0, 0.1, 0.0, 0.0,
+                             0.0, 0.0, 0.0, 0.0, 0.1, 0.0,
+                             0.0, 0.0, 0.0, 0.0, 0.0, 0.1]
+
+    # 2. IMU: orientación absoluta (solo Yaw)
+    imu0: /imu
+    imu0_config: [false, false, false,
+                  false, false, false,   # Yaw absoluto
+                  false, false, false,
+                  false, false, true,
+                  false, false, false]
+    imu0_differential: false
+    imu0_relative: false
+    imu0_remove_gravitational_acceleration: true
+
+    # 3. Detección ArUco (absoluta, discreta)
+    pose0: aruco_pose
+    pose0_config: [true,  true,  false,
+                   false, false, true,  # El EKF absorbe el Yaw de los ArUcos
+                   false, false, false,
+                   false, false, false,
+                   false, false, false]
+    pose0_noise_covariance: [0.05, 0.0, 0.0, 0.0, 0.0, 0.0,
+                             0.0, 0.05, 0.0, 0.0, 0.0, 0.0,
+                             0.0, 0.0, 0.05, 0.0, 0.0, 0.0,
+                             0.0, 0.0, 0.0, 0.05, 0.0, 0.0,
+                             0.0, 0.0, 0.0, 0.0, 0.05, 0.0,
+                             0.0, 0.0, 0.0, 0.0, 0.0, 0.05]
+
+
+    pose1: /initialpose
+    pose1_config: [true,  true,  false,                   
+                      false, false, true,  # Lee X, Y y Yaw del clic de RViz
+                      false, false, false,                                                            
+                      false, false, false,
+                      false, false, false]
+        # Le ponemos una covarianza muy baja (0.01) para que el EKF obedezca a RViz ciegamente y al instante
+    pose1_noise_covariance: [0.01, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.01, 0.0, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.01, 0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.01, 0.0, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.01, 0.0,
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.01]

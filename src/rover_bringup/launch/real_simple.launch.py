@@ -23,7 +23,8 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(osr_bringup_dir, 'launch', 'osr_launch.py') 
         ),
-        launch_arguments={'enable_odometry': 'true'}.items()
+        launch_arguments={'enable_odometry': 'false',
+                          'publish_transform': 'false'}.items()
     )
     
     v4l2_camera_node = Node(
@@ -32,7 +33,7 @@ def generate_launch_description():
         name='v4l2_camera',
         parameters=[
             {'video_device': '/dev/video0'}, 
-            {'image_size': [640, 480]},      
+            {'image_size': [640, 480]},     
             {'framerate': 10}                
         ],
         output='screen'
@@ -63,7 +64,7 @@ def generate_launch_description():
     # --- LOCALIZACIÓN Y MAPAS ---
     localizacion_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(rover_bringup_dir, 'launch', 'localizacion.launch.py')
+            os.path.join(rover_bringup_dir, 'launch', 'localizacion_imu.launch.py')
         ),
         launch_arguments={'use_sim_time': use_sim_time}.items()
     )
@@ -92,7 +93,7 @@ def generate_launch_description():
         output='screen',
         parameters=[{'use_sim_time': use_sim_time},
                     {'autostart': True},
-                    {'node_names': ['map_server', 'amcl']}]
+                    {'node_names': ['map_server']}]
     )
 
     # --- RECONOCIMIENTO Y CONTROL ---
@@ -118,6 +119,10 @@ def generate_launch_description():
         cmd=['python3', os.path.join(os.getcwd(), 'src', 'rover_bringup', 'src', 'simple_pure_pursuit.py')],
         output='screen'
     )
+    fake_odom_node = ExecuteProcess(
+        cmd=['python3', os.path.join(os.getcwd(), 'src', 'rover_bringup', 'src', 'fake_odom.py')],
+        output='screen'
+    )
 
     # --- TF ---
     camera_tf = Node(
@@ -134,21 +139,38 @@ def generate_launch_description():
         arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint']
     )
 
+    map_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='map_tf',
+        arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom']
+    )
+    
+    imu_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='imu_tf',
+        arguments=['0.09', '0.0', '0.2', '-1.57', '0', '0', 'base_link', 'imu_link']
+    )
+
     return LaunchDescription([
         SetParameter(name='use_sim_time', value=False),
         DeclareLaunchArgument('use_sim_time', default_value='false'),
         
-        osr_control_launch,
+       	osr_control_launch,
         v4l2_camera_node,
-        lidar_launch,
+        #lidar_launch,
         bno055_node,
         localizacion_launch,
         map_server_node,
-        amcl_node,
+        #amcl_node,
         lifecycle_manager,
         aruco_node,
         mock_aruco_node,
         pure_pursuit_node,
         camera_tf,
-        base_footprint_tf
+        map_tf,
+        base_footprint_tf,
+        imu_tf,
+        fake_odom_node
     ])

@@ -21,12 +21,12 @@ def generate_launch_description():
     # ESPACIO PARA EL HARDWARE FÍSICO
     # ========================================================================
     # 1.5 Nodo/Launch del control real del Open Source Rover (OSR)
-    # Esto levantará los motores, leerá encoders y publicará la odometría real.
+    # Localización basada en IMU + ArUcos + LiDAR: odometría de ruedas desactivada.
     osr_control_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(osr_bringup_dir, 'launch', 'osr_launch.py') 
+            os.path.join(osr_bringup_dir, 'launch', 'osr_launch.py')
         ),
-        launch_arguments={'enable_odometry': 'true'}.items()
+        launch_arguments={'enable_odometry': 'false'}.items()
     )
     
     # 1.6 NUEVO: Nodo de la cámara universal V4L2 (Sustituye a la Astra)
@@ -133,6 +133,27 @@ def generate_launch_description():
         arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint'] # <--- CAMBIO AQUÍ
     )
 
+    lidar_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='lidar_tf',
+        arguments=['0', '0', '0', '1.57', '0', '0', 'base_link', 'laser_frame']
+    )
+
+    odom_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='map_tf',
+        arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom']
+    )
+
+    odom_base_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='o_b_tf',
+        arguments=['0', '0', '0', '0', '0', '0', 'odom', 'base_link']
+    )
+
     return LaunchDescription([
         # Forzamos el uso del reloj del sistema (hardware real)
         SetParameter(name='use_sim_time', value=False),
@@ -145,6 +166,9 @@ def generate_launch_description():
         localizacion_launch,
         aruco_node,
         mock_aruco_node,
+        odom_tf,
+        odom_base_tf,
+        lidar_tf,
         camera_tf,
         base_footprint_tf,
         #rviz_launch
